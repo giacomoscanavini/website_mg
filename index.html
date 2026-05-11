@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meng Guo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black:   #141a1f;
+      --mid:     #7a8a96;
+      --light:   #b0bec8;
+      --bg:      #f7f5f2;
+      --white:   #ffffff;
+      --accent:  #3a7a6a;   /* deep teal — geological, oceanic */
+      --accent2: #8b5e3c;   /* warm earth tone */
+      --rule:    #ddd8d0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 48px 56px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+
+    .site-name {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+
+    .site-name span {
+      display: block;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-role {
+      text-align: right;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      line-height: 2;
+      padding-top: 8px;
+    }
+
+    .header-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, var(--black) 60%, transparent);
+      margin-bottom: 4px;
+    }
+    .header-rule-thin {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, var(--rule) 80%, transparent);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px 120px;
+    }
+
+    /* ── CATEGORY ── */
+    .category {
+      margin-top: 60px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 0.55s ease forwards;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .category-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .category-line {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .category-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--light);
+    }
+
+    /* ── ARTICLE ROW ── */
+    .article-list { list-style: none; }
+
+    .article-item {
+      border-bottom: 1px solid var(--rule);
+    }
+    .article-item:first-child {
+      border-top: 1px solid var(--rule);
+    }
+
+    .article-link {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 20px;
+      padding: 16px 0;
+      text-decoration: none;
+      color: inherit;
+      transition: padding-left 0.22s ease;
+    }
+
+    .article-link:hover {
+      padding-left: 12px;
+    }
+
+    .article-link:hover .article-title {
+      color: var(--accent);
+    }
+
+    .article-link::after {
+      content: '↗';
+      font-size: 0.72rem;
+      color: var(--light);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .article-link:hover::after {
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+
+    .article-left {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .article-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+
+    .article-pub {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .article-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--light);
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    /* ── SOURCE NOTE ── */
+    .source-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.08em;
+      color: var(--light);
+      margin-top: 14px;
+    }
+
+    .source-note a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── FOOTER ── */
+    .footer-rule {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .footer-rule hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+    }
+
+    footer {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 48px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--light);
+    }
+
+    .footer-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.1em;
+      color: var(--light);
+      text-transform: uppercase;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header { padding: 48px 24px 40px; }
+      .header-top { flex-direction: column; }
+      .header-role { text-align: left; }
+      main { padding: 0 24px 80px; }
+      .footer-rule { padding: 0 24px; }
+      footer { padding: 20px 24px 48px; flex-direction: column; gap: 8px; align-items: flex-start; }
+      .article-link { grid-template-columns: 1fr; }
+      .article-date { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <h1 class="site-name">Meng <span>Guo</span></h1>
+      <div class="header-role">
+        Assistant Professor · HKU<br />
+        Earth Sciences<br />
+        In the news
+      </div>
+    </div>
+    <div class="header-rule"></div>
+    <div class="header-rule-thin"></div>
+  </header>
+
+  <!-- Static categories rendered by JS -->
+  <main id="content"></main>
+
+  <!-- Publications loaded from publications.json or INSPIRE-HEP -->
+  <div style="max-width:900px; margin:0 auto; padding:0 48px;">
+    <section class="category" id="publications-section" style="animation-delay:0.2s">
+      <div class="category-header">
+        <span class="category-label">Research &amp; Publications</span>
+        <div class="category-line"></div>
+        <span class="category-count" style="font-style:italic; color:var(--light)">loading…</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer-rule"><hr /></div>
+  <footer>
+    <span class="footer-name">Meng Guo</span>
+    <span class="footer-note" id="footer-year"></span>
+  </footer>
+
+
+  <script>
+
+    // ============================================================
+    // 1. DATA
+    // Static articles: press, profiles, awards.
+    // Publications are loaded live — see section 5 below.
+    // ============================================================
+
+    const articles = [
+
+      // ── Press & News ──
+      {
+        title: "Acidic oceans delayed the emergence of life on early Earth",
+        publication: "NTU Science",
+        date: "Mar 2025",
+        url: "https://blogs.ntu.edu.sg/science/2025/03/17/acidic-oceans-delayed-the-emergence-of-life-on-early-earth/",
+        category: "Press & News",
+      },
+      {
+        title: "Rapid rise of early ocean pH under elevated weathering rates",
+        publication: "Nature Geoscience",
+        date: "Jan 2025",
+        url: "https://doi.org/10.1038/s41561-025-01649-9",
+        category: "Press & News",
+      },
+      {
+        title: "pH-inding the origins of life — interview on early Earth's oceans",
+        publication: "Money FM 89.3 — Climate Connections Podcast",
+        date: "2025",
+        url: "https://www.linkedin.com/in/meng-guo-a65a10258/",
+        category: "Press & News",
+      },
+
+      // ── Profiles ──
+      {
+        title: "Meng Guo — Assistant Professor, Earth Sciences",
+        publication: "HKU Faculty of Science",
+        date: "2025",
+        url: "https://www.scifac.hku.hk/people/guo-meng",
+        category: "Profiles",
+      },
+      {
+        title: "Meng Guo — T.C. Chamberlin Postdoctoral Fellow & Origins Fellow",
+        publication: "University of Chicago, Geophysical Sciences",
+        date: "2024",
+        url: "https://geosci.uchicago.edu/people/meng-guo/",
+        category: "Profiles",
+      },
+
+      // ── Awards & Recognition ──
+      {
+        title: "T.C. Chamberlin Postdoctoral Fellowship",
+        publication: "University of Chicago, Department of Geophysical Sciences",
+        date: "2023",
+        url: "https://geosci.uchicago.edu/academics/information-for-postdocs/chamberlin-fellowship/",
+        category: "Awards & Recognition",
+      },
+
+    ];
+
+
+    // ============================================================
+    // 2. LOGIC — group and sort by date, newest first
+    // ============================================================
+
+    function parseDateValue(dateStr) {
+      const months = {
+        Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6,
+        Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12,
+      };
+      const parts = dateStr.trim().split(' ');
+      if (parts.length === 2) {
+        const month = months[parts[0]] || 0;
+        const year  = parseInt(parts[1], 10);
+        return year * 100 + month;
+      }
+      return parseInt(parts[0], 10) * 100;
+    }
+
+    function groupByCategory(articles) {
+      const groups = {};
+      for (const article of articles) {
+        if (!groups[article.category]) groups[article.category] = [];
+        groups[article.category].push(article);
+      }
+      for (const key of Object.keys(groups)) {
+        groups[key].sort((a, b) => parseDateValue(b.date) - parseDateValue(a.date));
+      }
+      return groups;
+    }
+
+
+    // ============================================================
+    // 3. RENDER
+    // ============================================================
+
+    function renderArticle(article) {
+      return `
+        <li class="article-item">
+          <a class="article-link" href="${article.url}" target="_blank" rel="noopener">
+            <div class="article-left">
+              <span class="article-title">${article.title}</span>
+              <span class="article-pub">${article.publication}</span>
+            </div>
+            <span class="article-date">${article.date}</span>
+          </a>
+        </li>`;
+    }
+
+    function renderCategory(name, items, index) {
+      const count = String(items.length).padStart(2, '0');
+      return `
+        <section class="category" style="animation-delay:${0.1 + index * 0.1}s">
+          <div class="category-header">
+            <span class="category-label">${name}</span>
+            <div class="category-line"></div>
+            <span class="category-count">${count}</span>
+          </div>
+          <ul class="article-list">
+            ${items.map(renderArticle).join('')}
+          </ul>
+        </section>`;
+    }
+
+    function renderPage() {
+      const groups = groupByCategory(articles);
+      document.getElementById('content').innerHTML =
+        Object.entries(groups)
+          .map(([name, items], i) => renderCategory(name, items, i))
+          .join('');
+    }
+
+
+    // ============================================================
+    // 4. INIT
+    // ============================================================
+
+    renderPage();
+    document.getElementById('footer-year').textContent =
+      'Updated ' + new Date().getFullYear();
+    fetchPublications();
+
+
+    // ============================================================
+    // 5. PUBLICATIONS FETCH
+    //
+    // Priority:
+    //   1. publications.json  — generated locally via fetch_publications.py
+    //                           using her Google Scholar ID
+    //   2. Falls back gracefully with a message if not found
+    //
+    // When the JSON is ready, drop it next to this file and redeploy.
+    // ============================================================
+
+    async function fetchPublications() {
+      const section = document.getElementById('publications-section');
+
+      try {
+        const res = await fetch('./publications.json');
+        if (!res.ok) throw new Error('not found');
+        const data = await res.json();
+        const pubs = (data.publications || [])
+          .sort((a, b) => parseDateValue(b.date) - parseDateValue(a.date));
+
+        if (pubs.length === 0) throw new Error('empty');
+        renderPublicationsSection(section, pubs, 'Google Scholar');
+        return;
+      } catch (_) {}
+
+      // No JSON yet — show a helpful placeholder
+      section.querySelector('.category-count').textContent = '—';
+      section.insertAdjacentHTML('beforeend', `
+        <p class="source-note" style="padding: 16px 0;">
+          Publications will appear here once
+          <code>publications.json</code> is generated and deployed.<br/>
+          Run <code>python3 fetch_publications.py</code> locally to generate it.
+        </p>`);
+    }
+
+    function renderPublicationsSection(section, pubs, source) {
+      const count = String(pubs.length).padStart(2, '0');
+      section.outerHTML = `
+        <section class="category" style="animation-delay:0.2s">
+          <div class="category-header">
+            <span class="category-label">Research &amp; Publications</span>
+            <div class="category-line"></div>
+            <span class="category-count">${count}</span>
+          </div>
+          <ul class="article-list">
+            ${pubs.map(renderArticle).join('')}
+          </ul>
+          <p class="source-note">Source: ${source}</p>
+        </section>`;
+    }
+
+  </script>
+</body>
+</html>
