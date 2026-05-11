@@ -450,39 +450,117 @@
 
 
     // ============================================================
-    // 5. PUBLICATIONS FETCH
-    //
-    // Priority:
-    //   1. publications.json  — generated locally via fetch_publications.py
-    //                           using her Google Scholar ID
-    //   2. Falls back gracefully with a message if not found
-    //
-    // When the JSON is ready, drop it next to this file and redeploy.
+    // 5. PUBLICATIONS
+    // Sourced from Google Scholar (fB31s5oAAAAJ), May 2025.
+    // To update: paste new data here or drop a publications.json
+    // next to this file (the fetch below will prefer the JSON).
     // ============================================================
+
+    const publicationsData = [
+      {
+        title: "Rapid rise of early ocean pH under elevated weathering rates",
+        publication: "Nature Geoscience",
+        date: "2025",
+        url: "https://doi.org/10.1038/s41561-025-01649-9",
+        citations: 14,
+      },
+      {
+        title: "Effects of late accretion impacts on an argon-constrained crustal growth model",
+        publication: "Earth and Planetary Science Letters",
+        date: "2025",
+        url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ",
+        citations: 1,
+      },
+      {
+        title: "A Late-Hadean Window for Life's Origin Defined by Co-Evolving Nitrogen and Carbon Cycles",
+        publication: "Preprint — Research Square",
+        date: "2025",
+        url: "https://www.researchsquare.com",
+        citations: 0,
+      },
+      {
+        title: "The History of Continental Formation Inferred from Th-U-Pb-He Isotope System",
+        publication: "AGU Fall Meeting 2024",
+        date: "2024",
+        url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ",
+        citations: 0,
+      },
+      {
+        title: "The combined Hf and Nd isotope evolution of the depleted mantle requires Hadean continental formation",
+        publication: "Science Advances",
+        date: "2023",
+        url: "https://doi.org/10.1126/sciadv.ade2711",
+        citations: 34,
+      },
+      {
+        title: "Deciphering the Habitability of the Early Earth: Insights From the Coupled Evolution of the Crust-Mantle-Atmosphere-Ocean System",
+        publication: "PhD Dissertation — Yale University",
+        date: "2023",
+        url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ",
+        citations: 0,
+      },
+      {
+        title: "Reconstructing seawater δ¹⁸O and Δ′¹⁷O values with solid Earth system evolution",
+        publication: "Earth and Planetary Science Letters",
+        date: "2022",
+        url: "https://doi.org/10.1016/j.epsl.2022.117637",
+        citations: 16,
+      },
+      {
+        title: "A halogen budget of the bulk silicate Earth points to a history of early halogen degassing followed by net regassing",
+        publication: "Proceedings of the National Academy of Sciences",
+        date: "2021",
+        url: "https://doi.org/10.1073/pnas.2116083118",
+        citations: 22,
+      },
+      {
+        title: "Argon constraints on the early growth of felsic continental crust",
+        publication: "Science Advances",
+        date: "2020",
+        url: "https://doi.org/10.1126/sciadv.aaz6234",
+        citations: 81,
+      },
+      {
+        title: "Reconciling Seawater δ¹⁸O Records with Solid Earth System Evolution",
+        publication: "AGU Fall Meeting 2020",
+        date: "2020",
+        url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ",
+        citations: 0,
+      },
+      {
+        title: "Argon Constraints on the Growth of Continental Crust and Its Composition",
+        publication: "AGU Fall Meeting 2019",
+        date: "2019",
+        url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ",
+        citations: 0,
+      },
+      {
+        title: "Earth's chondritic Th/U: Negligible fractionation during accretion, core formation, and crust–mantle differentiation",
+        publication: "Earth and Planetary Science Letters",
+        date: "2018",
+        url: "https://doi.org/10.1016/j.epsl.2018.07.009",
+        citations: 52,
+      },
+    ];
 
     async function fetchPublications() {
       const section = document.getElementById('publications-section');
 
+      // Try publications.json first (for future updates via the fetch script)
       try {
         const res = await fetch('./publications.json');
-        if (!res.ok) throw new Error('not found');
-        const data = await res.json();
-        const pubs = (data.publications || [])
-          .sort((a, b) => parseDateValue(b.date) - parseDateValue(a.date));
-
-        if (pubs.length === 0) throw new Error('empty');
-        renderPublicationsSection(section, pubs, 'Google Scholar');
-        return;
+        if (res.ok) {
+          const data = await res.json();
+          const pubs = data.publications || [];
+          if (pubs.length > 0) {
+            renderPublicationsSection(section, pubs, 'Google Scholar');
+            return;
+          }
+        }
       } catch (_) {}
 
-      // No JSON yet — show a helpful placeholder
-      section.querySelector('.category-count').textContent = '—';
-      section.insertAdjacentHTML('beforeend', `
-        <p class="source-note" style="padding: 16px 0;">
-          Publications will appear here once
-          <code>publications.json</code> is generated and deployed.<br/>
-          Run <code>python3 fetch_publications.py</code> locally to generate it.
-        </p>`);
+      // Fall back to embedded data
+      renderPublicationsSection(section, publicationsData, 'Google Scholar');
     }
 
     function renderPublicationsSection(section, pubs, source) {
