@@ -279,180 +279,143 @@
       margin-top: 14px;
     }
 
-    /* ── PUB ROW (clickable, not a link) ── */
-    .pub-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
+    /* ── VIEW ALL BUTTON ── */
+    .view-all-btn {
+      display: inline-flex;
       align-items: center;
-      gap: 20px;
-      padding: 16px 0;
-      cursor: pointer;
+      gap: 8px;
+      margin-top: 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
       background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      color: inherit;
-      transition: padding-left 0.22s ease;
+      border: 1px solid var(--accent);
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
     }
-    .pub-row:hover { padding-left: 12px; }
-    .pub-row:hover .article-title { color: var(--accent); }
-    .pub-row::after {
-      content: '→';
-      font-size: 0.8rem;
-      color: var(--light);
-      transition: color 0.2s, transform 0.2s;
-      flex-shrink: 0;
-    }
-    .pub-row:hover::after { color: var(--accent); transform: translateX(3px); }
+    .view-all-btn:hover { background: var(--accent); color: var(--white); }
 
-    /* ── DRAWER OVERLAY ── */
-    .drawer-overlay {
+    /* ── SUBWINDOW OVERLAY ── */
+    .sub-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(20, 26, 31, 0.35);
-      backdrop-filter: blur(2px);
+      background: rgba(20, 26, 31, 0.4);
+      backdrop-filter: blur(3px);
       z-index: 100;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.32s ease;
+      transition: opacity 0.28s ease;
     }
-    .drawer-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
+    .sub-overlay.open { opacity: 1; pointer-events: all; }
 
-    /* ── DRAWER PANEL ── */
-    .drawer {
+    /* ── SUBWINDOW PANEL ── */
+    .subwindow {
       position: fixed;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: min(480px, 92vw);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -44%) scale(0.97);
+      width: min(680px, 92vw);
+      max-height: 78vh;
       background: var(--white);
       z-index: 101;
       display: flex;
       flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: -8px 0 48px rgba(20,26,31,0.12);
+      box-shadow: 0 24px 80px rgba(20,26,31,0.18);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.34,1.26,0.64,1);
     }
-    .drawer.open { transform: translateX(0); }
+    .subwindow.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
-    .drawer-header {
+    .sub-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 32px 20px;
+      padding: 22px 28px;
       border-bottom: 1px solid var(--rule);
       flex-shrink: 0;
     }
-    .drawer-label {
+    .sub-header-left { display: flex; flex-direction: column; gap: 4px; }
+    .sub-header-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.52rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent);
     }
-    .drawer-close {
+    .sub-header-count {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      color: var(--light);
+    }
+    .sub-close {
       background: none;
       border: none;
       cursor: pointer;
       color: var(--light);
-      font-size: 1.2rem;
-      line-height: 1;
+      font-size: 1.1rem;
       padding: 4px 8px;
       transition: color 0.18s;
       font-family: 'Outfit', sans-serif;
     }
-    .drawer-close:hover { color: var(--black); }
+    .sub-close:hover { color: var(--black); }
 
-    .drawer-body {
-      padding: 32px 32px 40px;
+    /* search bar */
+    .sub-search-wrap {
+      padding: 14px 28px;
+      border-bottom: 1px solid var(--rule);
+      flex-shrink: 0;
+    }
+    .sub-search {
+      width: 100%;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--black);
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      padding: 8px 14px;
+      outline: none;
+      transition: border-color 0.18s;
+    }
+    .sub-search::placeholder { color: var(--light); }
+    .sub-search:focus { border-color: var(--accent); }
+
+    /* scrollable list */
+    .sub-list {
       overflow-y: auto;
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
+      padding: 0 28px;
     }
+    .sub-list .article-item { border-bottom: 1px solid var(--rule); }
+    .sub-list .article-item:first-child { border-top: none; }
+    .sub-list .article-link { padding: 14px 0; }
+    .sub-list .article-link::after { content: '↗'; }
 
-    .drawer-title {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: var(--black);
-    }
-
-    .drawer-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .drawer-journal {
+    .sub-empty {
       font-family: 'Space Mono', monospace;
       font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .drawer-row {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-    .drawer-date {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      color: var(--mid);
-    }
-    .drawer-citations {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      background: var(--bg);
-      color: var(--mid);
-      border: 1px solid var(--rule);
-      padding: 3px 10px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .drawer-citations-num {
-      font-weight: 700;
-      color: var(--accent);
-      font-size: 0.7rem;
-    }
-
-    .drawer-divider {
-      height: 1px;
-      background: var(--rule);
-    }
-
-    .drawer-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--white);
-      background: var(--accent);
-      text-decoration: none;
-      padding: 11px 20px;
-      transition: background 0.18s;
-      align-self: flex-start;
-    }
-    .drawer-link:hover { background: var(--black); }
-    .drawer-link::after { content: '↗'; font-size: 0.8rem; }
-
-    .drawer-scholar {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.52rem;
       color: var(--light);
+      padding: 40px 0;
+      text-align: center;
+      display: none;
+    }
+
+    .sub-footer {
+      padding: 12px 28px;
+      border-top: 1px solid var(--rule);
+      flex-shrink: 0;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.5rem;
       letter-spacing: 0.08em;
-      margin-top: auto;
-      padding-top: 16px;
+      color: var(--light);
     }
 
     .source-note a {
@@ -559,17 +522,23 @@
   </footer>
 
 
-  <!-- ── PUBLICATION DRAWER ── -->
-  <div class="drawer-overlay" id="drawerOverlay"></div>
-  <aside class="drawer" id="pubDrawer" role="dialog" aria-modal="true" aria-label="Publication details">
-    <div class="drawer-header">
-      <span class="drawer-label">Publication</span>
-      <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
+  <!-- ── PUBLICATIONS SUBWINDOW ── -->
+  <div class="sub-overlay" id="subOverlay"></div>
+  <div class="subwindow" id="subwindow" role="dialog" aria-modal="true" aria-label="All publications">
+    <div class="sub-header">
+      <div class="sub-header-left">
+        <span class="sub-header-label">Research &amp; Publications</span>
+        <span class="sub-header-count" id="subCount"></span>
+      </div>
+      <button class="sub-close" id="subClose" aria-label="Close">✕</button>
     </div>
-    <div class="drawer-body" id="drawerBody">
-      <!-- filled by JS -->
+    <div class="sub-search-wrap">
+      <input class="sub-search" id="subSearch" type="search" placeholder="Search by title or journal…" autocomplete="off" />
     </div>
-  </aside>
+    <ul class="article-list sub-list" id="subList"></ul>
+    <p class="sub-empty" id="subEmpty">No publications match your search.</p>
+    <div class="sub-footer">Source: Google Scholar</div>
+  </div>
 
   <script>
 
@@ -918,22 +887,13 @@
       renderPublicationsSection(section, publicationsData, 'Google Scholar');
     }
 
+    const PREVIEW_COUNT = 5;
+
     function renderPublicationsSection(section, pubs, source) {
-      const count = String(pubs.length).padStart(2, '0');
-
-      // Store pubs globally so the drawer can access them
       window._pubs = pubs;
-
-      const rows = pubs.map((pub, i) => `
-        <li class="article-item">
-          <button class="pub-row" onclick="openDrawer(${i})">
-            <div class="article-left">
-              <span class="article-title">${pub.title}</span>
-              <span class="article-pub">${pub.publication}</span>
-            </div>
-            <span class="article-date">${pub.date}</span>
-          </button>
-        </li>`).join('');
+      const total = pubs.length;
+      const preview = pubs.slice(0, PREVIEW_COUNT);
+      const count = String(total).padStart(2, '0');
 
       section.outerHTML = `
         <section class="category" style="animation-delay:0.2s">
@@ -942,64 +902,68 @@
             <div class="category-line"></div>
             <span class="category-count">${count}</span>
           </div>
-          <ul class="article-list">${rows}</ul>
+          <ul class="article-list">
+            ${preview.map(renderArticle).join('')}
+          </ul>
+          <button class="view-all-btn" id="viewAllBtn">
+            View all ${total} publications →
+          </button>
           <p class="source-note">Source: ${source}</p>
         </section>`;
+
+      document.getElementById('viewAllBtn').addEventListener('click', openSubwindow);
     }
 
 
     // ============================================================
-    // 6. DRAWER
+    // 6. SUBWINDOW
     // ============================================================
 
-    const drawer     = document.getElementById('pubDrawer');
-    const overlay    = document.getElementById('drawerOverlay');
-    const drawerBody = document.getElementById('drawerBody');
-    const drawerClose = document.getElementById('drawerClose');
+    const subOverlay = document.getElementById('subOverlay');
+    const subwindow  = document.getElementById('subwindow');
+    const subClose   = document.getElementById('subClose');
+    const subList    = document.getElementById('subList');
+    const subSearch  = document.getElementById('subSearch');
+    const subEmpty   = document.getElementById('subEmpty');
+    const subCount   = document.getElementById('subCount');
 
-    function openDrawer(index) {
-      const pub = window._pubs[index];
-      if (!pub) return;
+    function renderSubList(pubs) {
+      subList.innerHTML = pubs.map(renderArticle).join('');
+      const none = pubs.length === 0;
+      subEmpty.style.display = none ? 'block' : 'none';
+      subList.style.display  = none ? 'none'  : '';
+      subCount.textContent   = `${pubs.length} of ${(window._pubs || []).length}`;
+    }
 
-      const citationHTML = pub.citations > 0
-        ? `<span class="drawer-citations">
-             <span class="drawer-citations-num">${pub.citations}</span> citations
-           </span>`
-        : '';
-
-      const isDOI = pub.url && pub.url.includes('doi.org');
-      const linkLabel = isDOI ? 'View Paper' : 'View on Scholar';
-
-      drawerBody.innerHTML = `
-        <p class="drawer-title">${pub.title}</p>
-        <div class="drawer-meta">
-          <span class="drawer-journal">${pub.publication}</span>
-          <div class="drawer-row">
-            <span class="drawer-date">${pub.date}</span>
-            ${citationHTML}
-          </div>
-        </div>
-        <div class="drawer-divider"></div>
-        <a class="drawer-link" href="${pub.url}" target="_blank" rel="noopener">${linkLabel}</a>
-        <p class="drawer-scholar">Citation data sourced from Google Scholar</p>
-      `;
-
-      drawer.classList.add('open');
-      overlay.classList.add('open');
+    function openSubwindow() {
+      renderSubList(window._pubs || []);
+      subSearch.value = '';
+      subwindow.classList.add('open');
+      subOverlay.classList.add('open');
       document.body.style.overflow = 'hidden';
-      drawerClose.focus();
+      subSearch.focus();
     }
 
-    function closeDrawer() {
-      drawer.classList.remove('open');
-      overlay.classList.remove('open');
+    function closeSubwindow() {
+      subwindow.classList.remove('open');
+      subOverlay.classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    drawerClose.addEventListener('click', closeDrawer);
-    overlay.addEventListener('click', closeDrawer);
+    subClose.addEventListener('click', closeSubwindow);
+    subOverlay.addEventListener('click', closeSubwindow);
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeDrawer();
+      if (e.key === 'Escape') closeSubwindow();
+    });
+
+    subSearch.addEventListener('input', () => {
+      const q = subSearch.value.toLowerCase().trim();
+      const filtered = q
+        ? (window._pubs || []).filter(p =>
+            p.title.toLowerCase().includes(q) ||
+            p.publication.toLowerCase().includes(q))
+        : (window._pubs || []);
+      renderSubList(filtered);
     });
 
   </script>
