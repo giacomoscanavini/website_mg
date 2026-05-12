@@ -498,14 +498,7 @@
         category: "Academic Positions",
         logoTitle: "Yale_University",
       },
-      {
-        title: "M.S. — Department of Geology",
-        publication: "University of Maryland, College Park",
-        date: "2017",
-        url: "https://www.geol.umd.edu",
-        category: "Academic Positions",
-        logoTitle: "University_of_Maryland,_College_Park",
-      },
+
 
       // ── Awards & Recognition ──
       {
@@ -561,20 +554,24 @@
     // 3. RENDER
     // ============================================================
 
+    // ── Embedded institution logos (shield-shaped SVGs, official brand colors) ──
+    const LOGOS = {
+      "University_of_Hong_Kong":   "logos/hku.svg",
+      "University_of_Chicago":     "logos/uchicago.svg",
+      "Nanyang_Technological_University": "logos/ntu.svg",
+      "Yale_University":           "logos/yale.svg",
+    };
+
     function renderArticle(article) {
-      const hasLogo = !!article.logoTitle;
-      const logoHTML = hasLogo
+      const src = article.logoTitle ? LOGOS[article.logoTitle] : null;
+      const logoHTML = src
         ? `<div class="institution-logo-wrap">
-             <img class="institution-logo"
-                  data-wiki="${article.logoTitle}"
-                  src=""
-                  alt="${article.publication} logo"
-                  onerror="this.closest('.institution-logo-wrap').style.display='none'" />
+             <img class="institution-logo" src="${src}" alt="${article.publication}" />
            </div>`
         : '';
       return `
         <li class="article-item">
-          <a class="article-link${hasLogo ? ' has-logo' : ''}" href="${article.url}" target="_blank" rel="noopener">
+          <a class="article-link${src ? ' has-logo' : ''}" href="${article.url}" target="_blank" rel="noopener">
             ${logoHTML}
             <div class="article-left">
               <span class="article-title">${article.title}</span>
@@ -583,36 +580,6 @@
             <span class="article-date">${article.date}</span>
           </a>
         </li>`;
-    }
-
-    // ── Fetch institution logos from Wikipedia pageimages API (CORS-enabled) ──
-    async function fetchLogos() {
-      const imgs = document.querySelectorAll('img[data-wiki]');
-      if (!imgs.length) return;
-      const titles = [...new Set([...imgs].map(img => img.dataset.wiki))];
-      for (const title of titles) {
-        try {
-          const endpoint =
-            `https://en.wikipedia.org/w/api.php?action=query` +
-            `&titles=${encodeURIComponent(title)}` +
-            `&prop=pageimages&format=json&pithumbsize=120&piprop=thumbnail&origin=*`;
-          const res  = await fetch(endpoint);
-          const data = await res.json();
-          const page = Object.values(data?.query?.pages || {})[0];
-          const src  = page?.thumbnail?.source;
-          document.querySelectorAll(`img[data-wiki="${title}"]`).forEach(img => {
-            if (src) {
-              img.src = src;
-            } else {
-              img.closest('.institution-logo-wrap').style.display = 'none';
-            }
-          });
-        } catch {
-          document.querySelectorAll(`img[data-wiki="${title}"]`).forEach(img => {
-            img.closest('.institution-logo-wrap').style.display = 'none';
-          });
-        }
-      }
     }
 
     function renderCategory(name, items, index) {
@@ -644,7 +611,6 @@
     // ============================================================
 
     renderPage();
-    fetchLogos();
     document.getElementById('footer-year').textContent =
       'Updated ' + new Date().getFullYear();
     fetchPublications();
