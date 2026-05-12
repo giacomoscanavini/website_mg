@@ -86,6 +86,47 @@
       background: linear-gradient(to right, var(--rule) 80%, transparent);
     }
 
+    /* ── LAB NAV ── */
+    .lab-nav {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 18px 48px 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.15s ease forwards;
+    }
+
+    .lab-nav-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 5px 12px;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .lab-nav-link:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .lab-nav-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+
+    @media (max-width: 600px) {
+      .lab-nav { padding: 14px 24px 0; }
+    }
+
     /* ── MAIN ── */
     main {
       max-width: 900px;
@@ -168,6 +209,34 @@
     .article-link:hover::after {
       color: var(--accent);
       transform: translate(2px, -2px);
+    }
+
+    /* ── INSTITUTION LOGO (Academic Positions only) ── */
+    .article-link.has-logo {
+      grid-template-columns: 54px 1fr auto;
+    }
+
+    .institution-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px;
+      height: 46px;
+      flex-shrink: 0;
+    }
+
+    .institution-logo {
+      max-width: 50px;
+      max-height: 42px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(0.8) opacity(0.55);
+      transition: filter 0.25s ease;
+    }
+
+    .article-link:hover .institution-logo {
+      filter: grayscale(0.1) opacity(0.9);
     }
 
     .article-left {
@@ -266,6 +335,9 @@
       .footer-rule { padding: 0 24px; }
       footer { padding: 20px 24px 48px; flex-direction: column; gap: 8px; align-items: flex-start; }
       .article-link { grid-template-columns: 1fr; }
+      .article-link.has-logo { grid-template-columns: 42px 1fr; }
+      .institution-logo-wrap { width: 42px; height: 42px; }
+      .institution-logo { max-width: 38px; max-height: 36px; }
       .article-date { display: none; }
     }
   </style>
@@ -284,6 +356,11 @@
     <div class="header-rule"></div>
     <div class="header-rule-thin"></div>
   </header>
+
+  <nav class="lab-nav">
+    <a class="lab-nav-link" href="lab.html">Laboratory →</a>
+    <span class="lab-nav-label">Research Group · HKU Earth Sciences</span>
+  </nav>
 
   <!-- Static categories rendered by JS -->
   <main id="content"></main>
@@ -395,6 +472,7 @@
         date: "2025",
         url: "https://www.scifac.hku.hk/people/guo-meng",
         category: "Academic Positions",
+        logoTitle: "University_of_Hong_Kong",
       },
       {
         title: "T.C. Chamberlin Postdoctoral Fellow & Origins Fellow",
@@ -402,6 +480,7 @@
         date: "2024",
         url: "https://geosci.uchicago.edu/people/meng-guo/",
         category: "Academic Positions",
+        logoTitle: "University_of_Chicago",
       },
       {
         title: "Presidential Postdoctoral Fellow — Asian School of the Environment",
@@ -409,6 +488,7 @@
         date: "2023",
         url: "https://www.ntu.edu.sg/research/research-careers/presidential-postdoctoral-fellowship-(ppf)",
         category: "Academic Positions",
+        logoTitle: "Nanyang_Technological_University",
       },
       {
         title: "Ph.D. — Department of Earth and Planetary Sciences",
@@ -416,6 +496,7 @@
         date: "2023",
         url: "https://earth.yale.edu",
         category: "Academic Positions",
+        logoTitle: "Yale_University",
       },
       {
         title: "M.S. — Department of Geology",
@@ -423,6 +504,7 @@
         date: "2017",
         url: "https://www.geol.umd.edu",
         category: "Academic Positions",
+        logoTitle: "University_of_Maryland,_College_Park",
       },
 
       // ── Awards & Recognition ──
@@ -480,9 +562,20 @@
     // ============================================================
 
     function renderArticle(article) {
+      const hasLogo = !!article.logoTitle;
+      const logoHTML = hasLogo
+        ? `<div class="institution-logo-wrap">
+             <img class="institution-logo"
+                  data-wiki="${article.logoTitle}"
+                  src=""
+                  alt="${article.publication} logo"
+                  onerror="this.closest('.institution-logo-wrap').style.display='none'" />
+           </div>`
+        : '';
       return `
         <li class="article-item">
-          <a class="article-link" href="${article.url}" target="_blank" rel="noopener">
+          <a class="article-link${hasLogo ? ' has-logo' : ''}" href="${article.url}" target="_blank" rel="noopener">
+            ${logoHTML}
             <div class="article-left">
               <span class="article-title">${article.title}</span>
               <span class="article-pub">${article.publication}</span>
@@ -490,6 +583,36 @@
             <span class="article-date">${article.date}</span>
           </a>
         </li>`;
+    }
+
+    // ── Fetch institution logos from Wikipedia pageimages API (CORS-enabled) ──
+    async function fetchLogos() {
+      const imgs = document.querySelectorAll('img[data-wiki]');
+      if (!imgs.length) return;
+      const titles = [...new Set([...imgs].map(img => img.dataset.wiki))];
+      for (const title of titles) {
+        try {
+          const endpoint =
+            `https://en.wikipedia.org/w/api.php?action=query` +
+            `&titles=${encodeURIComponent(title)}` +
+            `&prop=pageimages&format=json&pithumbsize=120&piprop=thumbnail&origin=*`;
+          const res  = await fetch(endpoint);
+          const data = await res.json();
+          const page = Object.values(data?.query?.pages || {})[0];
+          const src  = page?.thumbnail?.source;
+          document.querySelectorAll(`img[data-wiki="${title}"]`).forEach(img => {
+            if (src) {
+              img.src = src;
+            } else {
+              img.closest('.institution-logo-wrap').style.display = 'none';
+            }
+          });
+        } catch {
+          document.querySelectorAll(`img[data-wiki="${title}"]`).forEach(img => {
+            img.closest('.institution-logo-wrap').style.display = 'none';
+          });
+        }
+      }
     }
 
     function renderCategory(name, items, index) {
@@ -521,6 +644,7 @@
     // ============================================================
 
     renderPage();
+    fetchLogos();
     document.getElementById('footer-year').textContent =
       'Updated ' + new Date().getFullYear();
     fetchPublications();
