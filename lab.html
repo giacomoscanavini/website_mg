@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratory — Meng Guo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ma+Shan+Zheng&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black:   #141a1f;
+      --mid:     #7a8a96;
+      --light:   #b0bec8;
+      --bg:      #f7f5f2;
+      --white:   #ffffff;
+      --accent:  #3a7a6a;
+      --rule:    #ddd8d0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER — matches index_mg.html ── */
+    header {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 80px 48px 56px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 32px;
+      margin-bottom: 28px;
+    }
+
+    .site-name {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .site-name span {
+      display: block;
+      font-style: italic;
+      color: var(--accent);
+    }
+    .site-name-zh {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      color: var(--mid);
+      letter-spacing: 0.06em;
+      padding-left: 18px;
+      align-self: flex-end;
+      padding-bottom: 0.12em;
+      line-height: 1;
+    }
+
+    .header-role {
+      text-align: right;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      line-height: 2;
+      padding-top: 8px;
+    }
+
+    .header-rule {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, var(--black) 60%, transparent);
+      margin-bottom: 4px;
+    }
+    .header-rule-thin {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, var(--rule) 80%, transparent);
+    }
+
+    /* ── BACK NAV ── */
+    .back-nav {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 18px 48px 0;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.15s ease forwards;
+    }
+    .back-link {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.18s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ── MAIN — WIP CONTENT ── */
+    main {
+      flex: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 48px 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .wip-block {
+      margin-top: 80px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.25s ease forwards;
+    }
+
+    /* Section header — same style as index_mg.html category headers */
+    .wip-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .wip-label-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .wip-label-line {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* The big "Work in Progress" message */
+    .wip-heading {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+    .wip-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .wip-sub {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 48px;
+    }
+
+    /* Animated dots as a subtle construction indicator */
+    .wip-dots {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 48px;
+    }
+    .wip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.25;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .wip-dot:nth-child(2) { animation-delay: 0.3s; }
+    .wip-dot:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50%       { opacity: 0.9; transform: scale(1.3); }
+    }
+
+    /* Back to main site link */
+    .wip-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--accent);
+      text-decoration: none;
+      padding: 10px 18px;
+      transition: background 0.18s;
+    }
+    .wip-back:hover { background: var(--black); }
+
+    /* ── FOOTER ── */
+    .footer-rule {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
+
+    footer {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 48px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--light);
+    }
+    .footer-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.1em;
+      color: var(--light);
+      text-transform: uppercase;
+    }
+
+    /* ── ANIMATION ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header { padding: 48px 24px 40px; }
+      .header-top { flex-direction: column; }
+      .back-nav { padding: 14px 24px 0; }
+      main { padding: 0 24px 80px; }
+      .footer-rule { padding: 0 24px; }
+      footer { padding: 20px 24px 48px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <!-- Clicking the name returns to the main page -->
+      <a href="index_mg.html" style="text-decoration:none;">
+        <h1 class="site-name">Meng <span>Guo</span></h1>
+      </a>
+      <div class="header-role">
+        Laboratory<br />
+        HKU Earth Sciences
+      </div>
+    </div>
+    <div class="header-rule"></div>
+    <div class="header-rule-thin"></div>
+  </header>
+
+  <nav class="back-nav">
+    <a class="back-link" href="index_mg.html">← Back to main page</a>
+  </nav>
+
+  <main>
+    <div class="wip-block">
+
+      <!-- Section label matching the style used on index_mg.html -->
+      <div class="wip-label">
+        <span class="wip-label-text">Research Group · HKU Earth Sciences</span>
+        <div class="wip-label-line"></div>
+      </div>
+
+      <h2 class="wip-heading">
+        The laboratory page<br />is <em>coming soon.</em>
+      </h2>
+
+      <p class="wip-sub">
+        This page is currently under construction. Check back soon for
+        information about the research group, open positions, and ongoing projects.
+      </p>
+
+      <!-- Three pulsing dots as a subtle construction cue -->
+      <div class="wip-dots">
+        <div class="wip-dot"></div>
+        <div class="wip-dot"></div>
+        <div class="wip-dot"></div>
+      </div>
+
+      <a class="wip-back" href="index_mg.html">← Return to main page</a>
+
+    </div>
+  </main>
+
+  <div class="footer-rule"><hr /></div>
+  <footer>
+    <span class="footer-name">Meng Guo</span>
+    <span class="footer-note" id="footer-year"></span>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent =
+      'Updated ' + new Date().getFullYear();
+  </script>
+
+</body>
+</html>
