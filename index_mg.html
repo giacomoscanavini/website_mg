@@ -4,11 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meng Guo</title>
+
+  <!--
+    ═══════════════════════════════════════════════════════════════
+    GOOGLE FONTS
+    Three typefaces are loaded:
+      • Libre Baskerville — elegant serif for the name and article
+        titles. Gives an editorial, academic feel.
+      • Ma Shan Zheng    — Chinese brush-calligraphy style, used
+        only for the Chinese name (萌郭) in the header.
+      • Outfit            — clean sans-serif for body text and UI.
+        Loaded at weights 200, 300, and 400.
+      • Space Mono        — monospace for labels, dates, category
+        tags, and metadata. Creates technical contrast against the
+        warm serif titles.
+    To swap a font: replace the family name in the URL and update
+    the matching font-family references in the CSS below.
+    ═══════════════════════════════════════════════════════════════
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ma+Shan+Zheng&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
 
   <style>
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      DESIGN TOKENS  (CSS custom properties)
+      All site colours are defined here as variables. Changing a
+      value once updates every element that references it.
+
+        --black   → main body text
+        --mid     → secondary text (journal names, role labels)
+        --light   → tertiary text (dates, counts, faint metadata)
+        --bg      → warm off-white page background
+        --white   → used for the subwindow modal panel
+        --accent  → deep teal — the primary brand colour used for
+                    links, active states, section labels, buttons.
+                    Change this one value to rebrand the colour scheme.
+        --accent2 → warm earth tone, reserved for future use
+        --rule    → very light warm grey for all divider lines
+
+      Start here when changing the overall colour feel of the site.
+      ─────────────────────────────────────────────────────────────
+    */
     :root {
       --black:    #141a1f;
       --mid:      #7a8a96;
@@ -20,26 +59,50 @@
       --rule:     #ddd8d0;
     }
 
+    /* Universal reset — removes browser default spacing from every element */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /*
+      Base font-size of 16px makes 1rem = 16px sitewide.
+      scroll-behavior: smooth makes section-nav clicks animate to
+      their target rather than jumping instantly.
+    */
     html { font-size: 16px; scroll-behavior: smooth; }
+
     body {
       font-family: 'Outfit', sans-serif;
       background: var(--bg);
       color: var(--black);
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
+      font-weight: 300;                    /* light weight for a refined look */
+      -webkit-font-smoothing: antialiased; /* crisper text rendering on macOS/iOS */
     }
 
-    /* ── HEADER ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      HEADER
+      The top block with the name, Chinese name, decorative image,
+      and the two thin rule lines beneath them.
+      Starts invisible (opacity:0, shifted 16px down) and fades in
+      via the fadeUp keyframe animation defined below.
+      max-width: 900px + margin:auto centres content on wide screens.
+      Adjust padding to change the vertical breathing room.
+      ─────────────────────────────────────────────────────────────
+    */
     header {
       max-width: 900px;
       margin: 0 auto;
-      padding: 80px 48px 56px;
+      padding: 80px 48px 56px; /* top / left+right / bottom */
       opacity: 0;
       transform: translateY(16px);
       animation: fadeUp 0.7s ease forwards;
     }
 
+    /*
+      Flex row containing the name block on the left and the
+      decorative image on the right.
+      justify-content: space-between pushes them to opposite ends.
+    */
     .header-top {
       display: flex;
       justify-content: space-between;
@@ -48,6 +111,12 @@
       margin-bottom: 28px;
     }
 
+    /*
+      Large English name "Meng Guo".
+      clamp() makes the size fluid: min 2.4rem → scales with
+      viewport (5.5vw) → capped at 4rem on large screens.
+      Raise the third value to allow a bigger maximum size.
+    */
     .site-name {
       font-family: 'Libre Baskerville', Georgia, serif;
       font-size: clamp(2.4rem, 5.5vw, 4rem);
@@ -57,12 +126,22 @@
       color: var(--black);
     }
 
+    /*
+      The <span> inside .site-name wraps "Guo" and places it on
+      its own line in italic teal, separating surname from given name.
+    */
     .site-name span {
       display: block;
       font-style: italic;
       color: var(--accent);
     }
 
+    /*
+      Chinese name 萌郭 in brush-calligraphy font (Ma Shan Zheng).
+      Sits baseline-aligned next to the English name.
+      Slightly smaller and in --mid grey so it complements without
+      competing. To change the characters: edit the text in the HTML.
+    */
     .site-name-zh {
       font-family: 'Ma Shan Zheng', cursive;
       font-size: clamp(1.6rem, 3.5vw, 2.6rem);
@@ -71,11 +150,12 @@
       color: var(--mid);
       letter-spacing: 0.06em;
       padding-left: 18px;
-      align-self: flex-end;
+      align-self: flex-end;   /* aligns to the English name baseline */
       padding-bottom: 0.12em;
       line-height: 1;
     }
 
+    /* Not currently used in the HTML — kept for reference */
     .header-role {
       text-align: right;
       font-family: 'Space Mono', monospace;
@@ -87,11 +167,26 @@
       padding-top: 8px;
     }
 
-    /* ── HEADER IMAGE ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      HEADER IMAGE
+      Decorative image on the right side of the header.
+      Clipped to a fixed height with a left-edge fade so it blends
+      seamlessly into the page background — no hard crop line.
+
+      Quick edits:
+        • Swap image  → change "header0.jpg" in the <img> below
+        • Adjust crop → change object-position
+            e.g. "left center" or "80% top"
+        • Change height → increase/decrease the height value here
+        • Move the fade → adjust the % values in mask-image
+      ─────────────────────────────────────────────────────────────
+    */
     .header-image-wrap {
-      position: relative;
+      position: relative;   /* so the role text can be absolutely positioned inside */
       flex: 0 0 auto;
-      width: clamp(220px, 42%, 400px);
+      width: clamp(220px, 42%, 400px); /* fluid: min 220px → scales → max 400px */
       height: 140px;
       overflow: hidden;
       align-self: stretch;
@@ -100,13 +195,21 @@
     .header-image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: 60% center;
+      object-fit: cover;            /* fills container without distortion */
+      object-position: 60% center;  /* crop anchor — increase % to show more right */
       display: block;
+      /* CSS mask: left edge transparent → blends → fully visible on right */
       -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%);
       mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%);
     }
 
+    /*
+      Role/title text overlaid at the bottom of the image.
+      The gradient fades from the page background (solid at bottom)
+      to transparent at the top, so text stays readable regardless
+      of what the image shows beneath it.
+      To update the text: edit the HTML inside this div below.
+    */
     .header-image-role {
       position: absolute;
       bottom: 0;
@@ -124,7 +227,12 @@
     }
 
 
-
+    /*
+      Two decorative horizontal rules beneath the name block.
+      First: a bold dark gradient (dark → transparent).
+      Second: a thinner, lighter version 4px below it.
+      Together they create a subtle double-rule effect.
+    */
     .header-rule {
       width: 100%;
       height: 1px;
@@ -137,7 +245,17 @@
       background: linear-gradient(to right, var(--rule) 80%, transparent);
     }
 
-    /* ── LAB NAV ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      LAB NAV
+      Small bar below the header with a bordered button linking to
+      the research group page and a descriptor label beside it.
+      Fades in 0.15s after the header (animation-delay).
+      To change the link: update href="lab.html".
+      To change the label: edit the .lab-nav-label text in HTML.
+      ─────────────────────────────────────────────────────────────
+    */
     .lab-nav {
       max-width: 900px;
       margin: 0 auto;
@@ -149,6 +267,7 @@
       animation: fadeUp 0.5s 0.15s ease forwards;
     }
 
+    /* Bordered "Laboratory →" pill button */
     .lab-nav-link {
       font-family: 'Space Mono', monospace;
       font-size: 0.58rem;
@@ -160,12 +279,9 @@
       padding: 5px 12px;
       transition: background 0.18s, color 0.18s;
     }
+    .lab-nav-link:hover { background: var(--accent); color: var(--white); }
 
-    .lab-nav-link:hover {
-      background: var(--accent);
-      color: var(--white);
-    }
-
+    /* Faint grey descriptor beside the button */
     .lab-nav-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.52rem;
@@ -178,21 +294,42 @@
       .lab-nav { padding: 14px 24px 0; }
     }
 
-    /* ── MAIN ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      MAIN CONTENT AREA
+      Wraps all the category sections injected by JS.
+      Publications are injected into the adjacent div, not here.
+      Increase padding-bottom to add more space above the footer.
+      ─────────────────────────────────────────────────────────────
+    */
     main {
       max-width: 900px;
       margin: 0 auto;
       padding: 0 48px 120px;
     }
 
-    /* ── CATEGORY ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      CATEGORY SECTION
+      Each content group (Press & News, Academic Positions, etc.)
+      is a .category block. They fade in with staggered delays set
+      inline by JS via the animation-delay style attribute.
+      scroll-margin-top prevents the sticky nav from covering the
+      section heading when a nav button scrolls to it — adjust this
+      value if the nav bar height ever changes.
+      ─────────────────────────────────────────────────────────────
+    */
     .category {
       margin-top: 60px;
       opacity: 0;
       transform: translateY(10px);
       animation: fadeUp 0.55s ease forwards;
+      scroll-margin-top: 52px; /* offset = sticky nav height */
     }
 
+    /* Section header row:  [LABEL TEXT] ──────── [COUNT] */
     .category-header {
       display: flex;
       align-items: center;
@@ -200,6 +337,10 @@
       margin-bottom: 24px;
     }
 
+    /*
+      Section label e.g. "PRESS & NEWS".
+      To increase its size: change font-size here.
+    */
     .category-label {
       font-family: 'Space Mono', monospace;
       font-size: 0.78rem;
@@ -209,28 +350,41 @@
       white-space: nowrap;
     }
 
+    /* Horizontal rule stretching between the label and the count */
     .category-line {
       flex: 1;
       height: 1px;
       background: var(--rule);
     }
 
+    /* Item count at the right end of the section header e.g. "10" */
     .category-count {
       font-family: 'Space Mono', monospace;
       font-size: 0.58rem;
       color: var(--light);
     }
 
-    /* ── ARTICLE ROW ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      ARTICLE ROW
+      Each item (press article, position, award) is a list item
+      with a full-width clickable link.
+      On hover: the row slides right 12px, the title turns teal,
+      and the ↗ arrow shifts diagonally up-right.
+      ─────────────────────────────────────────────────────────────
+    */
     .article-list { list-style: none; }
 
-    .article-item {
-      border-bottom: 1px solid var(--rule);
-    }
-    .article-item:first-child {
-      border-top: 1px solid var(--rule);
-    }
+    /* Every item has a bottom border; only the first has a top border */
+    .article-item { border-bottom: 1px solid var(--rule); }
+    .article-item:first-child { border-top: 1px solid var(--rule); }
 
+    /*
+      Two-column grid: content left, date right.
+      .has-logo adds a third 54px column on the far left for logos
+      (Academic Positions only).
+    */
     .article-link {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -241,31 +395,36 @@
       color: inherit;
       transition: padding-left 0.22s ease;
     }
+    .article-link:hover { padding-left: 12px; } /* slides content right on hover */
+    .article-link:hover .article-title { color: var(--accent); }
 
-    .article-link:hover {
-      padding-left: 12px;
-    }
-
-    .article-link:hover .article-title {
-      color: var(--accent);
-    }
-
+    /* ↗ arrow injected via CSS — no extra HTML element required */
     .article-link::after {
       content: '↗';
       font-size: 0.72rem;
       color: var(--light);
       transition: color 0.2s, transform 0.2s;
     }
-
     .article-link:hover::after {
       color: var(--accent);
-      transform: translate(2px, -2px);
+      transform: translate(2px, -2px); /* diagonal shift on hover */
     }
 
-    /* ── INSTITUTION LOGO (Academic Positions only) ── */
-    .article-link.has-logo {
-      grid-template-columns: 54px 1fr auto;
-    }
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      INSTITUTION LOGOS  (Academic Positions section only)
+      When an article object has a logoTitle property, the grid
+      gains a 54px column on the left for the institution logo.
+      Logo files live in the logos/ folder. The LOGOS object in
+      the JS maps logoTitle values to their filenames.
+      Logos are shown in muted greyscale by default and reveal
+      their colour on hover.
+      To add an institution: add the SVG to logos/ and add an
+      entry in the LOGOS JS object.
+      ─────────────────────────────────────────────────────────────
+    */
+    .article-link.has-logo { grid-template-columns: 54px 1fr auto; }
 
     .institution-logo-wrap {
       display: flex;
@@ -282,20 +441,21 @@
       width: auto;
       height: auto;
       object-fit: contain;
-      filter: grayscale(0.8) opacity(0.55);
+      filter: grayscale(0.8) opacity(0.55); /* muted by default */
       transition: filter 0.25s ease;
     }
-
     .article-link:hover .institution-logo {
-      filter: grayscale(0.1) opacity(0.9);
+      filter: grayscale(0.1) opacity(0.9); /* full colour on hover */
     }
 
+    /* Vertical stack holding the article title and publication name */
     .article-left {
       display: flex;
       flex-direction: column;
       gap: 5px;
     }
 
+    /* Article / paper / position title — serif for an editorial feel */
     .article-title {
       font-family: 'Libre Baskerville', serif;
       font-size: 1.05rem;
@@ -305,6 +465,7 @@
       transition: color 0.2s;
     }
 
+    /* Journal or outlet name — small monospace label below the title */
     .article-pub {
       font-family: 'Space Mono', monospace;
       font-size: 0.58rem;
@@ -313,6 +474,7 @@
       color: var(--mid);
     }
 
+    /* Year or month-year stamp on the right side of each row */
     .article-date {
       font-family: 'Space Mono', monospace;
       font-size: 0.58rem;
@@ -321,7 +483,8 @@
       align-self: center;
     }
 
-    /* ── SOURCE NOTE ── */
+
+    /* Small grey attribution line below the publications list */
     .source-note {
       font-family: 'Space Mono', monospace;
       font-size: 0.52rem;
@@ -329,8 +492,22 @@
       color: var(--light);
       margin-top: 14px;
     }
+    .source-note a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
 
-    /* ── VIEW ALL BUTTON ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      "VIEW ALL PUBLICATIONS" BUTTON
+      Appears below the PREVIEW_COUNT preview publications.
+      Clicking it opens the full-list subwindow modal.
+      To change how many publications show before this button:
+      update the PREVIEW_COUNT constant in the JavaScript.
+      ─────────────────────────────────────────────────────────────
+    */
     .view-all-btn {
       display: inline-flex;
       align-items: center;
@@ -349,10 +526,21 @@
     }
     .view-all-btn:hover { background: var(--accent); color: var(--white); }
 
-    /* ── SUBWINDOW OVERLAY ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      PUBLICATIONS SUBWINDOW — OVERLAY
+      Full-screen semi-transparent layer behind the modal.
+      Starts hidden (opacity:0, pointer-events:none). JS adds the
+      .open class to fade it in and make it clickable.
+      Clicking the overlay closes the modal.
+      backdrop-filter: blur gives a frosted-glass effect to content
+      visible behind the overlay.
+      ─────────────────────────────────────────────────────────────
+    */
     .sub-overlay {
       position: fixed;
-      inset: 0;
+      inset: 0;                          /* covers the entire viewport */
       background: rgba(20, 26, 31, 0.4);
       backdrop-filter: blur(3px);
       z-index: 100;
@@ -362,12 +550,25 @@
     }
     .sub-overlay.open { opacity: 1; pointer-events: all; }
 
-    /* ── SUBWINDOW PANEL ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      PUBLICATIONS SUBWINDOW — PANEL
+      The white modal centred on screen.
+      Uses a scale + fade entrance — cubic-bezier gives a slight
+      spring/overshoot feel on open.
+      max-height: 78vh prevents overflow on short screens.
+      Flex column keeps the header and search fixed while only
+      the list scrolls.
+      To change the width: adjust the min() value.
+      To change the max height: adjust max-height.
+      ─────────────────────────────────────────────────────────────
+    */
     .subwindow {
       position: fixed;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -44%) scale(0.97);
+      transform: translate(-50%, -44%) scale(0.97); /* hidden: off-centre + scaled down */
       width: min(680px, 92vw);
       max-height: 78vh;
       background: var(--white);
@@ -382,16 +583,17 @@
     .subwindow.open {
       opacity: 1;
       pointer-events: all;
-      transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%) scale(1); /* open: perfectly centred + full size */
     }
 
+    /* Top bar: title + count on left, ✕ close button on right */
     .sub-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 22px 28px;
       border-bottom: 1px solid var(--rule);
-      flex-shrink: 0;
+      flex-shrink: 0; /* stays fixed while the list scrolls below */
     }
     .sub-header-left { display: flex; flex-direction: column; gap: 4px; }
     .sub-header-label {
@@ -401,6 +603,7 @@
       text-transform: uppercase;
       color: var(--accent);
     }
+    /* Updated by JS e.g. "12 of 12" or "3 of 12" during search */
     .sub-header-count {
       font-family: 'Space Mono', monospace;
       font-size: 0.52rem;
@@ -418,7 +621,7 @@
     }
     .sub-close:hover { color: var(--black); }
 
-    /* search bar */
+    /* Search input — filters the list in real time (wired in JS section 7) */
     .sub-search-wrap {
       padding: 14px 28px;
       border-bottom: 1px solid var(--rule);
@@ -437,9 +640,9 @@
       transition: border-color 0.18s;
     }
     .sub-search::placeholder { color: var(--light); }
-    .sub-search:focus { border-color: var(--accent); }
+    .sub-search:focus { border-color: var(--accent); } /* teal border on focus */
 
-    /* scrollable list */
+    /* The scrollable list — only this part scrolls inside the modal */
     .sub-list {
       overflow-y: auto;
       flex: 1;
@@ -450,15 +653,17 @@
     .sub-list .article-link { padding: 14px 0; }
     .sub-list .article-link::after { content: '↗'; }
 
+    /* Shown by JS when search returns zero results */
     .sub-empty {
       font-family: 'Space Mono', monospace;
       font-size: 0.6rem;
       color: var(--light);
       padding: 40px 0;
       text-align: center;
-      display: none;
+      display: none; /* JS toggles to 'block' when needed */
     }
 
+    /* Fixed footer bar at the very bottom of the modal */
     .sub-footer {
       padding: 12px 28px;
       border-top: 1px solid var(--rule);
@@ -469,23 +674,17 @@
       color: var(--light);
     }
 
-    .source-note a {
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
 
-    /* ── FOOTER ── */
-    .footer-rule {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    .footer-rule hr {
-      border: none;
-      border-top: 1px solid var(--rule);
-    }
+    /*
+      ─────────────────────────────────────────────────────────────
+      FOOTER
+      A thin horizontal rule followed by a two-column row:
+        Meng Guo (italic serif, left)  |  Updated YYYY (right)
+      The year is injected by JS on page load.
+      ─────────────────────────────────────────────────────────────
+    */
+    .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+    .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
 
     footer {
       max-width: 900px;
@@ -495,14 +694,12 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .footer-name {
       font-family: 'Libre Baskerville', serif;
       font-size: 0.9rem;
       font-style: italic;
       color: var(--light);
     }
-
     .footer-note {
       font-family: 'Space Mono', monospace;
       font-size: 0.52rem;
@@ -511,10 +708,26 @@
       text-transform: uppercase;
     }
 
-    /* ── SECTION NAV ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      STICKY SECTION NAV
+      A bar that sticks to the top of the viewport as you scroll.
+      Contains jump buttons for each major page section.
+      Clicking a button smoothly scrolls to the target section.
+      The active button highlights automatically via an
+      IntersectionObserver as sections enter/leave view (JS 6).
+
+      To add a button:
+        1. Add a <button> in the HTML below with the right data-target.
+        2. Ensure the target section has a matching id (set via
+           SECTION_IDS in JS, or inside renderPublicationsSection).
+      To change button font size: edit font-size in .section-nav-btn.
+      ─────────────────────────────────────────────────────────────
+    */
     .section-nav {
       position: sticky;
-      top: 0;
+      top: 0;           /* sticks to the top when the user scrolls past it */
       z-index: 50;
       background: var(--bg);
       border-bottom: 1px solid var(--rule);
@@ -525,12 +738,13 @@
       margin: 0 auto;
       padding: 0 48px;
       display: flex;
-      overflow-x: auto;
-      scrollbar-width: none;
+      overflow-x: auto;        /* horizontal scroll on narrow screens */
+      scrollbar-width: none;   /* hides scrollbar in Firefox */
       gap: 4px;
     }
-    .section-nav-inner::-webkit-scrollbar { display: none; }
+    .section-nav-inner::-webkit-scrollbar { display: none; } /* hides in Chrome/Safari */
 
+    /* Individual tab buttons — change font-size here to resize all tabs */
     .section-nav-btn {
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
@@ -539,7 +753,7 @@
       color: var(--mid);
       background: none;
       border: none;
-      border-bottom: 2px solid transparent;
+      border-bottom: 2px solid transparent; /* placeholder for the active underline */
       padding: 14px 14px 12px;
       cursor: pointer;
       white-space: nowrap;
@@ -548,25 +762,42 @@
       display: inline-block;
     }
     .section-nav-btn:hover { color: var(--black); }
+
+    /* Active state — teal text + underline — toggled by IntersectionObserver in JS */
     .section-nav-btn.active {
       color: var(--accent);
       border-bottom-color: var(--accent);
     }
 
-    /* offset sections so sticky nav doesn't cover the heading */
-    .category { scroll-margin-top: 52px; }
 
-    /* ── ANIMATIONS ── */
+    /*
+      ─────────────────────────────────────────────────────────────
+      FADE-UP ANIMATION
+      Elements start invisible and 16px below their final position,
+      then animate upward to opacity:1 / translateY(0).
+      Used on the header, lab-nav, and each category section.
+      Speed is set by animation-duration in each rule above.
+      Delay is set inline by JS for staggered section entrances.
+      ─────────────────────────────────────────────────────────────
+    */
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
+
+    /*
+      ─────────────────────────────────────────────────────────────
+      RESPONSIVE — MOBILE  (screens 600px wide or narrower)
+      Tightens padding to 24px, stacks the header vertically,
+      hides the decorative image, collapses article rows to a single
+      column, and hides date stamps so rows stay readable.
+      ─────────────────────────────────────────────────────────────
+    */
     @media (max-width: 600px) {
       header { padding: 48px 24px 40px; }
       .header-top { flex-direction: column; }
       .header-role { text-align: left; }
-      .header-image-wrap { display: none; }
+      .header-image-wrap { display: none; }   /* image hidden on mobile */
       main { padding: 0 24px 80px; }
       .footer-rule { padding: 0 24px; }
       footer { padding: 20px 24px 48px; flex-direction: column; gap: 8px; align-items: flex-start; }
@@ -574,36 +805,77 @@
       .article-link.has-logo { grid-template-columns: 42px 1fr; }
       .institution-logo-wrap { width: 42px; height: 42px; }
       .institution-logo { max-width: 38px; max-height: 36px; }
-      .article-date { display: none; }
+      .article-date { display: none; }        /* dates hidden on mobile */
       .section-nav-inner { padding: 0 24px; }
     }
+
   </style>
 </head>
 <body>
 
+  <!--
+    ═══════════════════════════════════════════════════════════════
+    HEADER
+    Contains the name block (English + Chinese), the decorative
+    image on the right, and two decorative rule lines.
+
+    Quick edits:
+      • English name  → change "Meng" or "Guo" in the <h1>
+      • Chinese name  → change 萌郭 in <span class="site-name-zh">
+      • Image         → change src="header0.jpg" to another filename
+      • Role / title  → edit the text inside .header-image-role
+    ═══════════════════════════════════════════════════════════════
+  -->
   <header>
     <div class="header-top">
+
+      <!-- Name block: English serif name + Chinese calligraphy side by side -->
       <div style="display:flex; align-items:baseline; flex-wrap:wrap; gap:0;">
         <h1 class="site-name">Meng <span>Guo</span></h1>
+        <!-- Chinese name rendered in Ma Shan Zheng brush-calligraphy font -->
         <span class="site-name-zh">萌郭</span>
       </div>
+
+      <!-- Decorative image: left edge fades via CSS mask to blend into the page -->
       <div class="header-image-wrap">
         <img class="header-image" src="header0.jpg" alt="" aria-hidden="true" />
+        <!-- Role text overlaid at the bottom of the image -->
         <div class="header-image-role">
           Assistant Professor<br />
           Dept. of Earth Sciences · HKU
         </div>
       </div>
+
     </div>
+    <!-- Decorative double rule — purely visual, no semantic meaning -->
     <div class="header-rule"></div>
     <div class="header-rule-thin"></div>
   </header>
 
+
+  <!--
+    LAB NAV
+    Small bar with a link to the research group page.
+    Change href="lab.html" to point to a different URL.
+    Edit the label text to update the descriptor beside the button.
+  -->
   <nav class="lab-nav">
     <a class="lab-nav-link" href="lab.html">Laboratory →</a>
     <span class="lab-nav-label">Research Group · HKU Earth Sciences</span>
   </nav>
 
+
+  <!--
+    STICKY SECTION NAV
+    Stays fixed at the top of the screen while scrolling.
+    Each button's data-target must match a section id in the page.
+    The active button is highlighted by JS (section 6 below).
+
+    To add a new section button:
+      1. Add a <button> here with a new data-target value.
+      2. Add a matching entry in the SECTION_IDS JS object,
+         or ensure the section id is set in renderPublicationsSection.
+  -->
   <nav class="section-nav" id="sectionNav" aria-label="Page sections">
     <div class="section-nav-inner">
       <button class="section-nav-btn" data-target="section-press">Press &amp; News</button>
@@ -613,10 +885,24 @@
     </div>
   </nav>
 
-  <!-- Static categories rendered by JS -->
+
+  <!--
+    MAIN CONTENT AREA
+    Empty in the HTML source. JavaScript (section 3 in the <script>
+    below) reads the `articles` array, groups entries by their
+    `category` property, and injects fully rendered HTML here on load.
+  -->
   <main id="content"></main>
 
-  <!-- Publications loaded from publications.json or INSPIRE-HEP -->
+
+  <!--
+    PUBLICATIONS SECTION PLACEHOLDER
+    Shows a "loading…" state while JS fetches/renders the list.
+    JS replaces this entire block once publications are ready (JS 5).
+    The data is embedded in publicationsData in the script below.
+    To load from an external file: place a publications.json next
+    to this HTML — fetchPublications() checks for it first.
+  -->
   <div style="max-width:900px; margin:0 auto; padding:0 48px;">
     <section class="category" id="publications-section" style="animation-delay:0.2s">
       <div class="category-header">
@@ -627,37 +913,76 @@
     </section>
   </div>
 
+
+  <!-- Footer separator line + footer row -->
   <div class="footer-rule"><hr /></div>
   <footer>
     <span class="footer-name">Meng Guo</span>
+    <!-- "Updated YYYY" — year is injected by JS on page load -->
     <span class="footer-note" id="footer-year"></span>
   </footer>
 
 
-  <!-- ── PUBLICATIONS SUBWINDOW ── -->
+  <!--
+    ═══════════════════════════════════════════════════════════════
+    PUBLICATIONS SUBWINDOW
+    Modal dialog that opens when "View all N publications" is clicked.
+    Contains a live-search bar and a scrollable list of all papers.
+    Three ways to close: ✕ button · click overlay · press Escape.
+    All three are wired up in JS section 7.
+    ═══════════════════════════════════════════════════════════════
+  -->
+
+  <!-- Dark semi-transparent overlay behind the modal panel -->
   <div class="sub-overlay" id="subOverlay"></div>
+
+  <!-- Modal panel -->
   <div class="subwindow" id="subwindow" role="dialog" aria-modal="true" aria-label="All publications">
+
+    <!-- Top bar: section title + live count on left, close button on right -->
     <div class="sub-header">
       <div class="sub-header-left">
         <span class="sub-header-label">Research &amp; Publications</span>
+        <!-- JS updates this e.g. "12 of 12" → "3 of 12" as you search -->
         <span class="sub-header-count" id="subCount"></span>
       </div>
       <button class="sub-close" id="subClose" aria-label="Close">✕</button>
     </div>
+
+    <!-- Search bar — filters the publication list in real time -->
     <div class="sub-search-wrap">
-      <input class="sub-search" id="subSearch" type="search" placeholder="Search by title or journal…" autocomplete="off" />
+      <input class="sub-search" id="subSearch" type="search"
+             placeholder="Search by title or journal…" autocomplete="off" />
     </div>
+
+    <!-- Scrollable publication list — populated by JS renderSubList() -->
     <ul class="article-list sub-list" id="subList"></ul>
+
+    <!-- Shown only when the search query returns no results -->
     <p class="sub-empty" id="subEmpty">No publications match your search.</p>
+
+    <!-- Fixed bottom bar inside the modal -->
     <div class="sub-footer">Source: Google Scholar</div>
+
   </div>
+
 
   <script>
 
     // ============================================================
-    // 1. DATA
-    // Static articles: press, profiles, awards.
-    // Publications are loaded live — see section 5 below.
+    // 1. STATIC DATA
+    // All press articles, academic positions, and awards live here
+    // as plain JavaScript objects in a flat array.
+    //
+    // Required fields: title, publication, date, url, category.
+    // Optional field:  logoTitle (Academic Positions only) — must
+    //   match a key in the LOGOS object (section 3).
+    //
+    // To add an entry: copy an object, update the fields, and paste
+    //   it into the correct category group below.
+    // To add a new category: use a new category string — the
+    //   grouping code (section 2) handles the rest automatically.
+    //   Also add a nav button in the HTML and an entry in SECTION_IDS.
     // ============================================================
 
     const articles = [
@@ -735,6 +1060,8 @@
       },
 
       // ── Academic Positions ──
+      // logoTitle must match a key in the LOGOS object in JS section 3.
+      // The corresponding SVG file must exist in the logos/ folder.
       {
         title: "Tenure-Track Assistant Professor — Department of Earth Sciences",
         publication: "The University of Hong Kong (HKU)",
@@ -768,7 +1095,6 @@
         logoTitle: "Yale_University",
       },
 
-
       // ── Awards & Recognition ──
       {
         title: "T.C. Chamberlin Postdoctoral Fellowship",
@@ -789,7 +1115,13 @@
 
 
     // ============================================================
-    // 2. LOGIC — group and sort by date, newest first
+    // 2. GROUPING & SORTING
+    // groupByCategory() splits the flat articles array into an
+    // object keyed by category name, then sorts each group with
+    // the newest entries first.
+    //
+    // parseDateValue() converts "Feb 2025" or "2025" into a
+    // sortable number (year*100 + month) for reliable comparison.
     // ============================================================
 
     function parseDateValue(dateStr) {
@@ -812,6 +1144,7 @@
         if (!groups[article.category]) groups[article.category] = [];
         groups[article.category].push(article);
       }
+      // Sort each category group newest-first
       for (const key of Object.keys(groups)) {
         groups[key].sort((a, b) => parseDateValue(b.date) - parseDateValue(a.date));
       }
@@ -820,19 +1153,28 @@
 
 
     // ============================================================
-    // 3. RENDER
+    // 3. RENDER HELPERS
+    // renderArticle() → HTML string for one list row
+    // renderCategory() → HTML string for a full section block
+    // renderPage()    → runs both for all categories, injects into <main>
     // ============================================================
 
-    // ── Embedded institution logos (shield-shaped SVGs, official brand colors) ──
+    /*
+      Maps logoTitle values on article objects to SVG file paths.
+      To add a new institution: drop its SVG in logos/ and add
+      an entry here with the key matching the logoTitle you set
+      on the article object in section 1.
+    */
     const LOGOS = {
-      "University_of_Hong_Kong":   "logos/hku.svg",
-      "University_of_Chicago":     "logos/uchicago.svg",
+      "University_of_Hong_Kong":          "logos/hku.svg",
+      "University_of_Chicago":            "logos/uchicago.svg",
       "Nanyang_Technological_University": "logos/ntu.svg",
-      "Yale_University":           "logos/yale.svg",
+      "Yale_University":                  "logos/yale.svg",
     };
 
     function renderArticle(article) {
       const src = article.logoTitle ? LOGOS[article.logoTitle] : null;
+      // Logo column is only rendered for articles that have a logoTitle
       const logoHTML = src
         ? `<div class="institution-logo-wrap">
              <img class="institution-logo" src="${src}" alt="${article.publication}" />
@@ -851,10 +1193,17 @@
         </li>`;
     }
 
+    /*
+      Maps category names to HTML section ids.
+      These ids must match the data-target values on the sticky nav
+      buttons in the HTML above.
+      To make a new category navigable: add it here and add the
+      matching button to the section-nav HTML.
+    */
     const SECTION_IDS = {
-      'Press & News':        'section-press',
-      'Academic Positions':  'section-positions',
-      'Awards & Recognition':'section-awards',
+      'Press & News':         'section-press',
+      'Academic Positions':   'section-positions',
+      'Awards & Recognition': 'section-awards',
     };
 
     function renderCategory(name, items, index) {
@@ -883,7 +1232,10 @@
 
 
     // ============================================================
-    // 4. INIT
+    // 4. INITIALISATION
+    // Runs immediately when the script is parsed. Renders all static
+    // sections, sets the footer year, and starts the async
+    // publication fetch.
     // ============================================================
 
     renderPage();
@@ -893,10 +1245,23 @@
 
 
     // ============================================================
-    // 5. PUBLICATIONS
-    // Sourced from Google Scholar (fB31s5oAAAAJ), May 2025.
-    // To update: paste new data here or drop a publications.json
-    // next to this file (the fetch below will prefer the JSON).
+    // 5. PUBLICATIONS DATA & FETCH
+    // The embedded publicationsData array below is the default
+    // source. Source: Google Scholar (fB31s5oAAAAJ), May 2025.
+    //
+    // To update publications:
+    //   Option A (simple): edit publicationsData directly below.
+    //   Option B (external): place a publications.json next to this
+    //     HTML with the shape { "publications": [...] }. The
+    //     fetchPublications() function tries that file first.
+    //
+    // Object fields:
+    //   title       — paper or talk title
+    //   publication — journal, conference, or venue
+    //   date        — year string e.g. "2025"
+    //   url         — DOI link preferred; Google Scholar as fallback
+    //   citations   — citation count (informational, not displayed
+    //                 in the current UI but available for future use)
     // ============================================================
 
     const publicationsData = [
@@ -989,7 +1354,7 @@
     async function fetchPublications() {
       const section = document.getElementById('publications-section');
 
-      // Try publications.json first (for future updates via the fetch script)
+      // Try publications.json first — if it exists next to this HTML file, prefer it
       try {
         const res = await fetch('./publications.json');
         if (res.ok) {
@@ -997,23 +1362,30 @@
           const pubs = data.publications || [];
           if (pubs.length > 0) {
             renderPublicationsSection(section, pubs, 'Google Scholar');
-            return;
+            return; // done — do not fall through to embedded data
           }
         }
-      } catch (_) {}
+      } catch (_) {} // file not found or malformed JSON — fall through
 
-      // Fall back to embedded data
+      // Fall back to the embedded publicationsData array above
       renderPublicationsSection(section, publicationsData, 'Google Scholar');
     }
 
+    /*
+      Number of publications shown directly on the main page.
+      The rest are only visible inside the subwindow modal.
+      Change this to show more or fewer items before the
+      "View all N publications" button appears.
+    */
     const PREVIEW_COUNT = 5;
 
     function renderPublicationsSection(section, pubs, source) {
-      window._pubs = pubs;
-      const total = pubs.length;
+      window._pubs = pubs; // stored globally so the subwindow can access it
+      const total   = pubs.length;
       const preview = pubs.slice(0, PREVIEW_COUNT);
-      const count = String(total).padStart(2, '0');
+      const count   = String(total).padStart(2, '0');
 
+      // Replace the loading placeholder with the real rendered content
       section.outerHTML = `
         <section class="category" id="section-publications" style="animation-delay:0.2s">
           <div class="category-header">
@@ -1031,18 +1403,27 @@
         </section>`;
 
       document.getElementById('viewAllBtn').addEventListener('click', openSubwindow);
+      // Re-initialise the nav so the new section-publications id is observed
       initSectionNav();
     }
 
 
     // ============================================================
-    // 6. SECTION NAV
+    // 6. STICKY SECTION NAV — SCROLL HIGHLIGHTING
+    // initSectionNav() wires two behaviours:
+    //   A) Click → smooth-scrolls to the section matching data-target.
+    //   B) Scroll → highlights the button of the section currently
+    //      passing through the upper portion of the viewport,
+    //      detected via IntersectionObserver.
+    //
+    // Called after renderPublicationsSection() because that function
+    // creates the section-publications id which didn't exist before.
     // ============================================================
 
     function initSectionNav() {
       const buttons = document.querySelectorAll('.section-nav-btn');
 
-      // Click → smooth scroll
+      // A) Click → smooth scroll to the matching section
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
           const target = document.getElementById(btn.dataset.target);
@@ -1050,10 +1431,11 @@
         });
       });
 
-      // Scroll → highlight active button
+      // B) IntersectionObserver → highlights the button for the
+      //    section currently visible in the upper viewport area
       const sections = Array.from(buttons)
         .map(btn => document.getElementById(btn.dataset.target))
-        .filter(Boolean);
+        .filter(Boolean); // removes any null entries for missing ids
 
       const navHeight = document.getElementById('sectionNav').offsetHeight;
 
@@ -1061,12 +1443,15 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const id = entry.target.id;
+            // Remove .active from all buttons, add it only to the matching one
             buttons.forEach(btn => {
               btn.classList.toggle('active', btn.dataset.target === id);
             });
           }
         });
       }, {
+        // Shrinks the observation window: a section is "active" when it
+        // enters the top 40% of the viewport (below the sticky nav)
         rootMargin: `-${navHeight + 8}px 0px -60% 0px`,
         threshold: 0,
       });
@@ -1076,7 +1461,13 @@
 
 
     // ============================================================
-    // 7. SUBWINDOW
+    // 7. PUBLICATIONS SUBWINDOW
+    // Manages the full-list modal dialog.
+    //
+    // openSubwindow()  → called when "View all N publications" clicked
+    // closeSubwindow() → called by ✕ button, overlay click, or Escape
+    // renderSubList()  → rebuilds the modal list; called on open and
+    //                    on every search keystroke
     // ============================================================
 
     const subOverlay = document.getElementById('subOverlay');
@@ -1090,39 +1481,41 @@
     function renderSubList(pubs) {
       subList.innerHTML = pubs.map(renderArticle).join('');
       const none = pubs.length === 0;
-      subEmpty.style.display = none ? 'block' : 'none';
+      subEmpty.style.display = none ? 'block' : 'none'; // "no results" message
       subList.style.display  = none ? 'none'  : '';
       subCount.textContent   = `${pubs.length} of ${(window._pubs || []).length}`;
     }
 
     function openSubwindow() {
       renderSubList(window._pubs || []);
-      subSearch.value = '';
+      subSearch.value = '';              // clear any previous search query
       subwindow.classList.add('open');
       subOverlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-      subSearch.focus();
+      document.body.style.overflow = 'hidden'; // prevent background from scrolling
+      subSearch.focus();                  // keyboard-ready immediately on open
     }
 
     function closeSubwindow() {
       subwindow.classList.remove('open');
       subOverlay.classList.remove('open');
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''; // restore background scrolling
     }
 
-    subClose.addEventListener('click', closeSubwindow);
-    subOverlay.addEventListener('click', closeSubwindow);
-    document.addEventListener('keydown', e => {
+    // Three ways to close the modal:
+    subClose.addEventListener('click', closeSubwindow);       // ✕ button
+    subOverlay.addEventListener('click', closeSubwindow);     // clicking the dark overlay
+    document.addEventListener('keydown', e => {               // pressing Escape
       if (e.key === 'Escape') closeSubwindow();
     });
 
+    // Live search: filter by title or journal as the user types
     subSearch.addEventListener('input', () => {
       const q = subSearch.value.toLowerCase().trim();
       const filtered = q
         ? (window._pubs || []).filter(p =>
             p.title.toLowerCase().includes(q) ||
             p.publication.toLowerCase().includes(q))
-        : (window._pubs || []);
+        : (window._pubs || []); // empty query → show all publications
       renderSubList(filtered);
     });
 
