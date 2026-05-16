@@ -53,23 +53,58 @@
     .member-photo-card {
       width: 205px;
       justify-self: center;
-      padding: 11px 9px 34px 12px;
-      background: #fffdf8;
-      border: 1px solid rgba(221,216,208,0.86);
-      border-radius: 3px 1px 5px 2px / 2px 5px 1px 4px;
-      box-shadow: 0 18px 30px rgba(20,26,31,0.11), 2px 3px 0 rgba(221,216,208,0.34);
+      padding: 9px 9px 32px;
+      background:
+        linear-gradient(112deg, rgba(255,255,255,0.88), rgba(255,252,246,0.72) 38%, rgba(241,235,224,0.58)),
+        repeating-linear-gradient(0deg, rgba(20,26,31,0.018) 0 1px, transparent 1px 4px),
+        #fffaf1;
+      border: 1px solid rgba(206,198,185,0.9);
+      border-radius: 2px 4px 3px 5px / 5px 2px 4px 3px;
+      box-shadow:
+        0 22px 34px rgba(20,26,31,0.14),
+        0 7px 11px rgba(20,26,31,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.72),
+        2px 3px 0 rgba(197,188,174,0.28);
       transform: rotate(-2.7deg) translateY(2px);
       position: relative;
     }
-    .member-photo-card::before { content: ''; position: absolute; top: -13px; left: 50%; width: 19px; height: 19px; border-radius: 50%; transform: translateX(-50%); background: radial-gradient(circle at 35% 35%, #fff 0 12%, var(--pin-color, #b64f4a) 13% 52%, rgba(20,26,31,0.28) 53% 100%); box-shadow: 0 4px 7px rgba(20,26,31,0.18); }
-    .member-photo-card::after { content: ''; position: absolute; top: -3px; left: 50%; width: 1px; height: 24px; background: rgba(20,26,31,0.2); transform: translateX(-50%); }
+    .member-photo-card::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,0.96) 0 9%, rgba(255,255,255,0.45) 10% 18%, transparent 19%),
+        radial-gradient(circle at 58% 62%, rgba(0,0,0,0.22) 0 8%, transparent 9%),
+        radial-gradient(circle at 50% 48%, var(--pin-color, #b64f4a) 0 49%, rgba(20,26,31,0.18) 50% 72%, rgba(20,26,31,0.34) 73% 100%);
+      box-shadow: 0 2px 2px rgba(255,255,255,0.7) inset, 0 5px 9px rgba(20,26,31,0.24), 0 10px 14px rgba(20,26,31,0.08);
+      z-index: 2;
+    }
+    .member-photo-card::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      width: 2px;
+      height: 25px;
+      background: linear-gradient(to bottom, rgba(245,245,242,0.8), rgba(61,64,67,0.38) 42%, rgba(20,26,31,0.08));
+      border-radius: 999px;
+      transform: translateX(-50%) rotate(1deg);
+      box-shadow: 1px 1px 2px rgba(20,26,31,0.15);
+      z-index: 1;
+    }
     .member-profile:nth-child(1) .member-photo-card { --pin-color: #c75d52; }
     .member-profile:nth-child(2) .member-photo-card { --pin-color: #3a7a6a; }
     .member-profile:nth-child(3) .member-photo-card { --pin-color: #d6a23f; }
     .member-profile:nth-child(4) .member-photo-card { --pin-color: #6f7fbf; }
     .member-profile:nth-child(5) .member-photo-card { --pin-color: #b76aa3; }
-    .member-photo { aspect-ratio: 4 / 5; border: 1px solid rgba(221,216,208,0.9); border-radius: 2px 4px 1px 3px / 4px 1px 3px 2px; background: linear-gradient(145deg, #ece8e1, #d8d0c3); display: flex; align-items: center; justify-content: center; color: var(--light); font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; padding: 18px; transform: rotate(-0.35deg); }
-    .member-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .member-photo { aspect-ratio: 4 / 5; border: 1px solid rgba(199,191,177,0.94); border-radius: 1px 3px 2px 4px / 3px 2px 4px 1px; background: linear-gradient(145deg, #ece8e1, #d8d0c3); display: flex; align-items: center; justify-content: center; color: var(--light); font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; padding: 18px; transform: rotate(-0.18deg); overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.36); }
+    .member-photo.has-image { padding: 0; background: #111; }
+    .member-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.96) contrast(1.02); }
 
     .member-role { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
     .member-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.35rem; font-weight: 400; color: var(--black); margin-bottom: 12px; }
@@ -146,16 +181,25 @@
       <div class="profile-list">
         <article class="member-profile">
           <div class="member-photo-card">
-            <div class="member-photo">Add photo</div>
+            <div class="member-photo has-image"><img src="assets/wang_profile.jpg" alt="Portrait of Dr. Yuxuan Wang" /></div>
           </div>
           <div class="member-copy">
             <p class="member-role">Postdoctoral Researcher</p>
-            <h3 class="member-name">Name Surname</h3>
+            <h3 class="member-name">Dr. Yuxuan Wang</h3>
             <p class="member-bio">
-              Add a short paragraph describing research focus, technical background, and current projects.
-              This space is designed for a concise narrative rather than a CV list.
+              I study how redox conditions, nutrient cycling, 
+              and silicate weathering have shaped Earth system evolution 
+              and climate stability over deep time. By integrating geological 
+              observations and geochemical proxy records with Earth system models, 
+              my current project examines how supercontinent assembly and breakup 
+              alter weathering regimes, carbon-cycle feedbacks, and nutrient-redox 
+              coupling through the Phanerozoic.
             </p>
-            <p class="placeholder-note">Template profile</p>
+            <p class="member-bio member-bio-degrees">
+              <br />
+              2025 Ph.D. in Geochemistry, University of Leeds<br />
+              2017 B.S. in Geology, China University of Geosciences
+            </p>
           </div>
         </article>
 
