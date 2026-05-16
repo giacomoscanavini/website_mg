@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications — Meng Guo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ma+Shan+Zheng&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root { --black:#141a1f; --mid:#7a8a96; --light:#b0bec8; --bg:#f7f5f2; --white:#ffffff; --accent:#3a7a6a; --rule:#ddd8d0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
+
+    header { max-width: 900px; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
+    .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
+    .site-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
+    .site-name span { display: block; font-style: italic; color: var(--accent); }
+    .site-name-zh { font-family: 'Ma Shan Zheng', cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
+    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(200px,38%,360px); height: 130px; overflow: hidden; align-self: stretch; }
+    .header-image { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; display: block; -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%); mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%); }
+    .header-role { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
+    .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
+    .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
+
+    .site-nav { max-width: 900px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
+    .site-nav-link { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
+    .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
+    .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+
+    main { max-width: 900px; margin: 0 auto; padding: 0 48px 120px; }
+
+    .category { margin-top: 60px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.55s ease forwards; }
+    .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .category-label { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+    .category-line { flex: 1; height: 1px; background: var(--rule); }
+    .category-count { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); }
+
+    /* Search bar */
+    .pub-search-wrap { margin-bottom: 4px; }
+    .pub-search { width: 100%; font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--black); background: var(--white); border: 1px solid var(--rule); padding: 10px 16px; outline: none; transition: border-color 0.18s; }
+    .pub-search::placeholder { color: var(--light); }
+    .pub-search:focus { border-color: var(--accent); }
+    .pub-results-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; color: var(--light); letter-spacing: 0.08em; margin-bottom: 20px; min-height: 1em; }
+
+    .article-list { list-style: none; }
+    .article-item { border-bottom: 1px solid var(--rule); }
+    .article-item:first-child { border-top: 1px solid var(--rule); }
+    .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
+    .article-link:hover { padding-left: 12px; }
+    .article-link:hover .article-title { color: var(--accent); }
+    .article-link::after { content: '↗'; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
+    .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
+    .article-left { display: flex; flex-direction: column; gap: 5px; }
+    .article-title { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
+    .article-pub { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); }
+    .article-date { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); white-space: nowrap; align-self: center; }
+
+    .pub-empty { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--light); padding: 40px 0; text-align: center; display: none; }
+
+    .source-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.08em; color: var(--light); margin-top: 16px; }
+
+    .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+    .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
+    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-name { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+    .footer-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
+
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 640px) {
+      header { padding: 48px 24px 0; }
+      .header-top { flex-direction: column; }
+      .header-image-wrap { display: none; }
+      .site-nav { padding: 16px 24px 0; }
+      main { padding: 0 24px 80px; }
+      .footer-rule { padding: 0 24px; }
+      footer { padding: 20px 24px 48px; flex-direction: column; gap: 8px; align-items: flex-start; }
+      .article-link { grid-template-columns: 1fr; }
+      .article-date { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <a href="index.html" style="text-decoration:none;">
+        <div style="display:flex; align-items:baseline; flex-wrap:wrap; gap:0;">
+          <h1 class="site-name">Meng <span>Guo</span></h1>
+          <span class="site-name-zh">郭萌</span>
+        </div>
+      </a>
+      <div class="header-image-wrap">
+        <img class="header-image" src="header0.jpg" alt="" aria-hidden="true" />
+      </div>
+    </div>
+    <p class="header-role">Assistant Professor </p>
+    <p class="header-role">Department of Earth Sciences &nbsp;·&nbsp; HKU</p>
+    <div class="header-rule"></div>
+    <div class="header-rule-thin"></div>
+  </header>
+
+  <nav class="site-nav">
+    <a class="site-nav-link" href="index.html">Home</a>
+    <a class="site-nav-link" href="press.html">Press &amp; News</a>
+    <a class="site-nav-link active" href="publications.html">Publications</a>
+    <a class="site-nav-link" href="lab.html">Research Group</a>
+  </nav>
+
+  <main>
+    <section class="category" style="animation-delay:0.1s">
+      <div class="category-header">
+        <span class="category-label">Research &amp; Publications</span>
+        <div class="category-line"></div>
+        <span class="category-count" id="pub-count"></span>
+      </div>
+
+      <!-- Live search bar -->
+      <div class="pub-search-wrap">
+        <input class="pub-search" id="pubSearch" type="search"
+               placeholder="Search by title or journal…" autocomplete="off" />
+      </div>
+      <p class="pub-results-note" id="pubNote"></p>
+
+      <ul class="article-list" id="pub-list"></ul>
+      <p class="pub-empty" id="pub-empty">No publications match your search.</p>
+      <p class="source-note">Source: Google Scholar</p>
+    </section>
+  </main>
+
+  <div class="footer-rule"><hr /></div>
+  <footer>
+    <span class="footer-name"> © 2026 Meng Guo </span>
+    <span class="footer-note" id="footer-year"></span>
+    <span class="footer-note"> Designed and maintained by G. Scanavini </span>
+  </footer>
+
+  <script>
+    document.getElementById('footer-year').textContent = 'Last updated: ' + new Date().getMonth() + ' ' + new Date().getFullYear();
+
+    // ── Publications data ──
+    // To add a publication: copy one object and paste it into the array.
+    // To load from an external file instead: place publications.json next
+    // to this HTML — the fetch() call below checks for it first.
+    const publicationsData = [
+      { title: "Rapid rise of early ocean pH under elevated weathering rates", publication: "Nature Geoscience", date: "2025", url: "https://doi.org/10.1038/s41561-025-01649-9" },
+      { title: "Effects of late accretion impacts on an argon-constrained crustal growth model", publication: "Earth and Planetary Science Letters", date: "2025", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ" },
+      { title: "A Late-Hadean Window for Life's Origin Defined by Co-Evolving Nitrogen and Carbon Cycles", publication: "Preprint — Research Square", date: "2025", url: "https://www.researchsquare.com" },
+      { title: "The History of Continental Formation Inferred from Th-U-Pb-He Isotope System", publication: "AGU Fall Meeting 2024", date: "2024", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ" },
+      { title: "The combined Hf and Nd isotope evolution of the depleted mantle requires Hadean continental formation", publication: "Science Advances", date: "2023", url: "https://doi.org/10.1126/sciadv.ade2711" },
+      { title: "Deciphering the Habitability of the Early Earth: Insights From the Coupled Evolution of the Crust-Mantle-Atmosphere-Ocean System", publication: "PhD Dissertation — Yale University", date: "2023", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ" },
+      { title: "Reconstructing seawater δ¹⁸O and Δ′¹⁷O values with solid Earth system evolution", publication: "Earth and Planetary Science Letters", date: "2022", url: "https://doi.org/10.1016/j.epsl.2022.117637" },
+      { title: "A halogen budget of the bulk silicate Earth points to a history of early halogen degassing followed by net regassing", publication: "Proceedings of the National Academy of Sciences", date: "2021", url: "https://doi.org/10.1073/pnas.2116083118" },
+      { title: "Argon constraints on the early growth of felsic continental crust", publication: "Science Advances", date: "2020", url: "https://doi.org/10.1126/sciadv.aaz6234" },
+      { title: "Reconciling Seawater δ¹⁸O Records with Solid Earth System Evolution", publication: "AGU Fall Meeting 2020", date: "2020", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ" },
+      { title: "Argon Constraints on the Growth of Continental Crust and Its Composition", publication: "AGU Fall Meeting 2019", date: "2019", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ" },
+      { title: "Earth's chondritic Th/U: Negligible fractionation during accretion, core formation, and crust–mantle differentiation", publication: "Earth and Planetary Science Letters", date: "2018", url: "https://doi.org/10.1016/j.epsl.2018.07.009" },
+    ];
+
+    let allPubs = publicationsData;
+
+    // Try publications.json first
+    fetch('./publications.json')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.publications?.length) { allPubs = data.publications; } })
+      .catch(() => {})
+      .finally(() => renderPubs(allPubs));
+
+    function renderPubs(pubs) {
+      const list  = document.getElementById('pub-list');
+      const empty = document.getElementById('pub-empty');
+      const note  = document.getElementById('pubNote');
+      const count = document.getElementById('pub-count');
+
+      count.textContent = String(allPubs.length).padStart(2,'0');
+
+      if (pubs.length === 0) {
+        list.innerHTML = '';
+        empty.style.display = 'block';
+        note.textContent = '';
+        return;
+      }
+      empty.style.display = 'none';
+      const q = document.getElementById('pubSearch').value.trim();
+      note.textContent = q ? `${pubs.length} of ${allPubs.length} results` : '';
+
+      list.innerHTML = pubs.map(p => `
+        <li class="article-item">
+          <a class="article-link" href="${p.url}" target="_blank" rel="noopener">
+            <div class="article-left">
+              <span class="article-title">${p.title}</span>
+              <span class="article-pub">${p.publication}</span>
+            </div>
+            <span class="article-date">${p.date}</span>
+          </a>
+        </li>`).join('');
+    }
+
+    document.getElementById('pubSearch').addEventListener('input', function () {
+      const q = this.value.toLowerCase().trim();
+      const filtered = q
+        ? allPubs.filter(p => p.title.toLowerCase().includes(q) || p.publication.toLowerCase().includes(q))
+        : allPubs;
+      renderPubs(filtered);
+    });
+  </script>
+</body>
+</html>
