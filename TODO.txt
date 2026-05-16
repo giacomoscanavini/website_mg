@@ -1,0 +1,6 @@
+LIST OF THINGS TO DO: 
+- I want a page "Awards and Grant"
+- I want a page for invited talks
+- Add my job "Editor Geodynamica" to academic positons: https://geodynamica.univ-lyon1.fr/editorial-team/
+- the page of press: I want the picture of the press to show under the title
+- the page of publications, I want to make the journal title bigger and in italic and bold and with a picture of the journal title
