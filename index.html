@@ -31,8 +31,8 @@
 
     .site-name-zh { font-family: 'Ma Shan Zheng', cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
 
-    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(200px, 38%, 360px); height: 130px; overflow: hidden; align-self: stretch; }
-    .header-image { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; display: block; -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%); mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%); }
+    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+    .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
 
     /* Role line — left-aligned, between name and rule */
     .header-role { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
@@ -89,10 +89,60 @@
     }
     .about-photo-label { font-family: 'Space Mono', monospace; font-size: 0.48rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); }
 
+    .profile-frame {
+      width: 190px;
+      padding: 9px 9px 26px;
+      background: var(--white);
+      border: 1px solid rgba(221,216,208,0.9);
+      box-shadow: 0 18px 36px rgba(20,26,31,0.11), 0 2px 0 rgba(255,255,255,0.9) inset;
+      transform: rotate(-1.2deg);
+      position: relative;
+    }
+    .profile-frame::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 9px;
+      width: 44px;
+      height: 1px;
+      background: var(--rule);
+      transform: translateX(-50%);
+    }
+    .profile-frame img { width: 100%; display: block; border: 1px solid var(--rule); object-fit: cover; }
+
     /* Bio */
     .about-bio h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 400; color: var(--black); margin-bottom: 16px; line-height: 1.5; }
     .about-bio p { font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--mid); line-height: 1.85; margin-bottom: 14px; }
     .about-bio p:last-child { margin-bottom: 0; }
+
+    /* ── RESEARCH INTERESTS ── */
+    .interests-list {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+    }
+    .interest-item {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      align-items: baseline;
+      gap: 14px;
+      padding: 3px 0;
+    }
+    .interest-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.55;
+      transform: translateY(-1px);
+    }
+    .interest-text {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.55;
+    }
 
     /* ── ARTICLE ROWS ── */
     .article-list { list-style: none; }
@@ -121,8 +171,9 @@
     /* ── FOOTER ── */
     .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
     .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
-    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: center; }
+    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
     .footer-name { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+    .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
     .footer-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -134,9 +185,10 @@
       .site-nav { padding: 16px 24px 0; }
       main { padding: 0 24px 80px; }
       .about-grid { grid-template-columns: 1fr; }
-      .about-photo { width: 100%; aspect-ratio: 4/2; flex-direction: row; justify-content: center; }
+      .profile-frame { width: 155px; }
       .footer-rule { padding: 0 24px; }
-      footer { padding: 20px 24px 48px; flex-direction: column; gap: 8px; align-items: flex-start; }
+      footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+      .footer-meta { align-items: flex-start; text-align: left; }
       .article-link.has-logo { grid-template-columns: 48px 1fr; }
       .article-date { display: none; }
     }
@@ -151,12 +203,12 @@
         <span class="site-name-zh">郭萌</span>
       </div>
       <div class="header-image-wrap">
-        <img class="header-image" src="header0.svg" alt="" aria-hidden="true" />
+        <img class="header-image" src="assets/header0.svg" alt="" aria-hidden="true" />
       </div>
     </div>
     <!-- Role text: left side, above the divider line -->
-    <p class="header-role">Assistant Professor </p>
-    <p class="header-role">Department of Earth Sciences &nbsp;·&nbsp; HKU</p>
+    <p class="header-role">Assistant Professor &nbsp;·&nbsp; HKU</p>
+    <p class="header-role">Department of Earth and Planetary Sciences</p>
     <div class="header-rule"></div>
     <div class="header-rule-thin"></div>
   </header>
@@ -166,6 +218,7 @@
     <a class="site-nav-link" href="press.html">Press &amp; News</a>
     <a class="site-nav-link" href="publications.html">Publications</a>
     <a class="site-nav-link" href="lab.html">Research Group</a>
+    <a class="site-nav-link" href="contact.html">Contact</a>
   </nav>
 
   <main>
@@ -173,50 +226,72 @@
     <!-- ── ABOUT ── -->
     <section class="category" style="animation-delay:0.1s">
       <div class="category-header">
-        <span class="category-label">About</span>
+        <span class="category-label">Bio</span>
         <div class="category-line"></div>
       </div>
 
       <div class="about-grid">
 
-        <!--
-          PHOTO PLACEHOLDER
-          Once you have a headshot, replace this entire <div class="about-photo">
-          block with:
-            <img src="photo.jpg" alt="Meng Guo"
-                 style="width:175px; display:block; border:1px solid var(--rule);" />
-        -->
-        <div class="about-photo">
-          <div class="about-photo-icon"></div>
-          <div class="about-photo-shoulders"></div>
-          <span class="about-photo-label">Photo</span>
+        <div class="profile-frame">
+          <img src="assets/meng_profile_b.jpg" alt="Meng Guo" />
         </div>
 
         <div class="about-bio">
-          <h3>Hi! I'm Meng,</h3>
-          <!--
-            BIO PLACEHOLDER
-            Replace the paragraphs below with the actual bio text.
-          -->
+          <h3>Hi, I'm Meng!</h3>
           <p>
-            Meng Guo is a tenure-track Assistant Professor in the Department of Earth Sciences
-            at the University of Hong Kong. Her research sits at the intersection of geochemistry,
-            planetary science, and Earth's early history — using isotope systems to reconstruct
-            the co-evolution of the solid Earth, oceans, and atmosphere over deep time.
+            I'm a geophysicist and geochemist with a passion for understanding how Earth —
+            and planets like it — transformed from an initially inhospitable world into one
+            capable of sustaining life. I currently serve as a tenure-track Assistant Professor
+            in the Department of Earth and Planetary Sciences at the University of Hong Kong.
           </p>
           <p>
-            She is particularly interested in how the habitability of early Earth was shaped by
-            the coupled evolution of continental crust, ocean chemistry, and the carbon and nitrogen
-            cycles — and what this means for the emergence of life.
+            My work centers on developing multidisciplinary theoretical and computational models
+            that link the history of solid Earth differentiation with the chemical evolution of
+            the atmosphere and oceans across geologic time. By integrating mantle thermal evolution,
+            geochemical cycles, and planetary processes, I aim to generate testablen evolution trajectories
+            of the terrestrial planets and examine the proposed origin-of-life theories.
           </p>
           <p>
-            Prior to joining HKU, she held postdoctoral fellowships at the University of Chicago
-            (T.C. Chamberlin Fellow) and Nanyang Technological University (Wallenberg-NTU
-            Presidential Postdoctoral Fellow), and completed her Ph.D. at Yale University.
+            I earned my Ph.D. in Earth and Planetary Sciences Department from Yale University, an M.S. in
+            Geochemistry from the University of Maryland, College Park, and a B.S. in Applied
+            Chemistry from Central South University. Before joining HKU, I held titled postdoctoral
+            fellowships at the University of Chicago (T.C. Chamberlin Fellow) and Nanyang
+            Technological University (NTU Presidential Postdoctoral Fellow).
+          </p>
+          <p>
+            I collaborate actively with colleagues across the United States, Singapore, and
+            mainland China, and I'm always excited to explore new collaborations — feel free
+            to reach out!
           </p>
         </div>
 
       </div>
+    </section>
+
+    <!-- ── RESEARCH INTERESTS ── -->
+    <section class="category" style="animation-delay:0.15s">
+      <div class="category-header">
+        <span class="category-label">Research Interests</span>
+        <div class="category-line"></div>
+      </div>
+      <ul class="interests-list">
+        <li class="interest-item">
+          <span class="interest-dot"></span>
+          <span class="interest-text">Earth-system evolution modeling — crust–mantle–atmosphere–ocean coupling</span>
+        </li>
+        <li class="interest-item">
+          <span class="interest-dot"></span>
+          <span class="interest-text">Geochemical box modeling</span>
+        </li>
+        <li class="interest-item">
+          <span class="interest-dot"></span>
+          <span class="interest-text">Planetary habitability &amp; urability, and terrestrial planet evolution</span>
+        </li>
+        <li class="interest-item">
+          <span class="interest-dot"></span>
+          <span class="interest-text">Origin-of-life and early Earth surface environments</span>
+        </li>
+      </ul>
     </section>
 
     <!-- ── ACADEMIC POSITIONS ── -->
@@ -231,7 +306,7 @@
         <li class="article-item">
           <a class="article-link has-logo" href="https://www.scifac.hku.hk/people/guo-meng" target="_blank" rel="noopener">
             <div class="institution-logo-wrap">
-              <img class="institution-logo" src="logos/hku.svg" alt="HKU" />
+              <img class="institution-logo" src="assets/logos/hku.svg" alt="HKU" />
             </div>
             <div class="article-left">
               <span class="article-title">Assistant Professor — Department of Earth Sciences</span>
@@ -244,7 +319,7 @@
         <li class="article-item">
           <a class="article-link has-logo" href="https://geosci.uchicago.edu/academics/information-for-postdocs/chamberlin-fellowship/" target="_blank" rel="noopener">
             <div class="institution-logo-wrap">
-              <img class="institution-logo logo-uchicago" src="logos/uchicago.svg" alt="University of Chicago" />
+              <img class="institution-logo logo-uchicago" src="assets/logos/uchicago.svg" alt="University of Chicago" />
             </div>
             <div class="article-left">
               <span class="article-title">T.C. Chamberlin Postdoctoral Fellowship</span>
@@ -257,10 +332,10 @@
         <li class="article-item">
           <a class="article-link has-logo" href="https://www.ntu.edu.sg/research/research-careers/presidential-postdoctoral-fellowship-(ppf)" target="_blank" rel="noopener">
             <div class="institution-logo-wrap">
-              <img class="institution-logo" src="logos/ntu.svg" alt="NTU" />
+              <img class="institution-logo" src="assets/logos/ntu.svg" alt="NTU" />
             </div>
             <div class="article-left">
-              <span class="article-title">Wallenberg — NTU Presidential Postdoctoral Fellowship</span>
+              <span class="article-title">NTU Presidential Postdoctoral Fellowship</span>
               <span class="article-pub">Nanyang Technological University (NTU), Singapore</span>
             </div>
             <span class="article-date">2023</span>
@@ -270,7 +345,7 @@
         <li class="article-item">
           <a class="article-link has-logo" href="https://earth.yale.edu" target="_blank" rel="noopener">
             <div class="institution-logo-wrap">
-              <img class="institution-logo" src="logos/yale.svg" alt="Yale University" />
+              <img class="institution-logo" src="assets/logos/yale.svg" alt="Yale University" />
             </div>
             <div class="article-left">
               <span class="article-title">Ph.D. — Department of Earth and Planetary Sciences</span>
@@ -287,13 +362,16 @@
 
   <div class="footer-rule"><hr /></div>
   <footer>
-    <span class="footer-name"> © 2026 Meng Guo </span>
-    <span class="footer-note" id="footer-year"></span>
-    <span class="footer-note"> Designed and maintained by G. Scanavini </span>
+    <span class="footer-name">© 2026 Meng Guo</span>
+    <div class="footer-meta">
+      <span class="footer-note" id="footer-year"></span>
+      <span class="footer-note">Designed and maintained by G. Scanavini</span>
+    </div>
   </footer>
 
   <script>
-    document.getElementById('footer-year').textContent = 'Last updated: ' + new Date().getMonth() + ' ' + new Date().getFullYear();
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('footer-year').textContent = 'Last updated: ' + months[new Date().getMonth()] + ' ' + new Date().getFullYear();
   </script>
 </body>
 </html>

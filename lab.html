@@ -18,8 +18,8 @@
     .site-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
     .site-name span { display: block; font-style: italic; color: var(--accent); }
     .site-name-zh { font-family: 'Ma Shan Zheng', cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
-    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(200px,38%,360px); height: 130px; overflow: hidden; align-self: stretch; }
-    .header-image { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; display: block; -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%); mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%); }
+    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+    .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
     .header-role { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
     .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
     .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
@@ -31,28 +31,57 @@
 
     main { flex: 1; max-width: 900px; width: 100%; margin: 0 auto; padding: 0 48px 120px; }
 
-    .wip-block { margin-top: 80px; opacity: 0; animation: fadeUp 0.6s 0.25s ease forwards; }
-    .wip-label { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
-    .wip-label-text { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
-    .wip-label-line { flex: 1; height: 1px; background: var(--rule); }
+    .group-intro { margin-top: 72px; opacity: 0; animation: fadeUp 0.6s 0.25s ease forwards; }
+    .group-label { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .group-label-text { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+    .group-label-line { flex: 1; height: 1px; background: var(--rule); }
+    .group-heading { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.18; letter-spacing: -0.02em; color: var(--black); margin-bottom: 18px; }
+    .group-heading em { font-style: italic; color: var(--accent); }
+    .group-sub { font-size: 1rem; color: var(--mid); line-height: 1.75; max-width: 620px; margin-bottom: 56px; }
 
-    .wip-heading { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; color: var(--black); margin-bottom: 20px; }
-    .wip-heading em { font-style: italic; color: var(--accent); }
-    .wip-sub { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 300; color: var(--mid); line-height: 1.7; max-width: 480px; margin-bottom: 48px; }
+    .people-section { margin-top: 62px; opacity: 0; animation: fadeUp 0.6s 0.35s ease forwards; }
 
-    .wip-dots { display: flex; gap: 8px; margin-bottom: 48px; }
-    .wip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.25; animation: pulse 1.6s ease-in-out infinite; }
-    .wip-dot:nth-child(2) { animation-delay: 0.3s; }
-    .wip-dot:nth-child(3) { animation-delay: 0.6s; }
-    @keyframes pulse { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.9; transform: scale(1.3); } }
+    .profile-list { display: flex; flex-direction: column; gap: 0; }
+    .member-profile { display: grid; grid-template-columns: 230px 1fr; gap: 42px; align-items: center; padding: 40px 0; border-bottom: 1px solid rgba(221,216,208,0.58); }
+    .member-profile:first-child { border-top: 1px solid rgba(221,216,208,0.58); }
+    .member-profile:nth-child(even) { grid-template-columns: 1fr 230px; }
+    .member-profile:nth-child(even) .member-photo-card { grid-column: 2; transform: rotate(3.1deg) translateY(4px); }
+    .member-profile:nth-child(even) .member-copy { grid-column: 1; grid-row: 1; text-align: right; }
+    .member-profile:nth-child(3n) .member-photo-card { transform: rotate(-3.6deg) translateY(-2px); }
+    .member-profile:nth-child(4n) .member-photo-card { transform: rotate(1.4deg) translateY(3px); }
 
-    .wip-back { display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); background: var(--accent); text-decoration: none; padding: 10px 18px; transition: background 0.18s; }
-    .wip-back:hover { background: var(--black); }
+    .member-photo-card {
+      width: 205px;
+      justify-self: center;
+      padding: 11px 9px 34px 12px;
+      background: #fffdf8;
+      border: 1px solid rgba(221,216,208,0.86);
+      border-radius: 3px 1px 5px 2px / 2px 5px 1px 4px;
+      box-shadow: 0 18px 30px rgba(20,26,31,0.11), 2px 3px 0 rgba(221,216,208,0.34);
+      transform: rotate(-2.7deg) translateY(2px);
+      position: relative;
+    }
+    .member-photo-card::before { content: ''; position: absolute; top: -13px; left: 50%; width: 19px; height: 19px; border-radius: 50%; transform: translateX(-50%); background: radial-gradient(circle at 35% 35%, #fff 0 12%, var(--pin-color, #b64f4a) 13% 52%, rgba(20,26,31,0.28) 53% 100%); box-shadow: 0 4px 7px rgba(20,26,31,0.18); }
+    .member-photo-card::after { content: ''; position: absolute; top: -3px; left: 50%; width: 1px; height: 24px; background: rgba(20,26,31,0.2); transform: translateX(-50%); }
+    .member-profile:nth-child(1) .member-photo-card { --pin-color: #c75d52; }
+    .member-profile:nth-child(2) .member-photo-card { --pin-color: #3a7a6a; }
+    .member-profile:nth-child(3) .member-photo-card { --pin-color: #d6a23f; }
+    .member-profile:nth-child(4) .member-photo-card { --pin-color: #6f7fbf; }
+    .member-profile:nth-child(5) .member-photo-card { --pin-color: #b76aa3; }
+    .member-photo { aspect-ratio: 4 / 5; border: 1px solid rgba(221,216,208,0.9); border-radius: 2px 4px 1px 3px / 4px 1px 3px 2px; background: linear-gradient(145deg, #ece8e1, #d8d0c3); display: flex; align-items: center; justify-content: center; color: var(--light); font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; padding: 18px; transform: rotate(-0.35deg); }
+    .member-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .member-role { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .member-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.35rem; font-weight: 400; color: var(--black); margin-bottom: 12px; }
+    .member-bio { color: var(--mid); font-size: 0.96rem; line-height: 1.8; max-width: 530px; }
+    .member-profile:nth-child(even) .member-bio { margin-left: auto; }
+    .placeholder-note { margin-top: 18px; font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
 
     .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
     .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
-    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: center; }
+    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
     .footer-name { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+    .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
     .footer-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -62,8 +91,13 @@
       .header-image-wrap { display: none; }
       .site-nav { padding: 16px 24px 0; }
       main { padding: 0 24px 80px; }
+      .member-profile, .member-profile:nth-child(even) { grid-template-columns: 1fr; gap: 22px; text-align: left; }
+      .member-profile:nth-child(even) .member-photo-card, .member-profile:nth-child(even) .member-copy { grid-column: auto; grid-row: auto; text-align: left; }
+      .member-profile:nth-child(even) .member-bio { margin-left: 0; }
+      .member-photo-card { justify-self: start; width: 180px; }
       .footer-rule { padding: 0 24px; }
-      footer { padding: 20px 24px 48px; flex-direction: column; gap: 8px; align-items: flex-start; }
+      footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+      .footer-meta { align-items: flex-start; text-align: left; }
     }
   </style>
 </head>
@@ -78,11 +112,11 @@
         </div>
       </a>
       <div class="header-image-wrap">
-        <img class="header-image" src="header0.svg" alt="" aria-hidden="true" />
+        <img class="header-image" src="assets/header0.svg" alt="" aria-hidden="true" />
       </div>
     </div>
-    <p class="header-role">Assistant Professor </p>
-    <p class="header-role">Department of Earth Sciences &nbsp;·&nbsp; HKU</p>
+    <p class="header-role">Assistant Professor &nbsp;·&nbsp; HKU</p>
+    <p class="header-role">Department of Earth and Planetary Sciences</p>
     <div class="header-rule"></div>
     <div class="header-rule-thin"></div>
   </header>
@@ -92,39 +126,99 @@
     <a class="site-nav-link" href="press.html">Press &amp; News</a>
     <a class="site-nav-link" href="publications.html">Publications</a>
     <a class="site-nav-link active" href="lab.html">Research Group</a>
+    <a class="site-nav-link" href="contact.html">Contact</a>
   </nav>
 
   <main>
-    <div class="wip-block">
-      <div class="wip-label">
-        <span class="wip-label-text">Research Group &nbsp;·&nbsp; HKU Earth Sciences</span>
-        <div class="wip-label-line"></div>
+    <section class="group-intro">
+      <div class="group-label">
+        <span class="group-label-text">Research Group</span>
+        <div class="group-label-line"></div>
       </div>
-      <h2 class="wip-heading">
-        This page is <em>coming soon.</em>
-      </h2>
-      <p class="wip-sub">
-        This page is currently under construction. <br />
-        Check back soon for information about the research group, open positions, and ongoing projects.
+      <h2 class="group-heading">People thinking carefully about <em>planetary histories.</em></h2>
+      <p class="group-sub">
+        This page is prepared for current and future group members. Each profile can include a photograph
+        and a short paragraph describing the person’s research interests, methods, and background.
       </p>
-      <div class="wip-dots">
-        <div class="wip-dot"></div>
-        <div class="wip-dot"></div>
-        <div class="wip-dot"></div>
+    </section>
+
+    <section class="people-section" aria-label="Research group members">
+      <div class="profile-list">
+        <article class="member-profile">
+          <div class="member-photo-card">
+            <div class="member-photo">Add photo</div>
+          </div>
+          <div class="member-copy">
+            <p class="member-role">Postdoctoral Researcher</p>
+            <h3 class="member-name">Name Surname</h3>
+            <p class="member-bio">
+              Add a short paragraph describing research focus, technical background, and current projects.
+              This space is designed for a concise narrative rather than a CV list.
+            </p>
+            <p class="placeholder-note">Template profile</p>
+          </div>
+        </article>
+
+        <article class="member-profile">
+          <div class="member-photo-card">
+            <div class="member-photo">Add photo</div>
+          </div>
+          <div class="member-copy">
+            <p class="member-role">Postdoctoral Researcher</p>
+            <h3 class="member-name">Name Surname</h3>
+            <p class="member-bio">
+              Add a paragraph about the researcher’s background, modeling or laboratory expertise,
+              and how their work connects to Earth-system or planetary evolution.
+            </p>
+            <p class="placeholder-note">Template profile</p>
+          </div>
+        </article>
+
+        <article class="member-profile">
+          <div class="member-photo-card">
+            <div class="member-photo">Add photo</div>
+          </div>
+          <div class="member-copy">
+            <p class="member-role">PhD Student</p>
+            <h3 class="member-name">Name Surname</h3>
+            <p class="member-bio">
+              Add a short research-and-background paragraph here. A good profile might mention the student’s
+              project, key methods, and broader scientific motivation.
+            </p>
+            <p class="placeholder-note">Template profile</p>
+          </div>
+        </article>
+
+        <article class="member-profile">
+          <div class="member-photo-card">
+            <div class="member-photo">Add photo</div>
+          </div>
+          <div class="member-copy">
+            <p class="member-role">PhD Student</p>
+            <h3 class="member-name">Name Surname</h3>
+            <p class="member-bio">
+              Add a paragraph describing training, research interests, and the question the student is
+              currently pursuing in the group.
+            </p>
+            <p class="placeholder-note">Template profile</p>
+          </div>
+        </article>
       </div>
-      <a class="wip-back" href="index.html">← Return to home</a>
-    </div>
+    </section>
   </main>
 
   <div class="footer-rule"><hr /></div>
   <footer>
-    <span class="footer-name"> © 2026 Meng Guo </span>
-    <span class="footer-note" id="footer-year"></span>
-    <span class="footer-note"> Designed and maintained by G. Scanavini </span>
+    <span class="footer-name">© 2026 Meng Guo</span>
+    <div class="footer-meta">
+      <span class="footer-note" id="footer-year"></span>
+      <span class="footer-note">Designed and maintained by G. Scanavini</span>
+    </div>
   </footer>
 
   <script>
-    document.getElementById('footer-year').textContent = 'Last updated: ' + new Date().getMonth() + ' ' + new Date().getFullYear();
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('footer-year').textContent = 'Last updated: ' + months[new Date().getMonth()] + ' ' + new Date().getFullYear();
   </script>
 </body>
 </html>

@@ -18,8 +18,8 @@
     .site-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
     .site-name span { display: block; font-style: italic; color: var(--accent); }
     .site-name-zh { font-family: 'Ma Shan Zheng', cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
-    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(200px,38%,360px); height: 130px; overflow: hidden; align-self: stretch; }
-    .header-image { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; display: block; -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%); mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.45) 22%, black 55%); }
+    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+    .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
     .header-role { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
     .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
     .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
@@ -36,6 +36,12 @@
     .category-label { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
     .category-line { flex: 1; height: 1px; background: var(--rule); }
     .category-count { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); }
+
+    /* Google Scholar link */
+    .scholar-link-row { margin-bottom: 18px; }
+    .scholar-link { display: inline-flex; align-items: center; gap: 7px; font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 6px 14px; transition: background 0.18s, color 0.18s; }
+    .scholar-link:hover { background: var(--accent); color: var(--white); }
+    .scholar-link svg { stroke: currentColor; flex-shrink: 0; }
 
     /* Search bar */
     .pub-search-wrap { margin-bottom: 4px; }
@@ -63,8 +69,9 @@
 
     .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
     .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
-    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: center; }
+    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
     .footer-name { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+    .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
     .footer-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
 
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -75,7 +82,8 @@
       .site-nav { padding: 16px 24px 0; }
       main { padding: 0 24px 80px; }
       .footer-rule { padding: 0 24px; }
-      footer { padding: 20px 24px 48px; flex-direction: column; gap: 8px; align-items: flex-start; }
+      footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+      .footer-meta { align-items: flex-start; text-align: left; }
       .article-link { grid-template-columns: 1fr; }
       .article-date { display: none; }
     }
@@ -92,11 +100,11 @@
         </div>
       </a>
       <div class="header-image-wrap">
-        <img class="header-image" src="header0.svg" alt="" aria-hidden="true" />
+        <img class="header-image" src="assets/header0.svg" alt="" aria-hidden="true" />
       </div>
     </div>
-    <p class="header-role">Assistant Professor </p>
-    <p class="header-role">Department of Earth Sciences &nbsp;·&nbsp; HKU</p>
+    <p class="header-role">Assistant Professor &nbsp;·&nbsp; HKU</p>
+    <p class="header-role">Department of Earth and Planetary Sciences</p>
     <div class="header-rule"></div>
     <div class="header-rule-thin"></div>
   </header>
@@ -106,6 +114,7 @@
     <a class="site-nav-link" href="press.html">Press &amp; News</a>
     <a class="site-nav-link active" href="publications.html">Publications</a>
     <a class="site-nav-link" href="lab.html">Research Group</a>
+    <a class="site-nav-link" href="contact.html">Contact</a>
   </nav>
 
   <main>
@@ -115,6 +124,14 @@
         <div class="category-line"></div>
         <span class="category-count" id="pub-count"></span>
       </div>
+
+      <!-- Google Scholar link -->
+      <p class="scholar-link-row">
+        <a class="scholar-link" href="https://scholar.google.com/citations?user=fB31s5oAAAAJ&hl=en" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/><path d="M12 14L2.108 8.43a12.086 12.086 0 0119.784 0L12 14z"/></svg>
+          Google Scholar ↗
+        </a>
+      </p>
 
       <!-- Live search bar -->
       <div class="pub-search-wrap">
@@ -131,13 +148,16 @@
 
   <div class="footer-rule"><hr /></div>
   <footer>
-    <span class="footer-name"> © 2026 Meng Guo </span>
-    <span class="footer-note" id="footer-year"></span>
-    <span class="footer-note"> Designed and maintained by G. Scanavini </span>
+    <span class="footer-name">© 2026 Meng Guo</span>
+    <div class="footer-meta">
+      <span class="footer-note" id="footer-year"></span>
+      <span class="footer-note">Designed and maintained by G. Scanavini</span>
+    </div>
   </footer>
 
   <script>
-    document.getElementById('footer-year').textContent = 'Last updated: ' + new Date().getMonth() + ' ' + new Date().getFullYear();
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('footer-year').textContent = 'Last updated: ' + months[new Date().getMonth()] + ' ' + new Date().getFullYear();
 
     // ── Publications data ──
     // To add a publication: copy one object and paste it into the array.
