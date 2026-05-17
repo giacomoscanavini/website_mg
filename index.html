@@ -184,6 +184,58 @@
     .article-pub { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); }
     .article-date { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); white-space: nowrap; align-self: center; }
 
+
+
+    /* ── HOME PLACEHOLDERS ── */
+    .placeholder-card {
+      border: 1px solid var(--rule);
+      background: var(--white);
+      padding: 22px 24px;
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+    .placeholder-card strong {
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 400;
+      color: var(--black);
+    }
+    .news-board {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .news-card {
+      min-height: 150px;
+      border: 1px solid var(--rule);
+      background:
+        linear-gradient(135deg, rgba(58,122,106,0.08), transparent 42%),
+        var(--white);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .news-card-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .news-card-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.45;
+    }
+    .news-card-body {
+      color: var(--mid);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
     /* ── FOOTER ── */
     .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
     .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
@@ -207,6 +259,7 @@
       .footer-meta { align-items: flex-start; text-align: left; }
       .article-link.has-logo { grid-template-columns: 48px 1fr; }
       .article-date { display: none; }
+      .news-board { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -234,6 +287,7 @@
     <a class="site-nav-link" href="press.html">Press &amp; News</a>
     <a class="site-nav-link" href="publications.html">Publications</a>
     <a class="site-nav-link" href="lab.html">Research Group</a>
+    <a class="site-nav-link" href="opportunities.html">Opportunities</a>
     <a class="site-nav-link" href="contact.html">Contact</a>
   </nav>
 
@@ -315,9 +369,22 @@
       <div class="category-header">
         <span class="category-label">Academic Positions</span>
         <div class="category-line"></div>
-        <span class="category-count">04</span>
+        <span class="category-count">05</span>
       </div>
       <ul class="article-list">
+
+        <li class="article-item">
+          <a class="article-link has-logo" href="https://geodynamica.univ-lyon1.fr/editorial-team/" target="_blank" rel="noopener">
+            <div class="institution-logo-wrap">
+              <img class="institution-logo" src="assets/logos/geodynamica.svg" alt="Geodynamica" />
+            </div>
+            <div class="article-left">
+              <span class="article-title">Editor — Geodynamica</span>
+              <span class="article-pub">Geodynamica Editorial Team</span>
+            </div>
+            <span class="article-date">Present</span>
+          </a>
+        </li>
 
         <li class="article-item">
           <a class="article-link has-logo" href="https://www.scifac.hku.hk/people/guo-meng" target="_blank" rel="noopener">
@@ -372,6 +439,38 @@
         </li>
 
       </ul>
+    </section>
+
+
+    <!-- ── INVITED TALKS, AWARDS, AND GRANTS ── -->
+    <section class="category" style="animation-delay:0.25s">
+      <div class="category-header">
+        <span class="category-label">Invited Talks, Awards, and Grants</span>
+        <div class="category-line"></div>
+      </div>
+      <div class="placeholder-card">
+        <strong>Coming soon.</strong> This section is ready for invited talks, awards, grants, and selected recognitions.
+      </div>
+    </section>
+
+    <!-- ── CURRENT NEWS BOARD ── -->
+    <section class="category" style="animation-delay:0.3s">
+      <div class="category-header">
+        <span class="category-label">Current News Board</span>
+        <div class="category-line"></div>
+      </div>
+      <div class="news-board">
+        <article class="news-card">
+          <span class="news-card-kicker">Updates</span>
+          <h3 class="news-card-title">Research notes and ongoing involvement</h3>
+          <p class="news-card-body">Use this card for brief descriptions of projects, collaborations, field ideas, community work, or announcements.</p>
+        </article>
+        <article class="news-card">
+          <span class="news-card-kicker">Ideas</span>
+          <h3 class="news-card-title">A small board for future posts</h3>
+          <p class="news-card-body">Add short entries here when there is something worth sharing but not yet a full press item or publication.</p>
+        </article>
+      </div>
     </section>
 
   </main>

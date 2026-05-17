@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Press & News — Meng Guo</title>
+  <title>Opportunities — Meng Guo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ma+Shan+Zheng&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
@@ -40,26 +40,62 @@
     .article-list { list-style: none; }
     .article-item { border-bottom: 1px solid var(--rule); }
     .article-item:first-child { border-top: 1px solid var(--rule); }
-    .article-link { display: grid; grid-template-columns: 150px 1fr auto; align-items: center; gap: 22px; padding: 18px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
-    .article-link:hover { padding-left: 8px; }
+    .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
+    .article-link:hover { padding-left: 12px; }
     .article-link:hover .article-title { color: var(--accent); }
     .article-link::after { content: '↗'; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
     .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
 
     .press-thumbnail {
-      width: 150px;
-      aspect-ratio: 16 / 10;
+      width: min(220px, 100%);
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       border: 1px solid var(--rule);
       background: var(--white);
+      margin: 8px 0 2px;
       filter: saturate(0.96) contrast(1.02);
-      display: block;
     }
-    .article-thumb-wrap { width: 150px; overflow: hidden; background: var(--white); }
     .article-left { display: flex; flex-direction: column; gap: 5px; }
     .article-title { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
     .article-pub { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); }
     .article-date { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); white-space: nowrap; align-self: center; }
+
+
+    .opportunity-card {
+      border: 1px solid var(--rule);
+      background:
+        linear-gradient(135deg, rgba(58,122,106,0.08), transparent 46%),
+        var(--white);
+      padding: 28px 30px;
+      max-width: 680px;
+    }
+    .opportunity-kicker {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .opportunity-card h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+    .opportunity-card p {
+      color: var(--mid);
+      font-size: 0.96rem;
+      line-height: 1.85;
+      margin-bottom: 12px;
+    }
+    .opportunity-card + .opportunity-card { margin-top: 24px; }
+    .opportunity-card a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(58,122,106,0.32); }
+    .opportunity-card a:hover { border-bottom-color: var(--accent); }
+    .opportunity-note { font-size: 0.9rem; color: var(--mid); font-style: italic; }
 
     .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
     .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
@@ -78,8 +114,7 @@
       .footer-rule { padding: 0 24px; }
       footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
       .footer-meta { align-items: flex-start; text-align: left; }
-      .article-link { grid-template-columns: 96px 1fr; gap: 14px; }
-      .article-thumb-wrap, .press-thumbnail { width: 96px; }
+      .article-link { grid-template-columns: 1fr; }
       .article-date { display: none; }
     }
   </style>
@@ -106,21 +141,34 @@
 
   <nav class="site-nav">
     <a class="site-nav-link" href="index.html">Home</a>
-    <a class="site-nav-link active" href="press.html">Press &amp; News</a>
+    <a class="site-nav-link" href="press.html">Press &amp; News</a>
     <a class="site-nav-link" href="publications.html">Publications</a>
     <a class="site-nav-link" href="lab.html">Research Group</a>
-    <a class="site-nav-link" href="opportunities.html">Opportunities</a>
+    <a class="site-nav-link active" href="opportunities.html">Opportunities</a>
     <a class="site-nav-link" href="contact.html">Contact</a>
   </nav>
 
   <main>
     <section class="category" style="animation-delay:0.1s">
       <div class="category-header">
-        <span class="category-label">Press &amp; News</span>
+        <span class="category-label">Hiring New Talent</span>
         <div class="category-line"></div>
-        <span class="category-count" id="press-count"></span>
       </div>
-      <ul class="article-list" id="press-list"></ul>
+      <div class="opportunity-card">
+        <span class="opportunity-kicker">Postgraduate scholarships</span>
+        <h2>Prospective RPg students</h2>
+        <p>I encourage students to contact me and discuss their research proposals before applying.</p>
+        <p>The standard RPg scholarship at HKU is approximately $19,000 HKD per month. HKU-PS and HKPFS scholarships provide higher salary and travel grants.</p>
+        <p>Note that the application deadline of the main round is December 1st.</p>
+        <p class="opportunity-note">You may still contact me to apply in the second round if you miss the main round deadline but meet all admission requirements of the university: <a href="https://gradsch.hku.hk/prospective_students/application/admission_requirement" target="_blank" rel="noopener">HKU admission requirements</a>.</p>
+      </div>
+
+      <div class="opportunity-card">
+        <span class="opportunity-kicker">Postdoc fellowships</span>
+        <h2>Hong Kong RGC Junior Research Fellow Scheme</h2>
+        <p>Interested postdoctoral candidates are welcome to contact me about the <a href="https://www.ugc.edu.hk/eng/rgc/funding_opport/jrfs/" target="_blank" rel="noopener">Hong Kong RGC Junior Research Fellow Scheme</a>.</p>
+        <p class="opportunity-note">The nomination deadline is usually in late October; do not hesitate to contact me if you are interested.</p>
+      </div>
     </section>
   </main>
 
@@ -137,38 +185,7 @@
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     document.getElementById('footer-year').textContent = 'Last updated: ' + months[new Date().getMonth()] + ' ' + new Date().getFullYear();
 
-    // ── Press & News data ──
-    // To add an entry: copy one object and paste it into the array.
-    const pressItems = [
-      { title: "Earth's acid test: When did ocean acidity allow life to commence?", publication: "Yale News", date: "Mar 2025", url: "https://news.yale.edu/2025/02/10/earths-acid-test-when-did-ocean-acidity-allow-life-commence", thumbnail: "https://news.yale.edu/sites/default/files/styles/horizontal_topper_image/public/2025-02/YNews-Ocean-Acidity-Life.jpg?h=fcf25457&itok=nAP1xpL9", fallback: "assets/press/press-01.svg" },
-      { title: "Acidic oceans delayed the emergence of life on early Earth", publication: "NTU Science", date: "Mar 2025", url: "https://blogs.ntu.edu.sg/science/2025/03/17/acidic-oceans-delayed-the-emergence-of-life-on-early-earth/", thumbnail: "https://bpb-us-e1.wpmucdn.com/blogs.ntu.edu.sg/dist/a/2084/files/2025/03/DSC09867-1024x631.jpg", fallback: "assets/press/press-02.svg" },
-      { title: "Earth's acid test: When did ocean acidity allow life to commence?", publication: "Technology.org", date: "Feb 2025", url: "https://www.technology.org/2025/02/15/earths-acid-test-when-did-ocean-acidity-allow-life-to-commence/", thumbnail: "https://news.yale.edu/sites/default/files/styles/horizontal_topper_image/public/2025-02/YNews-Ocean-Acidity-Life.jpg?h=fcf25457&itok=nAP1xpL9", fallback: "assets/press/press-03.svg" },
-      { title: "Earth's acid test: When did ocean acidity allow life to commence?", publication: "Ocean Acidification International Coordination Centre", date: "Feb 2025", url: "https://news-oceanacidification-icc.org/2025/02/13/earths-acid-test-when-did-ocean-acidity-allow-life-commence/", thumbnail: "https://news.yale.edu/sites/default/files/styles/horizontal_topper_image/public/2025-02/YNews-Ocean-Acidity-Life.jpg?h=fcf25457&itok=nAP1xpL9", fallback: "assets/press/press-04.svg" },
-      { title: "pH-inding the origins of life — interview on early Earth's oceans", publication: "Money FM 89.3 — Climate Connections Podcast", date: "2025", url: "https://www.linkedin.com/in/meng-guo-a65a10258/", thumbnail: "https://news.yale.edu/sites/default/files/styles/horizontal_topper_image/public/2025-02/YNews-Ocean-Acidity-Life.jpg?h=fcf25457&itok=nAP1xpL9", fallback: "assets/press/press-05.svg" },
-      { title: "Earth needed time to 'mix' its continental crust, Yale researchers say", publication: "Yale News", date: "Mar 2023", url: "https://news.yale.edu/2023/03/24/earth-needed-time-mix-its-continental-crust-yale-researchers-say", thumbnail: "https://news.yale.edu/sites/default/files/styles/full/public/yn-volcanoes_land_rising-ocean.jpg?itok=AOu8I8Pd", fallback: "assets/press/press-06.svg" },
-      { title: "Earth needed time to 'mix' its continental crust, Yale researchers say", publication: "Yale Department of Earth & Planetary Sciences", date: "Mar 2023", url: "https://earth.yale.edu/news/earth-needed-time-mix-its-continental-crust-yale-researchers-say", thumbnail: "https://news.yale.edu/sites/default/files/styles/full/public/yn-volcanoes_land_rising-ocean.jpg?itok=AOu8I8Pd", fallback: "assets/press/press-07.svg" },
-      { title: "Halogens: A Gaseous Peek into the Earth's History", publication: "Yale Scientific Magazine", date: "May 2022", url: "https://www.yalescientific.org/2022/05/halogens-a-gaseous-peek-into-the-earths-history/", thumbnail: "https://www.yalescientific.org/wp-content/uploads/ocean-500x375.jpeg", fallback: "assets/press/press-08.svg" },
-      { title: "Ocean Salinity: Seawater is Less Salty Today Than First 500 Million Years of Earth", publication: "Science Times", date: "Dec 2021", url: "https://www.sciencetimes.com/articles/35026/20211214/salinity-oceans-during-first-500-million-years-earth-found-higher.htm", thumbnail: "https://d.sciencetimes.com/en/full/37461/israel-palestinian-jordan-cop26-un-climate-water.jpg?f=0564b2fb4a4b91d8d7ffebff28a4ed6e&w=875", fallback: "assets/press/press-09.svg" },
-      { title: "Earth's Evolution through Eons: Using the history of argon as a constraint of continental evolution", publication: "Yale Scientific Magazine", date: "Nov 2020", url: "https://www.yalescientific.org/2020/11/earths-evolution-through-eons-using-the-history-of-argon-as-a-constraint-of-continental-evolution/", thumbnail: "https://www.yalescientific.org/wp-content/uploads/Earths-Evolution-Noora-Said-500x308.jpg", fallback: "assets/press/press-10.svg" },
-    ];
 
-    const list = document.getElementById('press-list');
-    list.innerHTML = pressItems.map(p => `
-      <li class="article-item">
-        <a class="article-link" href="${p.url}" target="_blank" rel="noopener">
-          <div class="article-thumb-wrap">
-            <img class="press-thumbnail" src="${p.thumbnail}" alt="Thumbnail for ${p.publication}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${p.fallback || 'assets/press/press-01.svg'}';" />
-          </div>
-          <div class="article-left">
-            <span class="article-title">${p.title}</span>
-            <span class="article-pub">${p.publication}</span>
-          </div>
-          <span class="article-date">${p.date}</span>
-        </a>
-      </li>`).join('');
-
-    document.getElementById('press-count').textContent =
-      String(pressItems.length).padStart(2, '0');
   </script>
 </body>
 </html>
