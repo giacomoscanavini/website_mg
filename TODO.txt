@@ -4,3 +4,5 @@ LIST OF THINGS TO DO:
 - Add my job "Editor Geodynamica" to academic positons: https://geodynamica.univ-lyon1.fr/editorial-team/
 - the page of press: I want the picture of the press to show under the title
 - the page of publications, I want to make the journal title bigger and in italic and bold and with a picture of the journal title
+- please add a section for my lab page for hiring (example: https://weiranli.wixsite.com/alex)
+- i want something like this, lets have a section called NEWS
