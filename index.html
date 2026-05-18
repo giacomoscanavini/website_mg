@@ -170,6 +170,7 @@
     .article-link:hover .article-title { color: var(--accent); }
     .article-link::after { content: '↗'; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
     .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
+    .article-link.has-logo::after { content: none; }
 
     /* Logo column */
     .article-link.has-logo { grid-template-columns: 60px 1fr auto; }
@@ -372,9 +373,9 @@
     <!-- ── ACADEMIC POSITIONS ── -->
     <section class="category" style="animation-delay:0.2s">
       <div class="category-header">
-        <span class="category-label">Academic Positions</span>
+        <span class="category-label">Academic Positions . Current</span>
         <div class="category-line"></div>
-        <span class="category-count">05</span>
+        <span class="category-count">02</span>
       </div>
       <ul class="article-list">
 
@@ -403,6 +404,17 @@
             <span class="article-date">2025 - Present</span>
           </a>
         </li>
+
+      </ul>
+    </section>
+
+    <section class="category position-category-past" style="animation-delay:0.22s">
+      <div class="category-header">
+        <span class="category-label">Academic Positions . Past</span>
+        <div class="category-line"></div>
+        <span class="category-count">03</span>
+      </div>
+      <ul class="article-list">
 
         <li class="article-item">
           <a class="article-link has-logo" href="https://geosci.uchicago.edu/academics/information-for-postdocs/chamberlin-fellowship/" target="_blank" rel="noopener">
