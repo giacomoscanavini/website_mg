@@ -179,6 +179,11 @@
     .logo-uchicago { max-width: 62px; max-height: 56px; }
     .article-link:hover .institution-logo { filter: grayscale(0.1) opacity(0.9); }
 
+    .article-link.active-role .article-title,
+    .article-link.active-role .article-pub,
+    .article-link.active-role .article-date { color: var(--accent); }
+    .article-link.active-role .institution-logo { filter: grayscale(0.1) opacity(0.9); }
+
     .article-left { display: flex; flex-direction: column; gap: 5px; }
     .article-title { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
     .article-pub { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); }
@@ -303,7 +308,7 @@
       <div class="about-grid">
 
         <div class="profile-frame">
-          <img src="assets/meng_profile.jpg" alt="Meng Guo" />
+          <img src="assets/guo_profile.jpg" alt="Meng Guo" />
         </div>
 
         <div class="about-bio">
@@ -374,20 +379,7 @@
       <ul class="article-list">
 
         <li class="article-item">
-          <a class="article-link has-logo" href="https://geodynamica.univ-lyon1.fr/editorial-team/" target="_blank" rel="noopener">
-            <div class="institution-logo-wrap">
-              <img class="institution-logo" src="assets/logos/geodynamica.svg" alt="Geodynamica" />
-            </div>
-            <div class="article-left">
-              <span class="article-title">Editor — Geodynamica</span>
-              <span class="article-pub">Geodynamica Editorial Team</span>
-            </div>
-            <span class="article-date">Present</span>
-          </a>
-        </li>
-
-        <li class="article-item">
-          <a class="article-link has-logo" href="https://www.scifac.hku.hk/people/guo-meng" target="_blank" rel="noopener">
+          <a class="article-link has-logo active-role" href="https://www.scifac.hku.hk/people/guo-meng" target="_blank" rel="noopener">
             <div class="institution-logo-wrap">
               <img class="institution-logo" src="assets/logos/hku.svg" alt="HKU" />
             </div>
@@ -395,7 +387,20 @@
               <span class="article-title">Assistant Professor — Department of Earth Sciences</span>
               <span class="article-pub">The University of Hong Kong (HKU), Hong Kong </span>
             </div>
-            <span class="article-date">2025</span>
+            <span class="article-date">2026 - Present</span>
+          </a>
+        </li>
+
+        <li class="article-item">
+          <a class="article-link has-logo active-role" href="https://geodynamica.univ-lyon1.fr/editorial-team/" target="_blank" rel="noopener">
+            <div class="institution-logo-wrap">
+              <img class="institution-logo" src="assets/logos/geodynamica.svg" alt="Geodynamica" />
+            </div>
+            <div class="article-left">
+              <span class="article-title">Editor — Geodynamica</span>
+              <span class="article-pub">Geodynamica Editorial Team</span>
+            </div>
+            <span class="article-date">2025 - Present</span>
           </a>
         </li>
 
@@ -408,7 +413,7 @@
               <span class="article-title">T.C. Chamberlin Postdoctoral Fellowship</span>
               <span class="article-pub">University of Chicago </span>
             </div>
-            <span class="article-date">2024</span>
+            <span class="article-date">2025</span>
           </a>
         </li>
 
@@ -421,7 +426,7 @@
               <span class="article-title">NTU Presidential Postdoctoral Fellowship</span>
               <span class="article-pub">Nanyang Technological University (NTU), Singapore</span>
             </div>
-            <span class="article-date">2023</span>
+            <span class="article-date">2024 - 2025</span>
           </a>
         </li>
 
@@ -434,7 +439,7 @@
               <span class="article-title">Ph.D. — Department of Earth and Planetary Sciences</span>
               <span class="article-pub">Yale University</span>
             </div>
-            <span class="article-date">2023</span>
+            <span class="article-date">2018 - 2023</span>
           </a>
         </li>
 

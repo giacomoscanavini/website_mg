@@ -46,16 +46,6 @@
     .article-link::after { content: '↗'; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
     .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
 
-    .press-thumbnail {
-      width: 150px;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      border: 1px solid var(--rule);
-      background: var(--white);
-      filter: saturate(0.96) contrast(1.02);
-      display: block;
-    }
-    .article-thumb-wrap { width: 150px; overflow: hidden; background: var(--white); }
     .article-left { display: flex; flex-direction: column; gap: 5px; }
     .article-title { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
     .article-pub { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); }
@@ -78,8 +68,7 @@
       .footer-rule { padding: 0 24px; }
       footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
       .footer-meta { align-items: flex-start; text-align: left; }
-      .article-link { grid-template-columns: 96px 1fr; gap: 14px; }
-      .article-thumb-wrap, .press-thumbnail { width: 96px; }
+      .article-link { grid-template-columns: 1fr; gap: 14px; }
       .article-date { display: none; }
     }
   </style>
@@ -156,9 +145,6 @@
     list.innerHTML = pressItems.map(p => `
       <li class="article-item">
         <a class="article-link" href="${p.url}" target="_blank" rel="noopener">
-          <div class="article-thumb-wrap">
-            <img class="press-thumbnail" src="${p.thumbnail}" alt="Thumbnail for ${p.publication}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${p.fallback || 'assets/press/press-01.svg'}';" />
-          </div>
           <div class="article-left">
             <span class="article-title">${p.title}</span>
             <span class="article-pub">${p.publication}</span>
