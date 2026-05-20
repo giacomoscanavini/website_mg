@@ -80,23 +80,88 @@
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     document.getElementById('footer-year').textContent = 'Last updated: ' + months[new Date().getMonth()] + ' ' + new Date().getFullYear();
 
-    // ── Publications data ──
+    // Publications data
     // To add a publication: copy one object and paste it into the array.
     // To load from an external file instead: place publications.json next
     // to this HTML — the fetch() call below checks for it first.
     const publicationsData = [
-      { title: "Rapid rise of early ocean pH under elevated weathering rates", publication: "Nature Geoscience", date: "2025", url: "https://doi.org/10.1038/s41561-025-01649-9", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=www.nature.com", fallback: "assets/journals/nature-geoscience.svg" },
-      { title: "Effects of late accretion impacts on an argon-constrained crustal growth model", publication: "Earth and Planetary Science Letters", date: "2025", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=www.sciencedirect.com", fallback: "assets/journals/earth-and-planetary-science-letters.svg" },
-      { title: "A Late-Hadean Window for Life's Origin Defined by Co-Evolving Nitrogen and Carbon Cycles", publication: "Preprint — Research Square", date: "2025", url: "https://www.researchsquare.com", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=www.researchsquare.com", fallback: "assets/journals/preprint-research-square.svg" },
-      { title: "The History of Continental Formation Inferred from Th-U-Pb-He Isotope System", publication: "AGU Fall Meeting 2024", date: "2024", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=agu.org", fallback: "assets/journals/agu-fall-meeting-2024.svg" },
-      { title: "The combined Hf and Nd isotope evolution of the depleted mantle requires Hadean continental formation", publication: "Science Advances", date: "2023", url: "https://doi.org/10.1126/sciadv.ade2711", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=www.science.org", fallback: "assets/journals/science-advances.svg" },
-      { title: "Deciphering the Habitability of the Early Earth: Insights From the Coupled Evolution of the Crust-Mantle-Atmosphere-Ocean System", publication: "PhD Dissertation — Yale University", date: "2023", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=yale.edu", fallback: "assets/journals/phd-dissertation-yale-university.svg" },
-      { title: "Reconstructing seawater δ¹⁸O and Δ′¹⁷O values with solid Earth system evolution", publication: "Earth and Planetary Science Letters", date: "2022", url: "https://doi.org/10.1016/j.epsl.2022.117637", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=www.sciencedirect.com", fallback: "assets/journals/earth-and-planetary-science-letters.svg" },
-      { title: "A halogen budget of the bulk silicate Earth points to a history of early halogen degassing followed by net regassing", publication: "Proceedings of the National Academy of Sciences", date: "2021", url: "https://doi.org/10.1073/pnas.2116083118", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=www.pnas.org", fallback: "assets/journals/proceedings-of-the-national-academy-of-sciences.svg" },
-      { title: "Argon constraints on the early growth of felsic continental crust", publication: "Science Advances", date: "2020", url: "https://doi.org/10.1126/sciadv.aaz6234", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=www.science.org", fallback: "assets/journals/science-advances.svg" },
-      { title: "Reconciling Seawater δ¹⁸O Records with Solid Earth System Evolution", publication: "AGU Fall Meeting 2020", date: "2020", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=agu.org", fallback: "assets/journals/agu-fall-meeting-2020.svg" },
-      { title: "Argon Constraints on the Growth of Continental Crust and Its Composition", publication: "AGU Fall Meeting 2019", date: "2019", url: "https://scholar.google.com/citations?user=fB31s5oAAAAJ", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=agu.org", fallback: "assets/journals/agu-fall-meeting-2019.svg" },
-      { title: "Earth's chondritic Th/U: Negligible fractionation during accretion, core formation, and crust–mantle differentiation", publication: "Earth and Planetary Science Letters", date: "2018", url: "https://doi.org/10.1016/j.epsl.2018.07.009", thumbnail: "https://www.google.com/s2/favicons?sz=128&domain=www.sciencedirect.com", fallback: "assets/journals/earth-and-planetary-science-letters.svg" },
+      { title: "Hidden pressure-stabilized lead reservoirs in Earth's mantle", 
+        publication: "Nature Communications", 
+        date: "2026", 
+        url: "https://www.nature.com/articles/s41467-026-69772-8", 
+      },
+      
+      { title: "Effects of late accretion impacts on an argon-constrained crustal growth model", 
+        publication: "Earth and Planetary Science Letters", 
+        date: "2025", 
+        url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=fB31s5oAAAAJ&sortby=pubdate&citation_for_view=fB31s5oAAAAJ:Y0pCki6q_DkC", 
+      },
+      
+      { title: "A Late-Hadean Window for Life's Origin Defined by Co-Evolving Nitrogen and Carbon Cycles", 
+        publication: "Preprint - Research Square", 
+        date: "2025", 
+        url: "https://www.researchsquare.com", 
+      },
+      
+      { title: "Rapid rise of early ocean pH under elevated weathering rates", 
+        publication: "Nature Geoscience", 
+        date: "2025", 
+        url: "https://www.nature.com/articles/s41561-025-01649-9", 
+      }, 
+
+      { title: "The History of Continental Formation Inferred from Th-U-Pb-He Isotope System", 
+        publication: "AGU Fall Meeting 2024", 
+        date: "2024", 
+        url: "https://ui.adsabs.harvard.edu/abs/2024AGUFMV41E.3171G/abstract", 
+      },
+
+      { title: "The combined Hf and Nd isotope evolution of the depleted mantle requires Hadean continental formation", 
+        publication: "Science Advances", 
+        date: "2023", 
+        url: "https://www.science.org/doi/full/10.1126/sciadv.ade2711", 
+      },
+
+      { title: "Deciphering the Habitability of the Early Earth: Insights From the Coupled Evolution of the Crust-Mantle-Atmosphere-Ocean System", 
+        publication: "PhD Dissertation - Yale University", 
+        date: "2023", 
+        url: "https://elischolar.library.yale.edu/cgi/viewcontent.cgi?article=2133&context=gsas_dissertations", 
+      },
+
+      { title: "Reconstructing seawater δ¹⁸O and Δ'¹⁷O values with solid Earth system evolution", 
+        publication: "Earth and Planetary Science Letters", 
+        date: "2022", 
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0012821X22002734?via%3Dihub", 
+      },
+
+      { title: "A halogen budget of the bulk silicate Earth points to a history of early halogen degassing followed by net regassing", 
+        publication: "Proceedings of the National Academy of Sciences (PNAS)", 
+        date: "2021", 
+        url: "https://www.pnas.org/doi/full/10.1073/pnas.2116083118", 
+      },
+
+      { title: "Reconciling Seawater δ¹⁸O Records with Solid Earth System Evolution", 
+        publication: "AGU Fall Meeting 2020", 
+        date: "2020", 
+        url: "https://ui.adsabs.harvard.edu/abs/2020AGUFMDI022..05G/abstract", 
+      },
+
+      { title: "Argon constraints on the early growth of felsic continental crust", 
+        publication: "Science Advances", 
+        date: "2020", 
+        url: "https://www.science.org/doi/full/10.1126/sciadv.aaz6234", 
+      }, 
+             
+      { title: "Argon Constraints on the Growth of Continental Crust and Its Composition", 
+        publication: "AGU Fall Meeting 2019", 
+        date: "2019", 
+        url: "https://ui.adsabs.harvard.edu/abs/2019AGUFM.V33B..05G/abstract", 
+      },
+
+      { title: "Earth's chondritic Th/U: Negligible fractionation during accretion, core formation, and crust-mantle differentiation", 
+        publication: "Earth and Planetary Science Letters", 
+        date: "2018", 
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0012821X18303807", 
+      },
     ];
 
     let allPubs = publicationsData;
