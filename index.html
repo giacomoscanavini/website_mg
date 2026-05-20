@@ -7,269 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ma+Shan+Zheng&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --black:   #141a1f;
-      --mid:     #7a8a96;
-      --light:   #b0bec8;
-      --bg:      #f7f5f2;
-      --white:   #ffffff;
-      --accent:  #3a7a6a;
-      --rule:    #ddd8d0;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; scroll-behavior: smooth; }
-    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
-
-    /* ── HEADER ── */
-    header { max-width: 900px; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
-
-    .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
-
-    .site-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
-    .site-name span { display: block; font-style: italic; color: var(--accent); }
-
-    .site-name-zh { font-family: 'Ma Shan Zheng', cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
-
-    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
-    .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
-
-    /* Role line — left-aligned, between name and rule */
-    .header-role { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
-
-    .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
-    .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
-
-    /* ── SITE NAV ── */
-    .site-nav { max-width: 900px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
-
-    .site-nav-link { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
-    .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
-    .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
-
-    /* ── MAIN ── */
-    main { max-width: 900px; margin: 0 auto; padding: 0 48px 120px; }
-
-    /* ── CATEGORY ── */
-    .category { margin-top: 60px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.55s ease forwards; }
-    .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-    .category-label { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
-    .category-line { flex: 1; height: 1px; background: var(--rule); }
-    .category-count { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); }
-
-    /* ── ABOUT ── */
-    .about-grid { display: grid; grid-template-columns: 175px 1fr; gap: 40px; align-items: start; }
-
-    /* Photo placeholder — swap for <img> when you have a photo */
-    .about-photo {
-      width: 175px;
-      aspect-ratio: 3/4;
-      background: linear-gradient(160deg, #e8e4df 0%, #d8d2cb 100%);
-      border: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .about-photo-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--light);
-      opacity: 0.5;
-    }
-    .about-photo-shoulders {
-      width: 80px;
-      height: 38px;
-      border-radius: 50% 50% 0 0;
-      background: var(--light);
-      opacity: 0.35;
-      margin-top: -12px;
-    }
-    .about-photo-label { font-family: 'Space Mono', monospace; font-size: 0.48rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); }
-
-    .profile-frame {
-      width: 190px;
-      padding: 9px 9px 28px;
-      background:
-        linear-gradient(112deg, rgba(255,255,255,0.9), rgba(255,252,246,0.74) 38%, rgba(241,235,224,0.58)),
-        repeating-linear-gradient(0deg, rgba(20,26,31,0.018) 0 1px, transparent 1px 4px),
-        #fffaf1;
-      border: 1px solid rgba(206,198,185,0.9);
-      border-radius: 2px 4px 3px 5px / 5px 2px 4px 3px;
-      box-shadow:
-        0 22px 34px rgba(20,26,31,0.14),
-        0 7px 11px rgba(20,26,31,0.08),
-        inset 0 0 0 1px rgba(255,255,255,0.72),
-        2px 3px 0 rgba(197,188,174,0.28);
-      transform: rotate(-2.2deg) translateY(2px);
-      position: relative;
-    }
-    .profile-frame::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
-      width: 46px;
-      height: 1px;
-      background: rgba(199,191,177,0.82);
-      transform: translateX(-50%) rotate(-0.5deg);
-    }
-    .profile-frame img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      display: block;
-      border: 1px solid rgba(199,191,177,0.94);
-      border-radius: 1px 3px 2px 4px / 3px 2px 4px 1px;
-      object-fit: cover;
-      filter: saturate(0.96) contrast(1.02);
-    }
-
-    /* Bio */
-    .about-bio h3 { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 400; color: var(--black); margin-bottom: 16px; line-height: 1.5; }
-    .about-bio p { font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--mid); line-height: 1.85; margin-bottom: 14px; }
-    .about-bio p:last-child { margin-bottom: 0; }
-
-    /* ── RESEARCH INTERESTS ── */
-    .interests-list {
-      list-style: none;
-      display: grid;
-      gap: 13px;
-    }
-    .interest-item {
-      display: grid;
-      grid-template-columns: 18px 1fr;
-      align-items: baseline;
-      gap: 14px;
-      padding: 3px 0;
-    }
-    .interest-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.55;
-      transform: translateY(-1px);
-    }
-    .interest-text {
-      font-family: 'Libre Baskerville', Georgia, serif;
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--black);
-      line-height: 1.55;
-    }
-
-    /* ── ARTICLE ROWS ── */
-    .article-list { list-style: none; }
-    .article-item { border-bottom: 1px solid var(--rule); }
-    .article-item:first-child { border-top: 1px solid var(--rule); }
-
-    .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
-    .article-link:hover { padding-left: 12px; }
-    .article-link:hover .article-title { color: var(--accent); }
-    .article-link::after { content: '↗'; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
-    .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
-    .article-link.has-logo::after { content: none; }
-
-    /* Logo column */
-    .article-link.has-logo { grid-template-columns: 60px 1fr auto; }
-    .institution-logo-wrap { display: flex; align-items: center; justify-content: center; width: 60px; height: 50px; flex-shrink: 0; }
-    .institution-logo { max-width: 54px; max-height: 48px; width: auto; height: auto; object-fit: contain; filter: grayscale(0.8) opacity(0.55); transition: filter 0.25s ease; }
-    /* UChicago slightly larger */
-    .logo-uchicago { max-width: 62px; max-height: 56px; }
-    .article-link:hover .institution-logo { filter: grayscale(0.1) opacity(0.9); }
-
-    .article-link.active-role .article-title,
-    .article-link.active-role .article-pub,
-    .article-link.active-role .article-date { color: var(--accent); }
-    .article-link.active-role .institution-logo { filter: grayscale(0.1) opacity(0.9); }
-
-    .article-left { display: flex; flex-direction: column; gap: 5px; }
-    .article-title { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
-    .article-pub { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); }
-    .article-date { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); white-space: nowrap; align-self: center; }
-
-
-
-    /* ── HOME PLACEHOLDERS ── */
-    .placeholder-card {
-      border: 1px solid var(--rule);
-      background: var(--white);
-      padding: 22px 24px;
-      color: var(--mid);
-      font-size: 0.95rem;
-      line-height: 1.8;
-    }
-    .placeholder-card strong {
-      font-family: 'Libre Baskerville', serif;
-      font-weight: 400;
-      color: var(--black);
-    }
-    .news-board {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-    .news-card {
-      min-height: 150px;
-      border: 1px solid var(--rule);
-      background:
-        linear-gradient(135deg, rgba(58,122,106,0.08), transparent 42%),
-        var(--white);
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .news-card-kicker {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.52rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .news-card-title {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: var(--black);
-      line-height: 1.45;
-    }
-    .news-card-body {
-      color: var(--mid);
-      font-size: 0.9rem;
-      line-height: 1.75;
-    }
-
-    /* ── FOOTER ── */
-    .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
-    .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
-    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-    .footer-name { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
-    .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
-    .footer-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
-
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-    @media (max-width: 640px) {
-      header { padding: 48px 24px 0; }
-      .header-top { flex-direction: column; }
-      .header-image-wrap { display: none; }
-      .site-nav { padding: 16px 24px 0; }
-      main { padding: 0 24px 80px; }
-      .about-grid { grid-template-columns: 1fr; }
-      .profile-frame { width: 155px; }
-      .footer-rule { padding: 0 24px; }
-      footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
-      .footer-meta { align-items: flex-start; text-align: left; }
-      .article-link.has-logo { grid-template-columns: 48px 1fr; }
-      .article-date { display: none; }
-      .news-board { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body class="page-index">
 
   <header>
     <div class="header-top">
@@ -299,7 +39,7 @@
 
   <main>
 
-    <!-- ── ABOUT ── -->
+    <!-- ABOUT -->
     <section class="category" style="animation-delay:0.1s">
       <div class="category-header">
         <span class="category-label">Bio</span>
@@ -315,8 +55,8 @@
         <div class="about-bio">
           <h3>Hi, I'm Meng!</h3>
           <p>
-            I'm a geophysicist and geochemist with a passion for understanding how Earth —
-            and planets like it — transformed from an initially inhospitable world into one
+            I'm a geophysicist and geochemist with a passion for understanding how Earth 
+            (and planets like it) transformed from an initially inhospitable world into one
             capable of sustaining life. I currently serve as a tenure-track Assistant Professor
             in the Department of Earth and Planetary Sciences at the University of Hong Kong.
           </p>
@@ -324,7 +64,7 @@
             My work centers on developing multidisciplinary theoretical and computational models
             that link the history of solid Earth differentiation with the chemical evolution of
             the atmosphere and oceans across geologic time. By integrating mantle thermal evolution,
-            geochemical cycles, and planetary processes, I aim to generate testablen evolution trajectories
+            geochemical cycles, and planetary processes, I aim to generate testable evolution trajectories
             of the terrestrial planets and examine the proposed origin-of-life theories.
           </p>
           <p>
@@ -336,15 +76,15 @@
           </p>
           <p>
             I collaborate actively with colleagues across the United States, Singapore, and
-            mainland China, and I'm always excited to explore new collaborations — feel free
-            to reach out!
+            mainland China, and I'm always excited to explore new collaborations.
+            Feel free to reach out!
           </p>
         </div>
 
       </div>
     </section>
 
-    <!-- ── RESEARCH INTERESTS ── -->
+    <!-- RESEARCH INTERESTS -->
     <section class="category" style="animation-delay:0.15s">
       <div class="category-header">
         <span class="category-label">Research Interests</span>
@@ -353,7 +93,7 @@
       <ul class="interests-list">
         <li class="interest-item">
           <span class="interest-dot"></span>
-          <span class="interest-text">Earth-system evolution modeling — crust–mantle–atmosphere–ocean coupling</span>
+          <span class="interest-text">Earth-system evolution modeling: crust-mantle-atmosphere-ocean coupling</span>
         </li>
         <li class="interest-item">
           <span class="interest-dot"></span>
@@ -370,7 +110,7 @@
       </ul>
     </section>
 
-    <!-- ── ACADEMIC POSITIONS ── -->
+    <!-- ACADEMIC POSITIONS -->
     <section class="category" style="animation-delay:0.2s">
       <div class="category-header">
         <span class="category-label">Academic Positions . Current</span>
@@ -412,7 +152,7 @@
       <div class="category-header">
         <span class="category-label">Academic Positions . Past</span>
         <div class="category-line"></div>
-        <span class="category-count">03</span>
+        <span class="category-count">04</span>
       </div>
       <ul class="article-list">
 
@@ -455,22 +195,35 @@
           </a>
         </li>
 
+        <li class="article-item">
+          <a class="article-link has-logo" href="https://www.geol.umd.edu/graduate/graduate.php" target="_blank" rel="noopener">
+            <div class="institution-logo-wrap">
+              <img class="institution-logo" src="assets/logos/umary.svg" alt="UMaryland University" />
+            </div>
+            <div class="article-left">
+              <span class="article-title">M.S. — Department of Geological, Environmental, and Planetary Sciences</span>
+              <span class="article-pub">University of Maryland, College Park</span>
+            </div>
+            <span class="article-date">2016 - 2018</span>
+          </a>
+        </li>
+
       </ul>
     </section>
 
 
-    <!-- ── INVITED TALKS, AWARDS, AND GRANTS ── -->
+    <!-- INVITED TALKS, AWARDS, AND GRANTS -->
     <section class="category" style="animation-delay:0.25s">
       <div class="category-header">
         <span class="category-label">Invited Talks, Awards, and Grants</span>
         <div class="category-line"></div>
       </div>
       <div class="placeholder-card">
-        <strong>Coming soon.</strong> This section is ready for invited talks, awards, grants, and selected recognitions.
+        <strong>Coming soon</strong> Stay tuned.
       </div>
     </section>
 
-    <!-- ── CURRENT NEWS BOARD ── -->
+    <!-- CURRENT NEWS BOARD -->
     <section class="category" style="animation-delay:0.3s">
       <div class="category-header">
         <span class="category-label">Current News Board</span>
@@ -479,13 +232,13 @@
       <div class="news-board">
         <article class="news-card">
           <span class="news-card-kicker">Updates</span>
-          <h3 class="news-card-title">Research notes and ongoing involvement</h3>
-          <p class="news-card-body">Use this card for brief descriptions of projects, collaborations, field ideas, community work, or announcements.</p>
+          <h3 class="news-card-title">Coming soon</h3>
+          <p class="news-card-body">Will be posting descriptions of projects, collaborations, field ideas, community work, or announcements.</p>
         </article>
         <article class="news-card">
           <span class="news-card-kicker">Ideas</span>
-          <h3 class="news-card-title">A small board for future posts</h3>
-          <p class="news-card-body">Add short entries here when there is something worth sharing but not yet a full press item or publication.</p>
+          <h3 class="news-card-title">Coming soon</h3>
+          <p class="news-card-body">Will be postig something worth sharing but not yet a full press item or publication.</p>
         </article>
       </div>
     </section>

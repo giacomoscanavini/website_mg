@@ -7,136 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ma+Shan+Zheng&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
-  <style>
-    :root { --black:#141a1f; --mid:#7a8a96; --light:#b0bec8; --bg:#f7f5f2; --white:#ffffff; --accent:#3a7a6a; --rule:#ddd8d0; }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
-    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
-
-    header { max-width: 900px; width: 100%; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
-    .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
-    .site-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
-    .site-name span { display: block; font-style: italic; color: var(--accent); }
-    .site-name-zh { font-family: 'Ma Shan Zheng', cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
-    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
-    .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
-    .header-role { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
-    .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
-    .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
-
-    .site-nav { max-width: 900px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
-    .site-nav-link { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
-    .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
-    .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
-
-    main { flex: 1; max-width: 900px; width: 100%; margin: 0 auto; padding: 0 48px 120px; }
-
-    .group-intro { margin-top: 72px; opacity: 0; animation: fadeUp 0.6s 0.25s ease forwards; }
-    .group-label { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-    .group-label-text { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
-    .group-label-line { flex: 1; height: 1px; background: var(--rule); }
-    .group-heading { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.18; letter-spacing: -0.02em; color: var(--black); margin-bottom: 18px; }
-    .group-heading em { font-style: italic; color: var(--accent); }
-    .group-sub { font-size: 1rem; color: var(--mid); line-height: 1.75; max-width: none; margin-bottom: 56px; }
-
-    .people-section { margin-top: 62px; opacity: 0; animation: fadeUp 0.6s 0.35s ease forwards; }
-
-    .profile-list { display: flex; flex-direction: column; gap: 0; }
-    .member-profile { display: grid; grid-template-columns: 230px 1fr; gap: 42px; align-items: center; padding: 40px 0; border-bottom: 1px solid rgba(221,216,208,0.58); }
-    .member-profile:first-child { border-top: 1px solid rgba(221,216,208,0.58); }
-    .member-profile:nth-child(even) { grid-template-columns: 1fr 230px; }
-    .member-profile:nth-child(even) .member-photo-card { grid-column: 2; transform: rotate(3.1deg) translateY(4px); }
-    .member-profile:nth-child(even) .member-copy { grid-column: 1; grid-row: 1; text-align: right; }
-    .member-profile:nth-child(3n) .member-photo-card { transform: rotate(-3.6deg) translateY(-2px); }
-    .member-profile:nth-child(4n) .member-photo-card { transform: rotate(1.4deg) translateY(3px); }
-
-    .member-photo-card {
-      width: 205px;
-      justify-self: center;
-      padding: 9px 9px 32px;
-      background:
-        linear-gradient(112deg, rgba(255,255,255,0.88), rgba(255,252,246,0.72) 38%, rgba(241,235,224,0.58)),
-        repeating-linear-gradient(0deg, rgba(20,26,31,0.018) 0 1px, transparent 1px 4px),
-        #fffaf1;
-      border: 1px solid rgba(206,198,185,0.9);
-      border-radius: 2px 4px 3px 5px / 5px 2px 4px 3px;
-      box-shadow:
-        0 22px 34px rgba(20,26,31,0.14),
-        0 7px 11px rgba(20,26,31,0.08),
-        inset 0 0 0 1px rgba(255,255,255,0.72),
-        2px 3px 0 rgba(197,188,174,0.28);
-      transform: rotate(-2.7deg) translateY(2px);
-      position: relative;
-    }
-    .member-photo-card::before {
-      content: '';
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      transform: translateX(-50%);
-      background:
-        radial-gradient(circle at 34% 28%, rgba(255,255,255,0.96) 0 9%, rgba(255,255,255,0.45) 10% 18%, transparent 19%),
-        radial-gradient(circle at 58% 62%, rgba(0,0,0,0.22) 0 8%, transparent 9%),
-        radial-gradient(circle at 50% 48%, var(--pin-color, #b64f4a) 0 49%, rgba(20,26,31,0.18) 50% 72%, rgba(20,26,31,0.34) 73% 100%);
-      box-shadow: 0 2px 2px rgba(255,255,255,0.7) inset, 0 5px 9px rgba(20,26,31,0.24), 0 10px 14px rgba(20,26,31,0.08);
-      z-index: 2;
-    }
-    .member-photo-card::after {
-      content: '';
-      position: absolute;
-      top: 2px;
-      left: 50%;
-      width: 2px;
-      height: 25px;
-      background: linear-gradient(to bottom, rgba(245,245,242,0.8), rgba(61,64,67,0.38) 42%, rgba(20,26,31,0.08));
-      border-radius: 999px;
-      transform: translateX(-50%) rotate(1deg);
-      box-shadow: 1px 1px 2px rgba(20,26,31,0.15);
-      z-index: 1;
-    }
-    .member-profile:nth-child(1) .member-photo-card { --pin-color: #c75d52; }
-    .member-profile:nth-child(2) .member-photo-card { --pin-color: #3a7a6a; }
-    .member-profile:nth-child(3) .member-photo-card { --pin-color: #d6a23f; }
-    .member-profile:nth-child(4) .member-photo-card { --pin-color: #6f7fbf; }
-    .member-profile:nth-child(5) .member-photo-card { --pin-color: #b76aa3; }
-    .member-photo { aspect-ratio: 4 / 5; border: 1px solid rgba(199,191,177,0.94); border-radius: 1px 3px 2px 4px / 3px 2px 4px 1px; background: linear-gradient(145deg, #ece8e1, #d8d0c3); display: flex; align-items: center; justify-content: center; color: var(--light); font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; padding: 18px; transform: rotate(-0.18deg); overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.36); }
-    .member-photo.has-image { padding: 0; background: #111; }
-    .member-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.96) contrast(1.02); }
-
-    .member-role { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-    .member-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.35rem; font-weight: 400; color: var(--black); margin-bottom: 12px; }
-    .member-bio { color: var(--mid); font-size: 0.96rem; line-height: 1.8; max-width: 530px; }
-    .member-profile:nth-child(even) .member-bio { margin-left: auto; }
-    .placeholder-note { margin-top: 18px; font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
-
-    .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
-    .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
-    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-    .footer-name { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
-    .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
-    .footer-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
-
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 640px) {
-      header { padding: 48px 24px 0; }
-      .header-top { flex-direction: column; }
-      .header-image-wrap { display: none; }
-      .site-nav { padding: 16px 24px 0; }
-      main { padding: 0 24px 80px; }
-      .member-profile, .member-profile:nth-child(even) { grid-template-columns: 1fr; gap: 22px; text-align: left; }
-      .member-profile:nth-child(even) .member-photo-card, .member-profile:nth-child(even) .member-copy { grid-column: auto; grid-row: auto; text-align: left; }
-      .member-profile:nth-child(even) .member-bio { margin-left: 0; }
-      .member-photo-card { justify-self: start; width: 180px; }
-      .footer-rule { padding: 0 24px; }
-      footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
-      .footer-meta { align-items: flex-start; text-align: left; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body class="page-lab">
 
   <header>
     <div class="header-top">
@@ -171,9 +44,43 @@
         <span class="group-label-text">Research Group</span>
         <div class="group-label-line"></div>
       </div>
-      <h2 class="group-heading">People thinking carefully about <em>planet Earth.</em></h2>
+      <h2 class="group-heading lab-title"><em>Gaia Code Lab</em></h2>
+      <p class="group-sub lab-tagline">Deciphering planetary habitability and the origin of life</p>
+
+      <div class="lab-copy">
+        <h3>About Gaia Code Lab</h3>
+        <p>We are a theoretical research lab dedicated to understanding how habitable planets emerge, evolve, 
+          and reveal their histories through multidisciplinary modeling of geochemical signatures.</p>
+        <p>At the core of our work lies advancing our understanding of the coupled crust-mantle-atmosphere-ocean 
+          system; the planetary engine that regulates climate, recycles elements, and creates conditions for life. 
+          We build self-consistent multidisciplinary models that integrate geophysical, geochemical, geological, and 
+          astrobiological constraints, allowing us to simulate how a planet's interior and surface interact over billions of years.</p>
+        <p>Our research not only seeks profound revelations about our own origins but also opens a broader inquiry into the role life plays in shaping a planet. 
+          Ultimately, we aim to answer two fundamental questions:</p>
+
+        <div class="question-list">
+          <div class="question-item">
+            <strong>Where do we come from?</strong>
+            <p>How did Earth's coupled interior-surface system evolve to become habitable, and what does that tell us about life's emergence?</p>
+          </div>
+          <div class="question-item">
+            <strong>Are we alone?</strong>
+            <p>Can we identify terrestrial and/or exoplanetary evolution paths that lead to life and develop transferable, 
+              predictive tools to recognize them?</p>
+          </div>
+        </div>
+
+        <div class="unique-approach">
+          <h3>Our Unique Approach</h3>
+          <p>By linking planetary evolution models with geochemical observable models, we translate measurable data — isotope ratios, 
+            trace elements, and atmospheric composition — into insights about a planet's evolutionary trajectory, 
+            from its earliest magma ocean to its potential as a living world.</p>
+        </div>
+      </div>
+
+      <h2 class="group-heading people-heading">People thinking carefully about <em>planet Earth.</em></h2>
       <p class="group-sub">
-        Meet the students and postdocoral researchers in my group and read about their research and careers.
+        Meet the students and postdoctoral researchers in my group and read about their research and careers.
       </p>
     </section>
 
@@ -199,8 +106,10 @@
               components in ancient seawater. These processes are central to understanding how 
               iron was transported, transformed, stabilized, and ultimately buried in marine sediments, 
               and how such mechanisms influenced the formation, decline, and reappearance of 
-              Banded Iron Formations (BIFs) through Earth history. In addition, 
-              I study the evolution of Neoproterozoic Snowball Earth glaciations and their 
+              Banded Iron Formations (BIFs) through Earth history. 
+            </p>
+            <p class="member-bio">
+              In addition, I study the evolution of Neoproterozoic Snowball Earth glaciations and their 
               implications for marine iron cycling, particularly how extreme climate states 
               may have altered ocean chemistry, iron supply, redox structure, and iron burial. 
               By integrating geochemical records, experimental observations, and numerical models, 
@@ -242,6 +151,34 @@
 
         <article class="member-profile">
           <div class="member-photo-card">
+            <div class="member-photo has-image"><img src="assets/peng_profile.png" alt="Portrait of Kunxiang Peng" /></div>
+          </div>
+          <div class="member-copy">
+            <p class="member-role">PhD Student</p>
+            <h3 class="member-name">Kunxiang Peng</h3>
+            <p class="member-bio">
+              Hello, I am Kunxiang. I joined Prof. Guo Meng's research group in January 2026 
+              to begin my Ph.D. studies. 
+              I completed both my undergraduate and master's degrees at UCL, 
+              and also spent one year as an exchange student at Caltech. 
+              After receiving a Ph.D. offer from MIT, I ultimately chose to join Prof. Guo's 
+              group due to my concerns about current U.S. policies 
+              and the broader development of the scientific community there.
+            </p>
+            <p class="member-bio">
+              My research interests focus on the development of early Earth environments 
+              and Earth system evolution. More specifically, I am interested in exploring 
+              the early growth patterns of the continental crust.
+            </p>
+            <p class="member-bio member-bio-degrees">
+              <br />
+              2026 HKU Presidential Ph.D. Scholar Programme<br />
+              2025 MSci Earth Science, University College London, London, Britain
+            </p>
+          </div>
+        </article>
+        <article class="member-profile">
+          <div class="member-photo-card">
             <div class="member-photo has-image"><img src="assets/kashikar_profile.jpg" alt="Portrait of Rahi Kashikar" /></div>
           </div>
           <div class="member-copy">
@@ -254,11 +191,13 @@
               interest in applying novel computational and machine learning techniques to research 
               problems followed by involvement in two major projects from my undergrad: super-resolution 
               for remote sensing and hyperspectral image processing for Quantum Biology. 
+            </p>
+            <p class="member-bio">
               I am passionate about Astrobiology and in bringing novel statistical and computational 
               approaches to this field. Having come to believe that Earth Sciences is the way for it, 
               I have joined Dr. Guo's group to study the early Earth environment and complex coupled 
               processes. With the aim to bridge the gap from habitable environments to origin of life, 
-              I will explore volcanic and impact environments on early Earth for my PhD.
+              I will explore volcanic and impact environments on early Earth for my Ph.D.
             </p>
             <p class="member-bio member-bio-degrees">
               <br />
@@ -267,18 +206,6 @@
           </div>
         </article>
 
-        <article class="member-profile member-profile-placeholder">
-          <div class="member-photo-card">
-            <div class="member-photo">Bio<br />coming<br />soon</div>
-          </div>
-          <div class="member-copy">
-            <p class="member-role">PhD Student</p>
-            <h3 class="member-name">Incoming PhD Student</h3>
-            <p class="member-bio">
-              Biography and research interests will be added here once available.
-            </p>
-          </div>
-        </article>
       </div>
     </section>
   </main>

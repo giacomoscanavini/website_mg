@@ -7,92 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ma+Shan+Zheng&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
-  <style>
-    :root { --black:#141a1f; --mid:#7a8a96; --light:#b0bec8; --bg:#f7f5f2; --white:#ffffff; --accent:#3a7a6a; --rule:#ddd8d0; }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
-    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
-
-    header { max-width: 900px; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
-    .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
-    .site-name { font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
-    .site-name span { display: block; font-style: italic; color: var(--accent); }
-    .site-name-zh { font-family: 'Ma Shan Zheng', cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
-    .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
-    .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
-    .header-role { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
-    .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
-    .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
-
-    .site-nav { max-width: 900px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
-    .site-nav-link { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
-    .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
-    .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
-
-    main { max-width: 900px; margin: 0 auto; padding: 0 48px 120px; }
-
-    .category { margin-top: 60px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.55s ease forwards; }
-    .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-    .category-label { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
-    .category-line { flex: 1; height: 1px; background: var(--rule); }
-    .category-count { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); }
-
-    /* Google Scholar link */
-    .scholar-link-row { margin-bottom: 18px; }
-    .scholar-link { display: inline-flex; align-items: center; gap: 7px; font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 6px 14px; transition: background 0.18s, color 0.18s; }
-    .scholar-link:hover { background: var(--accent); color: var(--white); }
-    .scholar-link svg { stroke: currentColor; flex-shrink: 0; }
-
-    /* Search bar */
-    .pub-search-wrap { margin-bottom: 4px; }
-    .pub-search { width: 100%; font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--black); background: var(--white); border: 1px solid var(--rule); padding: 10px 16px; outline: none; transition: border-color 0.18s; }
-    .pub-search::placeholder { color: var(--light); }
-    .pub-search:focus { border-color: var(--accent); }
-    .pub-results-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; color: var(--light); letter-spacing: 0.08em; margin-bottom: 20px; min-height: 1em; }
-
-    .article-list { list-style: none; }
-    .article-item { border-bottom: 1px solid var(--rule); }
-    .article-item:first-child { border-top: 1px solid var(--rule); }
-    .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
-    .article-link:hover { padding-left: 12px; }
-    .article-link:hover .article-title { color: var(--accent); }
-    .article-link::after { content: '↗'; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
-    .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
-
-    .article-link.has-journal-thumb { grid-template-columns: 1fr auto; }
-    .article-left { display: flex; flex-direction: column; gap: 5px; }
-    .article-title { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
-    .article-pub { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); font-weight: 700; font-style: italic; }
-    .article-date { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--light); white-space: nowrap; align-self: center; }
-
-    .pub-empty { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--light); padding: 40px 0; text-align: center; display: none; }
-
-    .source-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.08em; color: var(--light); margin-top: 16px; }
-
-    .footer-rule { max-width: 900px; margin: 0 auto; padding: 0 48px; }
-    .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
-    footer { max-width: 900px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-    .footer-name { font-family: 'Libre Baskerville', serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
-    .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
-    .footer-note { font-family: 'Space Mono', monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
-
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 640px) {
-      header { padding: 48px 24px 0; }
-      .header-top { flex-direction: column; }
-      .header-image-wrap { display: none; }
-      .site-nav { padding: 16px 24px 0; }
-      main { padding: 0 24px 80px; }
-      .footer-rule { padding: 0 24px; }
-      footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
-      .footer-meta { align-items: flex-start; text-align: left; }
-      .article-link { grid-template-columns: 1fr; }
-      .article-link.has-journal-thumb { grid-template-columns: 1fr; }
-      .article-date { display: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body class="page-publications">
 
   <header>
     <div class="header-top">
@@ -124,7 +41,7 @@
   <main>
     <section class="category" style="animation-delay:0.1s">
       <div class="category-header">
-        <span class="category-label">Research &amp; Publications</span>
+        <span class="category-label">Publications and Conference Abstracts</span>
         <div class="category-line"></div>
         <span class="category-count" id="pub-count"></span>
       </div>
