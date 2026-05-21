@@ -12,8 +12,6 @@
       --white:   #ffffff;
       --accent:  #3a7a6a;
       --rule:    #ddd8d0; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
 body.page-index { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
 /* HEADER */
 body.page-index header { max-width: 980px; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
@@ -41,29 +39,8 @@ body.page-index .category-label { font-family: "Space Mono", monospace; font-siz
 body.page-index .category-line { flex: 1; height: 1px; background: var(--rule); }
 body.page-index .category-count { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--light); }
 /* ABOUT */
-body.page-index .about-grid { display: grid; grid-template-columns: 175px 1fr; gap: 40px; align-items: start; }
+body.page-index .about-grid { display: grid; grid-template-columns: 190px 1fr; gap: 48px; align-items: start; }
 /* Photo placeholder — swap for <img> when you have a photo */
-body.page-index .about-photo { width: 175px;
-      aspect-ratio: 3/4;
-      background: linear-gradient(160deg, #e8e4df 0%, #d8d2cb 100%);
-      border: 1px solid var(--rule);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px; }
-body.page-index .about-photo-icon { width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--light);
-      opacity: 0.5; }
-body.page-index .about-photo-shoulders { width: 80px;
-      height: 38px;
-      border-radius: 50% 50% 0 0;
-      background: var(--light);
-      opacity: 0.35;
-      margin-top: -12px; }
-body.page-index .about-photo-label { font-family: "Space Mono", monospace; font-size: 0.48rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--light); }
 body.page-index .profile-frame { width: 190px;
       padding: 9px 9px 28px;
       background:
@@ -208,11 +185,7 @@ body.page-index main { width: 100%; flex: 1 0 auto; }
 body.page-index .footer-rule, body.page-index footer { width: 100%; flex-shrink: 0; }
 
 
-
 /* ===== press.html ===== */
-:root { --black:#141a1f; --mid:#7a8a96; --light:#b0bec8; --bg:#f7f5f2; --white:#ffffff; --accent:#3a7a6a; --rule:#ddd8d0; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
 body.page-press { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
 body.page-press header { max-width: 980px; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
 body.page-press .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
@@ -273,7 +246,6 @@ body.page-press footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 60
 body.page-press .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
 body.page-press .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
 body.page-press .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 640px) {
   body.page-press header { padding: 48px 24px 0; }
   body.page-press .header-top { flex-direction: column; }
@@ -295,11 +267,7 @@ body.page-press main { width: 100%; flex: 1 0 auto; }
 body.page-press .footer-rule, body.page-press footer { width: 100%; flex-shrink: 0; }
 
 
-
 /* ===== publications.html ===== */
-:root { --black:#141a1f; --mid:#7a8a96; --light:#b0bec8; --bg:#f7f5f2; --white:#ffffff; --accent:#3a7a6a; --rule:#ddd8d0; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
 body.page-publications { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
 body.page-publications header { max-width: 980px; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
 body.page-publications .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
@@ -353,7 +321,6 @@ body.page-publications footer { max-width: 980px; margin: 0 auto; padding: 24px 
 body.page-publications .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
 body.page-publications .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
 body.page-publications .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 640px) {
   body.page-publications header { padding: 48px 24px 0; }
   body.page-publications .header-top { flex-direction: column; }
@@ -374,11 +341,7 @@ body.page-publications main { width: 100%; flex: 1 0 auto; }
 body.page-publications .footer-rule, body.page-publications footer { width: 100%; flex-shrink: 0; }
 
 
-
 /* ===== lab.html ===== */
-:root { --black:#141a1f; --mid:#7a8a96; --light:#b0bec8; --bg:#f7f5f2; --white:#ffffff; --accent:#3a7a6a; --rule:#ddd8d0; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
 body.page-lab { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
 body.page-lab header { max-width: 980px; width: 100%; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
 body.page-lab .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
@@ -456,7 +419,6 @@ body.page-lab .member-profile:nth-child(1) .member-photo-card { --pin-color: #c7
 body.page-lab .member-profile:nth-child(2) .member-photo-card { --pin-color: #3a7a6a; }
 body.page-lab .member-profile:nth-child(3) .member-photo-card { --pin-color: #d6a23f; }
 body.page-lab .member-profile:nth-child(4) .member-photo-card { --pin-color: #6f7fbf; }
-body.page-lab .member-profile:nth-child(5) .member-photo-card { --pin-color: #b76aa3; }
 body.page-lab .member-photo { aspect-ratio: 4 / 5; border: 1px solid rgba(199,191,177,0.94); border-radius: 1px 3px 2px 4px / 3px 2px 4px 1px; background: linear-gradient(145deg, #ece8e1, #d8d0c3); display: flex; align-items: center; justify-content: center; color: var(--light); font-family: "Space Mono", monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; padding: 18px; transform: rotate(-0.18deg); overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.36); }
 body.page-lab .member-photo.has-image { padding: 0; background: #111; }
 body.page-lab .member-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.96) contrast(1.02); }
@@ -464,7 +426,6 @@ body.page-lab .member-role { font-family: "Space Mono", monospace; font-size: 0.
 body.page-lab .member-name { font-family: "Libre Baskerville", Georgia, serif; font-size: 1.35rem; font-weight: 400; color: var(--black); margin-bottom: 12px; }
 body.page-lab .member-bio { color: var(--mid); font-size: 0.96rem; line-height: 1.8; max-width: 530px; }
 body.page-lab .member-profile:nth-child(even) .member-bio { margin-left: auto; }
-body.page-lab .placeholder-note { margin-top: 18px; font-family: "Space Mono", monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
 body.page-lab .lab-title { margin-bottom: 8px; }
 body.page-lab .lab-tagline { margin-bottom: 32px; }
 body.page-lab .lab-copy h3 { font-family: "Libre Baskerville", Georgia, serif; font-size: 1.15rem; font-weight: 400; color: var(--accent); line-height: 1.45; margin: 0 0 15px; }
@@ -484,7 +445,6 @@ body.page-lab footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 60px
 body.page-lab .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
 body.page-lab .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
 body.page-lab .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 640px) {
   body.page-lab header { padding: 48px 24px 0; }
   body.page-lab .header-top { flex-direction: column; }
@@ -506,11 +466,7 @@ body.page-lab main { width: 100%; flex: 1 0 auto; }
 body.page-lab .footer-rule, body.page-lab footer { width: 100%; flex-shrink: 0; }
 
 
-
 /* ===== opportunities.html ===== */
-:root { --black:#141a1f; --mid:#7a8a96; --light:#b0bec8; --bg:#f7f5f2; --white:#ffffff; --accent:#3a7a6a; --rule:#ddd8d0; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
 body.page-opportunities { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
 body.page-opportunities header { max-width: 980px; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
 body.page-opportunities .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
@@ -531,26 +487,6 @@ body.page-opportunities .category { margin-top: 60px; opacity: 0; transform: tra
 body.page-opportunities .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
 body.page-opportunities .category-label { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
 body.page-opportunities .category-line { flex: 1; height: 1px; background: var(--rule); }
-body.page-opportunities .category-count { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--light); }
-body.page-opportunities .article-list { list-style: none; }
-body.page-opportunities .article-item { border-bottom: 1px solid var(--rule); }
-body.page-opportunities .article-item:first-child { border-top: 1px solid var(--rule); }
-body.page-opportunities .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
-body.page-opportunities .article-link:hover { padding-left: 12px; }
-body.page-opportunities .article-link:hover .article-title { color: var(--accent); }
-body.page-opportunities .article-link::after { content: "↗"; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
-body.page-opportunities .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
-body.page-opportunities .press-thumbnail { width: min(220px, 100%);
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      border: 1px solid var(--rule);
-      background: var(--white);
-      margin: 8px 0 2px;
-      filter: saturate(0.96) contrast(1.02); }
-body.page-opportunities .article-left { display: flex; flex-direction: column; gap: 5px; }
-body.page-opportunities .article-title { font-family: "Libre Baskerville", serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
-body.page-opportunities .article-pub { font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); }
-body.page-opportunities .article-date { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--light); white-space: nowrap; align-self: center; }
 body.page-opportunities .opportunity-card { border: 1px solid var(--rule);
       background:
         linear-gradient(135deg, rgba(58,122,106,0.08), transparent 46%),
@@ -584,7 +520,6 @@ body.page-opportunities footer { max-width: 980px; margin: 0 auto; padding: 24px
 body.page-opportunities .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
 body.page-opportunities .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
 body.page-opportunities .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 640px) {
   body.page-opportunities header { padding: 48px 24px 0; }
   body.page-opportunities .header-top { flex-direction: column; }
@@ -594,8 +529,8 @@ body.page-opportunities .footer-note { font-family: "Space Mono", monospace; fon
   body.page-opportunities .footer-rule { padding: 0 24px; }
   body.page-opportunities footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
   body.page-opportunities .footer-meta { align-items: flex-start; text-align: left; }
-  body.page-opportunities .article-link { grid-template-columns: 1fr; }
-  body.page-opportunities .article-date { display: none; }
+  
+  
 }
 
 /* Footer layout fix */
@@ -604,10 +539,7 @@ body.page-opportunities main { width: 100%; flex: 1 0 auto; }
 body.page-opportunities .footer-rule, body.page-opportunities footer { width: 100%; flex-shrink: 0; }
 
 
-
 /* ===== contact.html ===== */
-:root { --black:#141a1f; --mid:#7a8a96; --light:#b0bec8; --bg:#f7f5f2; --white:#ffffff; --accent:#3a7a6a; --rule:#ddd8d0; }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; scroll-behavior: smooth; }
 body.page-contact { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
 /* ── HEADER ── */
@@ -639,7 +571,6 @@ body.page-contact .contact-grid { display: grid; grid-template-columns: 1fr 1fr;
 body.page-contact .contact-cards { display: flex; flex-direction: column; gap: 16px; }
 body.page-contact .contact-card { display: flex; flex-direction: column; gap: 6px; padding: 20px 22px; border: 1px solid var(--rule); background: var(--white); transition: border-color 0.2s; }
 body.page-contact .contact-card:hover { border-color: var(--accent); }
-body.page-contact .contact-card-label { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--light); }
 body.page-contact .contact-card-value { font-family: "Libre Baskerville", serif; font-size: 0.95rem; color: var(--black); text-decoration: none; word-break: break-all; }
 body.page-contact .contact-card-value:hover { color: var(--accent); }
 body.page-contact .contact-card-link { display: inline-flex; align-items: center; gap: 8px; font-family: "Space Mono", monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; margin-top: 4px; transition: gap 0.2s; }
@@ -686,7 +617,6 @@ body.page-contact footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 
 body.page-contact .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
 body.page-contact .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
 body.page-contact .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 640px) {
   body.page-contact header { padding: 48px 24px 0; }
   body.page-contact .header-top { flex-direction: column; }
@@ -703,4 +633,3 @@ body.page-contact .footer-note { font-family: "Space Mono", monospace; font-size
 body.page-contact { min-height: 100vh; display: flex; flex-direction: column; }
 body.page-contact main { width: 100%; flex: 1 0 auto; }
 body.page-contact .footer-rule, body.page-contact footer { width: 100%; flex-shrink: 0; }
-

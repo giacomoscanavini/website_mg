@@ -45,16 +45,12 @@
         <div class="category-line"></div>
         <span class="category-count" id="pub-count"></span>
       </div>
-
-      <!-- Google Scholar link -->
       <p class="scholar-link-row">
         <a class="scholar-link" href="https://scholar.google.com/citations?user=fB31s5oAAAAJ&hl=en" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/><path d="M12 14L2.108 8.43a12.086 12.086 0 0119.784 0L12 14z"/></svg>
           Google Scholar ↗
         </a>
       </p>
-
-      <!-- Live search bar -->
       <div class="pub-search-wrap">
         <input class="pub-search" id="pubSearch" type="search"
                placeholder="Search by title or journal…" autocomplete="off" />
@@ -79,11 +75,6 @@
   <script>
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     document.getElementById('footer-year').textContent = 'Last updated: ' + months[new Date().getMonth()] + ' ' + new Date().getFullYear();
-
-    // Publications data
-    // To add a publication: copy one object and paste it into the array.
-    // To load from an external file instead: place publications.json next
-    // to this HTML — the fetch() call below checks for it first.
     const publicationsData = [
       { title: "Hidden pressure-stabilized lead reservoirs in Earth's mantle", 
         publication: "Nature Communications", 
@@ -165,8 +156,6 @@
     ];
 
     let allPubs = publicationsData;
-
-    // Try publications.json first
     fetch('./publications.json')
       .then(r => r.ok ? r.json() : null)
       .then(data => { if (data?.publications?.length) { allPubs = data.publications; } })
