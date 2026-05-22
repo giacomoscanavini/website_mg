@@ -1,0 +1,649 @@
+/*
+  Consolidated site styles.
+  Page rules are scoped with body classes to preserve the original per-page styling.
+*/
+
+
+/* ===== index.html ===== */
+:root { --black:   #141a1f;
+      --mid:     #7a8a96;
+      --light:   #b0bec8;
+      --bg:      #f7f5f2;
+      --white:   #ffffff;
+      --accent:  #3a7a6a;
+      --rule:    #ddd8d0; }
+body.page-index { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
+/* HEADER */
+body.page-index header { max-width: 980px; width: 100%; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
+body.page-index .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
+body.page-index .site-name { font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
+body.page-index .site-name span { display: block; font-style: italic; color: var(--accent); }
+body.page-index .site-name-zh { font-family: "Ma Shan Zheng", cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
+body.page-index .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+body.page-index .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
+/* Role line — left-aligned, between name and rule */
+body.page-index .header-role { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
+body.page-index .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
+body.page-index .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
+/* SITE NAV */
+body.page-index .site-nav { max-width: 980px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
+body.page-index .site-nav-link { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
+body.page-index .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
+body.page-index .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+/* MAIN */
+body.page-index main { max-width: 980px; margin: 0 auto; padding: 0 48px 120px; }
+/* CATEGORY */
+body.page-index .category { margin-top: 60px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.55s ease forwards; }
+body.page-index .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+body.page-index .category-label { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+body.page-index .category-line { flex: 1; height: 1px; background: var(--rule); }
+body.page-index .category-count { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--light); }
+/* ABOUT */
+body.page-index .about-grid { display: grid; grid-template-columns: 190px 1fr; gap: 48px; align-items: start; }
+/* Photo placeholder — swap for <img> when you have a photo */
+body.page-index .profile-frame { width: 190px;
+      padding: 9px 9px 28px;
+      background:
+        linear-gradient(112deg, rgba(255,255,255,0.9), rgba(255,252,246,0.74) 38%, rgba(241,235,224,0.58)),
+        repeating-linear-gradient(0deg, rgba(20,26,31,0.018) 0 1px, transparent 1px 4px),
+        #fffaf1;
+      border: 1px solid rgba(206,198,185,0.9);
+      border-radius: 2px 4px 3px 5px / 5px 2px 4px 3px;
+      box-shadow:
+        0 22px 34px rgba(20,26,31,0.14),
+        0 7px 11px rgba(20,26,31,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.72),
+        2px 3px 0 rgba(197,188,174,0.28);
+      transform: rotate(-2.2deg) translateY(2px);
+      position: relative; }
+body.page-index .profile-frame::after { content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      width: 46px;
+      height: 1px;
+      background: rgba(199,191,177,0.82);
+      transform: translateX(-50%) rotate(-0.5deg); }
+body.page-index .profile-frame img { width: 100%;
+      aspect-ratio: 1 / 1;
+      display: block;
+      border: 1px solid rgba(199,191,177,0.94);
+      border-radius: 1px 3px 2px 4px / 3px 2px 4px 1px;
+      object-fit: cover;
+      filter: saturate(0.96) contrast(1.02); }
+/* Bio */
+body.page-index .about-bio h3 { font-family: "Libre Baskerville", serif; font-size: 1.1rem; font-weight: 400; color: var(--black); margin-bottom: 16px; line-height: 1.5; }
+body.page-index .about-bio p { font-family: "Outfit", sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--mid); line-height: 1.85; margin-bottom: 14px; }
+body.page-index .about-bio p:last-child { margin-bottom: 0; }
+/* RESEARCH INTERESTS */
+body.page-index .interests-list { list-style: none;
+      display: grid;
+      gap: 13px; }
+body.page-index .interest-item { display: grid;
+      grid-template-columns: 18px 1fr;
+      align-items: baseline;
+      gap: 14px;
+      padding: 3px 0; }
+body.page-index .interest-dot { width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.55;
+      transform: translateY(-1px); }
+body.page-index .interest-text { font-family: "Libre Baskerville", Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.55; }
+/* ARTICLE ROWS */
+body.page-index .article-list { list-style: none; }
+body.page-index .article-item { border-bottom: 1px solid var(--rule); }
+body.page-index .article-item:first-child { border-top: 1px solid var(--rule); }
+body.page-index .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
+body.page-index .article-link:hover { padding-left: 12px; }
+body.page-index .article-link:hover .article-title { color: var(--accent); }
+body.page-index .article-link::after { content: "↗"; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
+body.page-index .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
+body.page-index .article-link.has-logo::after { content: none; }
+/* Logo column */
+body.page-index .article-link.has-logo { grid-template-columns: 60px 1fr auto; }
+body.page-index .institution-logo-wrap { display: flex; align-items: center; justify-content: center; width: 60px; height: 50px; flex-shrink: 0; }
+body.page-index .institution-logo { max-width: 54px; max-height: 48px; width: auto; height: auto; object-fit: contain; filter: grayscale(0.8) opacity(0.55); transition: filter 0.25s ease, transform 0.25s ease; }
+/* UChicago slightly larger */
+body.page-index .logo-uchicago { max-width: 62px; max-height: 56px; }
+body.page-index .article-link:hover .institution-logo { filter: grayscale(0.1) opacity(0.9); transform: translateY(-1px); }
+body.page-index .position-category-past .institution-logo { filter: grayscale(0) saturate(1.08) opacity(0.88); }
+body.page-index .position-category-past .article-link:hover .institution-logo { filter: grayscale(0) saturate(1.2) opacity(1); transform: translateY(-1px); }
+body.page-index .article-link.active-role .article-title, body.page-index .article-link.active-role .article-pub, body.page-index .article-link.active-role .article-date { color: var(--accent); }
+body.page-index .article-link.active-role .institution-logo { filter: grayscale(0.1) opacity(0.9); }
+body.page-index .article-left { display: flex; flex-direction: column; gap: 5px; }
+body.page-index .article-title { font-family: "Libre Baskerville", serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
+body.page-index .article-pub { font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); }
+body.page-index .article-date { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--light); white-space: nowrap; align-self: center; }
+/* HOME PLACEHOLDERS */
+body.page-index .placeholder-card { border: 1px solid var(--rule);
+      background: var(--white);
+      padding: 22px 24px;
+      color: var(--mid);
+      font-size: 0.95rem;
+      line-height: 1.8; }
+body.page-index .placeholder-card strong { font-family: "Libre Baskerville", serif;
+      font-weight: 400;
+      color: var(--black); }
+body.page-index .news-board { display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px; }
+body.page-index .news-card { min-height: 150px;
+      border: 1px solid var(--rule);
+      background:
+        linear-gradient(135deg, rgba(58,122,106,0.08), transparent 42%),
+        var(--white);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px; }
+body.page-index .news-card-kicker { font-family: "Space Mono", monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent); }
+body.page-index .news-card-title { font-family: "Libre Baskerville", serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.45; }
+body.page-index .news-card-body { color: var(--mid);
+      font-size: 0.9rem;
+      line-height: 1.75; }
+/* FOOTER */
+body.page-index .footer-rule { max-width: 980px; margin: 0 auto; padding: 0 48px; }
+body.page-index .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
+body.page-index footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+body.page-index .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+body.page-index .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
+body.page-index .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 640px) {
+  body.page-index header { padding: 48px 24px 0; }
+  body.page-index .header-top { flex-direction: column; }
+  body.page-index .header-image-wrap { display: none; }
+  body.page-index .site-nav { padding: 16px 24px 0; }
+  body.page-index main { padding: 0 24px 80px; }
+  body.page-index .about-grid { grid-template-columns: 1fr; }
+  body.page-index .profile-frame { width: 155px; }
+  body.page-index .footer-rule { padding: 0 24px; }
+  body.page-index footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  body.page-index .footer-meta { align-items: flex-start; text-align: left; }
+  body.page-index .article-link.has-logo { grid-template-columns: 48px 1fr; }
+  body.page-index .article-date { display: none; }
+  body.page-index .news-board { grid-template-columns: 1fr; }
+}
+
+/* Footer layout fix */
+body.page-index { min-height: 100vh; display: flex; flex-direction: column; }
+body.page-index main { width: 100%; flex: 1 0 auto; }
+body.page-index .footer-rule, body.page-index footer { width: 100%; flex-shrink: 0; }
+
+
+/* ===== press.html ===== */
+body.page-press { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
+body.page-press header { max-width: 980px; width: 100%; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
+body.page-press .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
+body.page-press .site-name { font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); text-decoration: none; display: block; }
+body.page-press .site-name span { display: block; font-style: italic; color: var(--accent); }
+body.page-press .site-name-zh { font-family: "Ma Shan Zheng", cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
+body.page-press .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+body.page-press .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
+body.page-press .header-role { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
+body.page-press .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
+body.page-press .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
+body.page-press .site-nav { max-width: 980px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
+body.page-press .site-nav-link { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
+body.page-press .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
+body.page-press .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+body.page-press main { max-width: 980px; margin: 0 auto; padding: 0 48px 120px; }
+body.page-press .category { margin-top: 60px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.55s ease forwards; }
+body.page-press .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+body.page-press .category-label { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+body.page-press .category-line { flex: 1; height: 1px; background: var(--rule); }
+body.page-press .category-count { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--light); }
+body.page-press .press-board { background: transparent;
+      border-radius: 18px;
+      padding: 0; }
+body.page-press .article-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+body.page-press .article-item { background: rgba(255,255,255,0.62);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(20,26,31,0.08);
+      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease; }
+body.page-press .article-item:hover { border-color: rgba(58,122,106,0.55);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 44px rgba(20,26,31,0.12); }
+body.page-press .article-link { display: block; text-decoration: none; color: inherit; }
+body.page-press .article-topbar { min-height: 38px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      background: rgba(58,122,106,0.10);
+      border-bottom: 1px solid rgba(58,122,106,0.16);
+      color: var(--accent);
+      font-family: "Space Mono", monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase; }
+body.page-press .article-card { display: grid; grid-template-columns: minmax(270px, 48.5%) 1fr; height: 200px; background: #fffaf3; overflow: hidden; }
+body.page-press .article-thumb { width: 100%; height: 100%; min-height: 200px; object-fit: cover; display: block; background: #ebe5dc; }
+body.page-press .article-content { padding: 16px 16px 18px; color: var(--black); align-self: start; overflow: hidden; }
+body.page-press .article-title { font-family: "Outfit", sans-serif; font-size: clamp(1.02rem, 1.4vw, 1.18rem); font-weight: 700; line-height: 1.25; color: var(--black); margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+body.page-press .article-pub { display: none; }
+body.page-press .article-desc { font-size: 0.96rem; line-height: 1.34; color: #263138; max-width: 45rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+body.page-press .article-date { display: inline-block; margin-top: 12px; font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+body.page-press .article-item:hover .article-title { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(58,122,106,0.45); text-underline-offset: 3px; }
+body.page-press .footer-rule { max-width: 980px; margin: 0 auto; padding: 0 48px; }
+body.page-press .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
+body.page-press footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+body.page-press .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+body.page-press .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
+body.page-press .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
+@media (max-width: 640px) {
+  body.page-press header { padding: 48px 24px 0; }
+  body.page-press .header-top { flex-direction: column; }
+  body.page-press .header-image-wrap { display: none; }
+  body.page-press .site-nav { padding: 16px 24px 0; }
+  body.page-press main { padding: 0 24px 80px; }
+  body.page-press .footer-rule { padding: 0 24px; }
+  body.page-press footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  body.page-press .footer-meta { align-items: flex-start; text-align: left; }
+  body.page-press .press-board { margin-left: 0; margin-right: 0; padding: 0; border-radius: 12px; }
+  body.page-press .article-card { grid-template-columns: 1fr; height: auto; min-height: 0; }
+  body.page-press .article-thumb { height: 210px; min-height: 210px; }
+  body.page-press .article-content { padding: 14px; }
+}
+
+/* Footer layout fix */
+body.page-press { min-height: 100vh; display: flex; flex-direction: column; }
+body.page-press main { width: 100%; flex: 1 0 auto; }
+body.page-press .footer-rule, body.page-press footer { width: 100%; flex-shrink: 0; }
+
+
+/* ===== publications.html ===== */
+body.page-publications { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
+body.page-publications header { max-width: 980px; width: 100%; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
+body.page-publications .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
+body.page-publications .site-name { font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
+body.page-publications .site-name span { display: block; font-style: italic; color: var(--accent); }
+body.page-publications .site-name-zh { font-family: "Ma Shan Zheng", cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
+body.page-publications .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+body.page-publications .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
+body.page-publications .header-role { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
+body.page-publications .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
+body.page-publications .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
+body.page-publications .site-nav { max-width: 980px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
+body.page-publications .site-nav-link { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
+body.page-publications .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
+body.page-publications .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+body.page-publications main { max-width: 980px; margin: 0 auto; padding: 0 48px 120px; }
+body.page-publications .category { margin-top: 60px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.55s ease forwards; }
+body.page-publications .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+body.page-publications .category-label { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+body.page-publications .category-line { flex: 1; height: 1px; background: var(--rule); }
+body.page-publications .category-count { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--light); }
+/* Google Scholar link */
+body.page-publications .scholar-link-row { margin-bottom: 18px; }
+body.page-publications .scholar-link { display: inline-flex; align-items: center; gap: 7px; font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 6px 14px; transition: background 0.18s, color 0.18s; }
+body.page-publications .scholar-link:hover { background: var(--accent); color: var(--white); }
+body.page-publications .scholar-link svg { stroke: currentColor; flex-shrink: 0; }
+/* Search bar */
+body.page-publications .pub-search-wrap { margin-bottom: 4px; }
+body.page-publications .pub-search { width: 100%; font-family: "Outfit", sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--black); background: var(--white); border: 1px solid var(--rule); padding: 10px 16px; outline: none; transition: border-color 0.18s; }
+body.page-publications .pub-search::placeholder { color: var(--light); }
+body.page-publications .pub-search:focus { border-color: var(--accent); }
+body.page-publications .pub-results-note { font-family: "Space Mono", monospace; font-size: 0.52rem; color: var(--light); letter-spacing: 0.08em; margin-bottom: 20px; min-height: 1em; }
+body.page-publications .article-list { list-style: none; }
+body.page-publications .article-item { border-bottom: 1px solid var(--rule); }
+body.page-publications .article-item:first-child { border-top: 1px solid var(--rule); }
+body.page-publications .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
+body.page-publications .article-link:hover { padding-left: 12px; }
+body.page-publications .article-link:hover .article-title { color: var(--accent); }
+body.page-publications .article-link::after { content: "↗"; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
+body.page-publications .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
+body.page-publications .article-link.has-journal-thumb { grid-template-columns: 1fr auto; }
+body.page-publications .article-left { display: flex; flex-direction: column; gap: 5px; }
+body.page-publications .article-title { font-family: "Libre Baskerville", serif; font-size: 1.05rem; font-weight: 400; line-height: 1.4; color: var(--black); transition: color 0.2s; }
+body.page-publications .article-pub { font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--mid); font-weight: 700; font-style: italic; }
+body.page-publications .article-date { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--light); white-space: nowrap; align-self: center; }
+body.page-publications .pub-empty { font-family: "Space Mono", monospace; font-size: 0.6rem; color: var(--light); padding: 40px 0; text-align: center; display: none; }
+body.page-publications .source-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.08em; color: var(--light); margin-top: 16px; }
+body.page-publications .footer-rule { max-width: 980px; margin: 0 auto; padding: 0 48px; }
+body.page-publications .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
+body.page-publications footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+body.page-publications .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+body.page-publications .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
+body.page-publications .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
+@media (max-width: 640px) {
+  body.page-publications header { padding: 48px 24px 0; }
+  body.page-publications .header-top { flex-direction: column; }
+  body.page-publications .header-image-wrap { display: none; }
+  body.page-publications .site-nav { padding: 16px 24px 0; }
+  body.page-publications main { padding: 0 24px 80px; }
+  body.page-publications .footer-rule { padding: 0 24px; }
+  body.page-publications footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  body.page-publications .footer-meta { align-items: flex-start; text-align: left; }
+  body.page-publications .article-link { grid-template-columns: 1fr; }
+  body.page-publications .article-link.has-journal-thumb { grid-template-columns: 1fr; }
+  body.page-publications .article-date { display: none; }
+}
+
+/* Footer layout fix */
+body.page-publications { min-height: 100vh; display: flex; flex-direction: column; }
+body.page-publications main { width: 100%; flex: 1 0 auto; }
+body.page-publications .footer-rule, body.page-publications footer { width: 100%; flex-shrink: 0; }
+
+
+/* ===== lab.html ===== */
+body.page-lab { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+body.page-lab header { max-width: 980px; width: 100%; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
+body.page-lab .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
+body.page-lab .site-name { font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
+body.page-lab .site-name span { display: block; font-style: italic; color: var(--accent); }
+body.page-lab .site-name-zh { font-family: "Ma Shan Zheng", cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
+body.page-lab .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+body.page-lab .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
+body.page-lab .header-role { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
+body.page-lab .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
+body.page-lab .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
+body.page-lab .site-nav { max-width: 980px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
+body.page-lab .site-nav-link { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
+body.page-lab .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
+body.page-lab .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+body.page-lab main { flex: 1; max-width: 980px; width: 100%; margin: 0 auto; padding: 0 48px 120px; }
+body.page-lab .group-intro { margin-top: 72px; opacity: 0; animation: fadeUp 0.6s 0.25s ease forwards; }
+body.page-lab .group-label { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+body.page-lab .group-label-text { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+body.page-lab .group-label-line { flex: 1; height: 1px; background: var(--rule); }
+body.page-lab .group-heading { font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.18; letter-spacing: -0.02em; color: var(--black); margin-bottom: 18px; }
+body.page-lab .group-heading em { font-style: italic; color: var(--accent); }
+body.page-lab .group-sub { font-size: 1rem; color: var(--mid); line-height: 1.75; max-width: none; margin-bottom: 56px; }
+body.page-lab .people-section { margin-top: 24px; opacity: 0; animation: fadeUp 0.6s 0.35s ease forwards; }
+body.page-lab .profile-list { display: flex; flex-direction: column; gap: 0; }
+body.page-lab .member-profile { display: grid; grid-template-columns: 230px 1fr; gap: 42px; align-items: center; padding: 40px 0; border-bottom: 1px solid rgba(221,216,208,0.58); }
+body.page-lab .member-profile:first-child { border-top: 1px solid rgba(221,216,208,0.58); }
+body.page-lab .member-profile:nth-child(even) { grid-template-columns: 1fr 230px; }
+body.page-lab .member-profile:nth-child(even) .member-photo-card { grid-column: 2; transform: rotate(3.1deg) translateY(4px); }
+body.page-lab .member-profile:nth-child(even) .member-copy { grid-column: 1; grid-row: 1; text-align: right; }
+body.page-lab .member-profile:nth-child(3n) .member-photo-card { transform: rotate(-3.6deg) translateY(-2px); }
+body.page-lab .member-profile:nth-child(4n) .member-photo-card { transform: rotate(1.4deg) translateY(3px); }
+body.page-lab .member-photo-card { width: 205px;
+      justify-self: center;
+      padding: 9px 9px 32px;
+      background:
+        linear-gradient(112deg, rgba(255,255,255,0.88), rgba(255,252,246,0.72) 38%, rgba(241,235,224,0.58)),
+        repeating-linear-gradient(0deg, rgba(20,26,31,0.018) 0 1px, transparent 1px 4px),
+        #fffaf1;
+      border: 1px solid rgba(206,198,185,0.9);
+      border-radius: 2px 4px 3px 5px / 5px 2px 4px 3px;
+      box-shadow:
+        0 22px 34px rgba(20,26,31,0.14),
+        0 7px 11px rgba(20,26,31,0.08),
+        inset 0 0 0 1px rgba(255,255,255,0.72),
+        2px 3px 0 rgba(197,188,174,0.28);
+      transform: rotate(-2.7deg) translateY(2px);
+      position: relative; }
+body.page-lab .member-photo-card::before { content: "";
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,0.96) 0 9%, rgba(255,255,255,0.45) 10% 18%, transparent 19%),
+        radial-gradient(circle at 58% 62%, rgba(0,0,0,0.22) 0 8%, transparent 9%),
+        radial-gradient(circle at 50% 48%, var(--pin-color, #b64f4a) 0 49%, rgba(20,26,31,0.18) 50% 72%, rgba(20,26,31,0.34) 73% 100%);
+      box-shadow: 0 2px 2px rgba(255,255,255,0.7) inset, 0 5px 9px rgba(20,26,31,0.24), 0 10px 14px rgba(20,26,31,0.08);
+      z-index: 2; }
+body.page-lab .member-photo-card::after { content: "";
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      width: 2px;
+      height: 25px;
+      background: linear-gradient(to bottom, rgba(245,245,242,0.8), rgba(61,64,67,0.38) 42%, rgba(20,26,31,0.08));
+      border-radius: 999px;
+      transform: translateX(-50%) rotate(1deg);
+      box-shadow: 1px 1px 2px rgba(20,26,31,0.15);
+      z-index: 1; }
+body.page-lab .member-profile:nth-child(1) .member-photo-card { --pin-color: #c75d52; }
+body.page-lab .member-profile:nth-child(2) .member-photo-card { --pin-color: #3a7a6a; }
+body.page-lab .member-profile:nth-child(3) .member-photo-card { --pin-color: #d6a23f; }
+body.page-lab .member-profile:nth-child(4) .member-photo-card { --pin-color: #6f7fbf; }
+body.page-lab .member-profile:nth-child(5) .member-photo-card { --pin-color: #9b6f4f; }
+body.page-lab .member-photo { aspect-ratio: 4 / 5; border: 1px solid rgba(199,191,177,0.94); border-radius: 1px 3px 2px 4px / 3px 2px 4px 1px; background: linear-gradient(145deg, #ece8e1, #d8d0c3); display: flex; align-items: center; justify-content: center; color: var(--light); font-family: "Space Mono", monospace; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; padding: 18px; transform: rotate(-0.18deg); overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.36); }
+body.page-lab .member-photo.has-image { padding: 0; background: #111; }
+body.page-lab .member-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.96) contrast(1.02); }
+body.page-lab .member-role { font-family: "Space Mono", monospace; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+body.page-lab .member-name { font-family: "Libre Baskerville", Georgia, serif; font-size: 1.35rem; font-weight: 400; color: var(--black); margin-bottom: 12px; }
+body.page-lab .member-bio { color: var(--mid); font-size: 0.96rem; line-height: 1.8; max-width: 530px; }
+body.page-lab .member-profile:nth-child(even) .member-bio { margin-left: auto; }
+body.page-lab .lab-title { margin-bottom: 8px; }
+body.page-lab .gaia-title { color: var(--accent); font-style: normal; text-transform: uppercase; }
+body.page-lab .lab-tagline { margin-bottom: 32px; }
+body.page-lab .lab-copy h3 { font-family: "Libre Baskerville", Georgia, serif; font-size: 1.15rem; font-weight: 400; color: var(--accent); line-height: 1.45; margin: 0 0 15px; }
+body.page-lab .lab-copy p { color: var(--mid); font-size: 0.98rem; line-height: 1.85; margin-bottom: 18px; }
+body.page-lab .lab-copy p:last-child { margin-bottom: 0; }
+body.page-lab .lab-about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); gap: 34px; align-items: start; margin-bottom: 8px; }
+body.page-lab .lab-about-text { min-width: 0; }
+body.page-lab .lab-polaroid { width: 100%; max-width: 300px; justify-self: end; margin: 4px 0 22px; padding: 10px 10px 34px; background: linear-gradient(112deg, rgba(255,255,255,0.9), rgba(255,252,246,0.72) 38%, rgba(241,235,224,0.58)), #fffaf1; border: 1px solid rgba(206,198,185,0.9); border-radius: 2px 4px 3px 5px / 5px 2px 4px 3px; box-shadow: 0 22px 34px rgba(20,26,31,0.14), 0 7px 11px rgba(20,26,31,0.08), inset 0 0 0 1px rgba(255,255,255,0.72), 2px 3px 0 rgba(197,188,174,0.28); transform: rotate(2.2deg); position: relative; --pin-color: #3a7a6a; }
+body.page-lab .lab-polaroid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border: 1px solid rgba(199,191,177,0.94); background: #111; filter: saturate(0.96) contrast(1.02); }
+body.page-lab .lab-polaroid figcaption { margin-top: 14px; font-family: "Space Mono", monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-align: center; }
+body.page-lab .lab-polaroid::before { content: ""; position: absolute; top: -15px; left: 50%; width: 22px; height: 22px; border-radius: 50%; transform: translateX(-50%); background: radial-gradient(circle at 34% 28%, rgba(255,255,255,0.96) 0 9%, rgba(255,255,255,0.45) 10% 18%, transparent 19%), radial-gradient(circle at 58% 62%, rgba(0,0,0,0.22) 0 8%, transparent 9%), radial-gradient(circle at 50% 48%, var(--pin-color, #3a7a6a) 0 49%, rgba(20,26,31,0.18) 50% 72%, rgba(20,26,31,0.34) 73% 100%); box-shadow: 0 2px 2px rgba(255,255,255,0.7) inset, 0 5px 9px rgba(20,26,31,0.24), 0 10px 14px rgba(20,26,31,0.08); z-index: 2; }
+body.page-lab .lab-polaroid::after { content: ""; position: absolute; top: 2px; left: 50%; width: 2px; height: 25px; background: linear-gradient(to bottom, rgba(245,245,242,0.8), rgba(61,64,67,0.38) 42%, rgba(20,26,31,0.08)); border-radius: 999px; transform: translateX(-50%) rotate(1deg); box-shadow: 1px 1px 2px rgba(20,26,31,0.15); z-index: 1; }
+body.page-lab .member-profile-link { margin-top: 8px; }
+body.page-lab .member-profile-link a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+body.page-lab .question-list { margin: 8px 0 28px 40px; }
+body.page-lab .question-item { margin-bottom: 18px; }
+body.page-lab .question-item:last-child { margin-bottom: 0; }
+body.page-lab .question-item strong { display: block; font-family: "Libre Baskerville", Georgia, serif; font-weight: 400; color: var(--black); margin-bottom: 3px; }
+body.page-lab .unique-approach { margin-top: 38px; padding-top: 24px; border-top: 1px solid rgba(221,216,208,0.72); }
+body.page-lab .people-heading { margin-top: 76px; color: var(--black); }
+body.page-lab .people-heading em { color: var(--accent); }
+body.page-lab .people-heading + .group-sub { margin-bottom: 28px; }
+body.page-lab .footer-rule { max-width: 980px; margin: 0 auto; padding: 0 48px; }
+body.page-lab .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
+body.page-lab footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+body.page-lab .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+body.page-lab .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
+body.page-lab .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
+@media (max-width: 640px) {
+  body.page-lab header { padding: 48px 24px 0; }
+  body.page-lab .header-top { flex-direction: column; }
+  body.page-lab .header-image-wrap { display: none; }
+  body.page-lab .site-nav { padding: 16px 24px 0; }
+  body.page-lab main { padding: 0 24px 80px; }
+  body.page-lab .lab-about-grid { grid-template-columns: 1fr; gap: 22px; }
+  body.page-lab .lab-polaroid { justify-self: start; max-width: 280px; margin-top: 6px; }
+  body.page-lab .member-profile, body.page-lab .member-profile:nth-child(even) { grid-template-columns: 1fr; gap: 22px; text-align: left; }
+  body.page-lab .member-profile:nth-child(even) .member-photo-card, body.page-lab .member-profile:nth-child(even) .member-copy { grid-column: auto; grid-row: auto; text-align: left; }
+  body.page-lab .member-profile:nth-child(even) .member-bio { margin-left: 0; }
+  body.page-lab .member-photo-card { justify-self: start; width: 180px; }
+  body.page-lab .footer-rule { padding: 0 24px; }
+  body.page-lab footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  body.page-lab .footer-meta { align-items: flex-start; text-align: left; }
+}
+
+/* Footer layout fix */
+body.page-lab { min-height: 100vh; display: flex; flex-direction: column; }
+body.page-lab main { width: 100%; flex: 1 0 auto; }
+body.page-lab .footer-rule, body.page-lab footer { width: 100%; flex-shrink: 0; }
+
+
+/* ===== opportunities.html ===== */
+body.page-opportunities { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; }
+body.page-opportunities header { max-width: 980px; width: 100%; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
+body.page-opportunities .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
+body.page-opportunities .site-name { font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); text-decoration: none; display: block; }
+body.page-opportunities .site-name span { display: block; font-style: italic; color: var(--accent); }
+body.page-opportunities .site-name-zh { font-family: "Ma Shan Zheng", cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
+body.page-opportunities .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+body.page-opportunities .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
+body.page-opportunities .header-role { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
+body.page-opportunities .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
+body.page-opportunities .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
+body.page-opportunities .site-nav { max-width: 980px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
+body.page-opportunities .site-nav-link { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
+body.page-opportunities .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
+body.page-opportunities .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+body.page-opportunities main { max-width: 980px; margin: 0 auto; padding: 0 48px 120px; }
+body.page-opportunities .category { margin-top: 60px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.55s ease forwards; }
+body.page-opportunities .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+body.page-opportunities .category-label { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+body.page-opportunities .category-line { flex: 1; height: 1px; background: var(--rule); }
+body.page-opportunities .opportunity-card { border: 1px solid var(--rule);
+      background:
+        linear-gradient(135deg, rgba(58,122,106,0.08), transparent 46%),
+        var(--white);
+      padding: 28px 30px;
+      max-width: 680px; }
+body.page-opportunities .opportunity-kicker { display: inline-block;
+      font-family: "Space Mono", monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px; }
+body.page-opportunities .opportunity-card h2 { font-family: "Libre Baskerville", serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--black);
+      margin-bottom: 14px; }
+body.page-opportunities .opportunity-card p { color: var(--mid);
+      font-size: 0.96rem;
+      line-height: 1.85;
+      margin-bottom: 12px; }
+body.page-opportunities .opportunity-card + .opportunity-card { margin-top: 24px; }
+body.page-opportunities .opportunity-card a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(58,122,106,0.32); }
+body.page-opportunities .opportunity-card a:hover { border-bottom-color: var(--accent); }
+body.page-opportunities .opportunity-note { font-size: 0.9rem; color: var(--mid); font-style: italic; }
+body.page-opportunities .footer-rule { max-width: 980px; margin: 0 auto; padding: 0 48px; }
+body.page-opportunities .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
+body.page-opportunities footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+body.page-opportunities .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+body.page-opportunities .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
+body.page-opportunities .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
+@media (max-width: 640px) {
+  body.page-opportunities header { padding: 48px 24px 0; }
+  body.page-opportunities .header-top { flex-direction: column; }
+  body.page-opportunities .header-image-wrap { display: none; }
+  body.page-opportunities .site-nav { padding: 16px 24px 0; }
+  body.page-opportunities main { padding: 0 24px 80px; }
+  body.page-opportunities .footer-rule { padding: 0 24px; }
+  body.page-opportunities footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  body.page-opportunities .footer-meta { align-items: flex-start; text-align: left; }
+  
+  
+}
+
+/* Footer layout fix */
+body.page-opportunities { min-height: 100vh; display: flex; flex-direction: column; }
+body.page-opportunities main { width: 100%; flex: 1 0 auto; }
+body.page-opportunities .footer-rule, body.page-opportunities footer { width: 100%; flex-shrink: 0; }
+
+
+/* ===== contact.html ===== */
+html { font-size: 16px; scroll-behavior: smooth; }
+body.page-contact { font-family: "Outfit", sans-serif; background: var(--bg); color: var(--black); font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; display: flex; flex-direction: column; }
+/* ── HEADER ── */
+body.page-contact header { max-width: 980px; width: 100%; margin: 0 auto; padding: 64px 48px 0; opacity: 0; transform: translateY(16px); animation: fadeUp 0.7s ease forwards; }
+body.page-contact .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; margin-bottom: 14px; }
+body.page-contact .site-name { font-family: "Libre Baskerville", Georgia, serif; font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
+body.page-contact .site-name span { display: block; font-style: italic; color: var(--accent); }
+body.page-contact .site-name-zh { font-family: "Ma Shan Zheng", cursive; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--mid); letter-spacing: 0.06em; padding-left: 18px; align-self: flex-end; padding-bottom: 0.12em; line-height: 1; }
+body.page-contact .header-image-wrap { position: relative; flex: 0 0 auto; width: clamp(260px, 44%, 430px); height: 165px; overflow: visible; align-self: flex-start; margin-right: -8px; }
+body.page-contact .header-image { width: 100%; height: 100%; object-fit: contain; object-position: right center; display: block; }
+body.page-contact .header-role { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); line-height: 1; margin-bottom: 18px; }
+body.page-contact .header-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--black) 60%, transparent); margin-bottom: 4px; }
+body.page-contact .header-rule-thin { width: 100%; height: 1px; background: linear-gradient(to right, var(--rule) 80%, transparent); }
+/* ── NAV ── */
+body.page-contact .site-nav { max-width: 980px; margin: 0 auto; padding: 20px 48px 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; opacity: 0; animation: fadeUp 0.5s 0.15s ease forwards; }
+body.page-contact .site-nav-link { font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); text-decoration: none; border: 1px solid var(--rule); padding: 6px 14px; transition: background 0.18s, color 0.18s, border-color 0.18s; }
+body.page-contact .site-nav-link:hover { border-color: var(--accent); color: var(--accent); }
+body.page-contact .site-nav-link.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+/* ── MAIN ── */
+body.page-contact main { flex: 1; max-width: 980px; width: 100%; margin: 0 auto; padding: 0 48px 120px; }
+/* ── CATEGORY ── */
+body.page-contact .category { margin-top: 60px; opacity: 0; transform: translateY(10px); animation: fadeUp 0.55s ease forwards; }
+body.page-contact .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+body.page-contact .category-label { font-family: "Space Mono", monospace; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+body.page-contact .category-line { flex: 1; height: 1px; background: var(--rule); }
+/* ── CONTACT GRID ── */
+body.page-contact .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+/* Direct contact cards */
+body.page-contact .contact-cards { display: flex; flex-direction: column; gap: 16px; }
+body.page-contact .contact-card { display: flex; flex-direction: column; gap: 6px; padding: 20px 22px; border: 1px solid var(--rule); background: var(--white); transition: border-color 0.2s; }
+body.page-contact .contact-card:hover { border-color: var(--accent); }
+body.page-contact .contact-card-value { font-family: "Libre Baskerville", serif; font-size: 0.95rem; color: var(--black); text-decoration: none; word-break: break-all; }
+body.page-contact .contact-card-value:hover { color: var(--accent); }
+body.page-contact .contact-card-link { display: inline-flex; align-items: center; gap: 8px; font-family: "Space Mono", monospace; font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; margin-top: 4px; transition: gap 0.2s; }
+body.page-contact .contact-card-link:hover { gap: 12px; }
+body.page-contact .contact-note { font-family: "Outfit", sans-serif; font-size: 0.9rem; font-weight: 300; color: var(--mid); line-height: 1.8; margin-top: 8px; }
+/* ── FORM ── */
+body.page-contact .form-wrap { display: flex; flex-direction: column; gap: 18px; }
+body.page-contact .form-field { display: flex; flex-direction: column; gap: 6px; }
+body.page-contact .form-label { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); }
+body.page-contact .form-input, body.page-contact .form-textarea { font-family: "Outfit", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--black);
+      background: var(--white);
+      border: 1px solid var(--rule);
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.18s;
+      width: 100%; }
+body.page-contact .form-input::placeholder, body.page-contact .form-textarea::placeholder { color: var(--light); }
+body.page-contact .form-input:focus, body.page-contact .form-textarea:focus { border-color: var(--accent); }
+body.page-contact .form-textarea { resize: vertical; min-height: 130px; }
+body.page-contact .form-submit { font-family: "Space Mono", monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--accent);
+      border: none;
+      padding: 12px 24px;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.18s; }
+body.page-contact .form-submit:hover { background: var(--black); }
+body.page-contact .form-note { font-family: "Space Mono", monospace; font-size: 0.5rem; letter-spacing: 0.08em; color: var(--light); }
+/* Success / error state */
+body.page-contact .form-status { font-family: "Space Mono", monospace; font-size: 0.55rem; letter-spacing: 0.1em; padding: 10px 14px; display: none; }
+body.page-contact .form-status.success { background: #e8f4f0; color: var(--accent); border: 1px solid var(--accent); display: block; }
+body.page-contact .form-status.error { background: #fdf0f0; color: #a04040; border: 1px solid #d0a0a0; display: block; }
+/* ── FOOTER ── */
+body.page-contact .footer-rule { max-width: 980px; margin: 0 auto; padding: 0 48px; }
+body.page-contact .footer-rule hr { border: none; border-top: 1px solid var(--rule); }
+body.page-contact footer { max-width: 980px; margin: 0 auto; padding: 24px 48px 60px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+body.page-contact .footer-name { font-family: "Libre Baskerville", serif; font-size: 0.9rem; font-style: italic; color: var(--light); }
+body.page-contact .footer-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
+body.page-contact .footer-note { font-family: "Space Mono", monospace; font-size: 0.52rem; letter-spacing: 0.1em; color: var(--light); text-transform: uppercase; }
+@media (max-width: 640px) {
+  body.page-contact header { padding: 48px 24px 0; }
+  body.page-contact .header-top { flex-direction: column; }
+  body.page-contact .header-image-wrap { display: none; }
+  body.page-contact .site-nav { padding: 16px 24px 0; }
+  body.page-contact main { padding: 0 24px 80px; }
+  body.page-contact .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  body.page-contact .footer-rule { padding: 0 24px; }
+  body.page-contact footer { padding: 20px 24px 48px; flex-direction: column; gap: 10px; align-items: flex-start; }
+  body.page-contact .footer-meta { align-items: flex-start; text-align: left; }
+}
+
+/* Footer layout fix */
+body.page-contact { min-height: 100vh; display: flex; flex-direction: column; }
+body.page-contact main { width: 100%; flex: 1 0 auto; }
+body.page-contact .footer-rule, body.page-contact footer { width: 100%; flex-shrink: 0; }
