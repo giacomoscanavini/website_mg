@@ -102,7 +102,6 @@ body.page-index .article-item:first-child { border-top: 1px solid var(--rule); }
 body.page-index .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
 body.page-index .article-link:hover { padding-left: 12px; }
 body.page-index .article-link:hover .article-title { color: var(--accent); }
-body.page-index .article-link::after { content: "↗"; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
 body.page-index .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
 body.page-index .article-link.has-logo::after { content: none; }
 /* Logo column */
@@ -126,6 +125,7 @@ body.page-index .placeholder-card { border: 1px solid var(--rule);
       padding: 22px 24px;
       color: var(--mid);
       font-size: 0.95rem;
+      border-radius: 10px;
       line-height: 1.8; }
 body.page-index .placeholder-card strong { font-family: "Libre Baskerville", serif;
       font-weight: 400;
@@ -306,7 +306,6 @@ body.page-publications .article-item:first-child { border-top: 1px solid var(--r
 body.page-publications .article-link { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; padding: 16px 0; text-decoration: none; color: inherit; transition: padding-left 0.22s ease; }
 body.page-publications .article-link:hover { padding-left: 12px; }
 body.page-publications .article-link:hover .article-title { color: var(--accent); }
-body.page-publications .article-link::after { content: "↗"; font-size: 0.72rem; color: var(--light); transition: color 0.2s, transform 0.2s; }
 body.page-publications .article-link:hover::after { color: var(--accent); transform: translate(2px,-2px); }
 body.page-publications .article-link.has-journal-thumb { grid-template-columns: 1fr auto; }
 body.page-publications .article-left { display: flex; flex-direction: column; gap: 5px; }
@@ -506,6 +505,7 @@ body.page-opportunities .opportunity-card { border: 1px solid var(--rule);
         linear-gradient(135deg, rgba(58,122,106,0.08), transparent 46%),
         var(--white);
       padding: 28px 30px;
+      border-radius: 10px;
       max-width: 680px; }
 body.page-opportunities .opportunity-kicker { display: inline-block;
       font-family: "Space Mono", monospace;

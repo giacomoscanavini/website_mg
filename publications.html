@@ -48,7 +48,7 @@
       <p class="scholar-link-row">
         <a class="scholar-link" href="https://scholar.google.com/citations?user=fB31s5oAAAAJ&hl=en" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/><path d="M12 14L2.108 8.43a12.086 12.086 0 0119.784 0L12 14z"/></svg>
-          Google Scholar ↗
+          My Google Scholar
         </a>
       </p>
       <div class="pub-search-wrap">
@@ -59,7 +59,6 @@
 
       <ul class="article-list" id="pub-list"></ul>
       <p class="pub-empty" id="pub-empty">No publications match your search.</p>
-      <p class="source-note">Source: Google Scholar</p>
     </section>
   </main>
 
@@ -76,6 +75,12 @@
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     document.getElementById('footer-year').textContent = 'Last updated: ' + months[new Date().getMonth()] + ' ' + new Date().getFullYear();
     const publicationsData = [
+      { title: "The Emergence of an Urable Earth: How Early Planetary Evolution Shaped the Chemical Window for Life's Origin", 
+        publication: "Life", 
+        date: "2026", 
+        url: "https://www.mdpi.com/2075-1729/16/9/1436", 
+      },
+
       { title: "Hidden pressure-stabilized lead reservoirs in Earth's mantle", 
         publication: "Nature Communications", 
         date: "2026", 
