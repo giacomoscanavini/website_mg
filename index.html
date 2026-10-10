@@ -8,6 +8,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Ma+Shan+Zheng&family=Outfit:wght@200;300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Optional photos for Talks and Awards only */
+    #talks-and-awards .talk-photos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(6px, 1.4vw, 12px);
+      align-items: start;
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    #talks-and-awards .talk-photos[hidden],
+    #talks-and-awards .talk-photos img[hidden] {
+      display: none !important;
+    }
+
+    #talks-and-awards .talk-photos img {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      height: auto;
+      max-height: 180px;
+      margin: 0;
+      border-radius: 4px;
+      object-fit: contain;
+      object-position: left top;
+    }
+  </style>
 </head>
 <body class="page-index">
 
@@ -247,22 +277,36 @@
 
     </section>
 
-    <section class="category" style="animation-delay:0.25s">
+    <section id="talks-and-awards" class="category" style="animation-delay:0.25s">
       <div class="category-header">
         <span class="category-label">Talks and Awards</span>
         <div class="category-line"></div>
       </div>
+      <!--
+        Optional photos: each talk can display zero to three images in one row
+        Put images in assets/ and match the src filenames below, or edit the paths
+        Missing images stay hidden and a row with no available images takes no space
+        For a new entry, copy a card and change its text, image paths and alt descriptions
+        Keep the hidden attributes so unavailable images never show broken placeholders
+      -->
       <div class="placeholder-card">
         <strong>(Upcoming) Invited speaker at the 
           <a >International Astrobiology Symposium 2026 </br> -> Planetary Habitability on the Earth and Beyond</a></strong>
           <div style="height: 5px;"></div>
           <!-- Add small paragraph -->
+          <div class="talk-photos" hidden>
+            <img src="assets/astrobiology-2026-1.jpg" alt="International Astrobiology Symposium 2026, photo 1" decoding="async" hidden />
+          </div>
       </div>
       <div class="placeholder-card">
         <strong>Invited speaker at the 
           <a href='https://aam2026.org/'>CAM-AAM 2026</a></strong>
           <div style="height: 5px;"></div>
           <!-- Add small paragraph -->
+          <div class="talk-photos" hidden>
+            <img src="assets/cam-1.jpg" alt="CAM-AAM 2026, photo 1" decoding="async" hidden />
+            <img src="assets/cam-2.jpg" alt="CAM-AAM 2026, photo 2" decoding="async" hidden />
+          </div>
       </div>
       <div style="height: 3px;"></div>
       <div class="placeholder-card">
@@ -270,6 +314,8 @@
           <a >COSPAR Panel on EXploration (PEX) 2026</a></strong>
           <div style="height: 5px;"></div>
           <!-- Add small paragraph -->
+          <div class="talk-photos" hidden>
+            <img src="assets/cospar-pex-2026-1.jpg" alt="COSPAR Panel on EXploration 2026, photo 1" decoding="async" hidden />          </div>
       </div>
       <div style="height: 3px;"></div>
       <div class="placeholder-card">
@@ -281,6 +327,10 @@
           It was a valuable opportunity to discuss the early onset of 
           continental growth and its potential consequences for 
           origin-of-life opportunities on the early Earth. -->
+          <div class="talk-photos" hidden>
+            <img src="assets/dahuang-1.jpg" alt="Dahuang Conference 2026, photo 1" decoding="async" hidden />
+            <img src="assets/dahuang-2.jpg" alt="Dahuang Conference 2026, photo 2" decoding="async" hidden />
+          </div>
       </div>
     </section>
 
@@ -298,6 +348,40 @@
   <script>
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     document.getElementById('footer-year').textContent = 'Last updated: ' + months[new Date().getMonth()] + ' ' + new Date().getFullYear();
+  </script>
+  <script>
+    // Reveal only successfully loaded photos and keep empty rows collapsed
+    (() => {
+      document.querySelectorAll('#talks-and-awards .talk-photos').forEach((gallery) => {
+        const photos = Array.from(gallery.querySelectorAll('img')).slice(0, 3);
+
+        photos.forEach((photo) => {
+          const showPhoto = () => {
+            if (photo.naturalWidth > 0) {
+              photo.hidden = false;
+              gallery.hidden = false;
+            }
+          };
+
+          const hidePhoto = () => {
+            photo.hidden = true;
+            gallery.hidden = !photos.some((image) => !image.hidden);
+          };
+
+          photo.addEventListener('load', showPhoto);
+          photo.addEventListener('error', hidePhoto);
+
+          // Handle cached images and requests completed before this script ran
+          if (photo.complete) {
+            if (photo.naturalWidth > 0) {
+              showPhoto();
+            } else {
+              hidePhoto();
+            }
+          }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
