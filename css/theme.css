@@ -1,0 +1,294 @@
+/* TECTONIC GRID
+   Bold contemporary academic identity with blueprint teal and clay orange
+*/
+:root {
+  --black: #1d353a;
+  --mid: #4f676b;
+  --light: #7f999b;
+  --bg: #edf2ee;
+  --white: #fffefa;
+  --accent: #086d77;
+  --rule: #bed4d1;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body[class^="page-"] {
+  margin: 0;
+  background-color: #edf2ee;
+  background-image: linear-gradient(rgba(36,110,111,.055) 1px,transparent 1px), linear-gradient(90deg,rgba(36,110,111,.055) 1px,transparent 1px);
+  background-size: 50px 50px;
+  font-weight: 400;
+  color: var(--black);
+}
+body[class^="page-"] h1,
+body[class^="page-"] h2,
+body[class^="page-"] h3 { margin-top: 0; }
+body[class^="page-"] .article-list,
+body[class^="page-"] .interests-list { margin: 0; padding: 0; }
+body[class^="page-"] header {
+  max-width: 1120px;
+  padding: 58px 64px 33px;
+  position: relative;
+  overflow: hidden;
+  background: #193f45;
+  border-radius: 0 0 29px 4px;
+  box-shadow: 10px 12px 0 #d0e2dc;
+}
+body[class^="page-"] header::before {
+  content: "";
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  top: -210px;
+  right: -195px;
+  border: 55px solid rgba(249,242,214,.075);
+  box-shadow: 0 0 0 52px rgba(246,240,216,.055);
+}
+body[class^="page-"] header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 17px;
+  width: 28%;
+  background: #ec8865;
+  clip-path: polygon(19px 0, 100% 0,100% 100%,0 100%);
+}
+body[class^="page-"] .header-top { align-items: center; margin-bottom: 25px; position: relative; z-index: 1; }
+body[class^="page-"] .site-name {
+  font-family: "Outfit", Arial,sans-serif;
+  font-size: clamp(4.3rem, 8vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.087em;
+  line-height: 1;
+  color: #fbf9ef;
+}
+body[class^="page-"] .site-name span { color: #ff9b78; font-family: "Outfit",sans-serif; font-weight: 400; font-style: normal; }
+body[class^="page-"] .site-name-zh { color: #b4d3d2; }
+body[class^="page-"] .header-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  flex: 0 0 auto;
+  width: clamp(220px, 38%, 390px);
+  height: auto;
+  aspect-ratio: 2 / 1;
+  margin-right: 0;
+  border: 3px solid #e0f4ed;
+  border-radius: 2px 18px 2px 18px;
+  background: #eaf8f3;
+  padding: 12px;
+  box-shadow: 7px 7px 0 rgba(241,143,105,.5);
+  filter: none;
+}
+body[class^="page-"] .header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+@media (max-width: 640px) {
+  body[class^="page-"] .header-image-wrap { display: none; }
+}
+body[class^="page-"] .header-role {
+  position: relative;
+  z-index: 1;
+  font-family: "Outfit",sans-serif;
+  font-size: .75rem;
+  color: #c2d8d8;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: .085em;
+  margin-bottom: 10px;
+}
+body[class^="page-"] .header-rule { margin-top: 26px; height: 3px; background: linear-gradient(90deg,#f2936e 0 22%,#436971 22% 100%); }
+body[class^="page-"] .header-rule-thin { display: none; }
+body[class^="page-"] .site-nav {
+  max-width: 1120px;
+  margin: 23px auto 0;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 0 64px;
+}
+body[class^="page-"] .site-nav-link {
+  background: #fffefa;
+  border: 1px solid #a9c8c5;
+  margin: 0 -1px -1px 0;
+  padding: 12px 15px;
+  font-family: "Outfit",sans-serif;
+  text-transform: uppercase;
+  font-size: .62rem;
+  color: #23535b;
+  letter-spacing: .105em;
+  font-weight: 600;
+}
+body[class^="page-"] .site-nav-link:hover { background: #d7e9e6; color: #0c4951; border-color: #8bb4b4; }
+body[class^="page-"] .site-nav-link.active { background: #086d77; border-color: #086d77; color: white; }
+body[class^="page-"] main { max-width: 1120px; padding: 0 64px 110px; }
+body[class^="page-"] .category { margin-top: 62px; }
+body[class^="page-"] .category-header { margin-bottom: 24px; gap: 14px; border-bottom: 2px solid #91bcb6; padding: 0 0 15px; }
+body[class^="page-"] .category-header::before {
+  content: "";
+  display: block;
+  background: #ec8865;
+  width: 12px;
+  height: 27px;
+  flex-shrink: 0;
+}
+body[class^="page-"] .category-label {
+  font-family: "Outfit",sans-serif;
+  font-size: clamp(1rem,2vw,1.26rem);
+  font-weight: 600;
+  color: #1c4a51;
+  letter-spacing: -.01em;
+  text-transform: none;
+  white-space: normal;
+}
+body[class^="page-"] .category-line { display: none; }
+body[class^="page-"] .category-count { color: #597e7c; margin-left: auto; }
+body.page-index .about-grid { grid-template-columns: 220px minmax(0,1fr); gap: 32px; }
+body.page-index .profile-frame {
+  width: 220px;
+  padding: 0;
+  background: white;
+  border: 5px solid #19474c;
+  border-radius: 2px 24px 2px 24px;
+  transform: none;
+  box-shadow: 12px 12px 0 #f1a17d;
+}
+body.page-index .profile-frame::after { display: none; }
+body.page-index .profile-frame img { aspect-ratio: 1/1.14; border-radius: 0 18px 0 18px; border: 0; filter: saturate(.95); }
+body.page-index .about-bio {
+  border: 1px solid #c9dcd5;
+  border-radius: 3px 18px 3px 18px;
+  background: #fffefa;
+  padding: 29px 31px;
+  box-shadow: 6px 6px 0 #d4e5df;
+}
+body.page-index .about-bio h3 { font-family: "Outfit",sans-serif; color: #0b6570; font-size: 1.45rem; font-weight: 600; margin-bottom: 14px; }
+body.page-index .about-bio p { color: #4e6669; font-size: .98rem; line-height: 1.81; font-weight: 400; }
+body.page-index .interests-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+body.page-index .interest-item {
+  border: 1px solid #b2cfcb;
+  background: #fffefa;
+  border-radius: 2px 12px 2px 12px;
+  grid-template-columns: 11px 1fr;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 16px;
+}
+body.page-index .interest-dot { width: 9px; height: 9px; border-radius: 1px; background: #ee8862; opacity: 1; }
+body.page-index .interest-text { font-family: "Outfit",sans-serif; font-size: .98rem; font-weight: 500; line-height: 1.52; }
+body.page-index .article-list { display: flex; flex-direction: column; gap: 9px; }
+body.page-index .article-item,
+body.page-index .article-item:first-child { background: #fffefa; border: 1px solid #b9d4cf; border-left: 4px solid #0c6a74; border-radius: 3px 12px 3px 12px; }
+body.page-index .article-link { padding: 14px 18px; }
+body.page-index .article-link:hover { padding-left: 24px; background: #f4fbf9; }
+body.page-index .article-title { font-family: "Outfit",sans-serif; font-weight: 600; font-size: 1.04rem; }
+body.page-index .article-pub,
+body.page-index .article-date { color: #637b7d; }
+body.page-index .placeholder-card {
+  background: #fffefa;
+  border: 1px solid #b3cec9;
+  border-top: 4px solid #ed8761;
+  border-radius: 2px 18px 2px 18px;
+  padding: 24px 27px;
+  box-shadow: 5px 5px 0 #d7e5df;
+}
+body.page-index .placeholder-card strong { font-family: "Outfit",sans-serif; font-size: 1.07rem; font-weight: 600; color: #1c3b3f; }
+body.page-index .placeholder-card a { color: #086d77; }
+body.page-index #talks-and-awards .placeholder-card { margin-bottom: 16px; }
+body.page-index #talks-and-awards > div[style*="height"] { display:none; }
+body.page-index #talks-and-awards .talk-photos img { border-radius: 2px 12px 2px 12px; border: 1px solid #c7dcd4; max-height: 192px; }
+body.page-index .news-card { background: #fffefa; border: 1px solid #bbd3ce; border-top: 4px solid #ed8761; border-radius: 3px 16px 3px 16px; }
+body.page-press .article-item { border: 2px solid #a4c6c0; border-radius: 2px 15px 2px 15px; box-shadow: 5px 5px 0 #d3e2db; background: #fffefa; }
+body.page-press .article-item:hover { border-color: #e58a66; }
+body.page-lab .member-photo-card,
+body.page-lab .lab-polaroid { border: 4px solid #23535a; border-radius: 2px 22px 2px 22px; background: #fffefa; transform: none; box-shadow: 9px 9px 0 #db9582; }
+body.page-lab .member-photo-card::before,
+body.page-lab .member-photo-card::after,
+body.page-lab .lab-polaroid::before,
+body.page-lab .lab-polaroid::after { display:none; }
+body.page-lab .member-photo,
+body.page-lab .lab-polaroid img { border:0; border-radius: 0 16px 0 16px; transform:none; }
+body.page-lab .member-name { font-family: "Outfit",sans-serif; font-size: 1.7rem; font-weight: 600; }
+body.page-lab .member-role { font-weight: 600; }
+body.page-lab .lab-title { font-family: "Outfit",sans-serif; }
+body.page-publications .article-link { padding: 20px 13px; }
+body.page-publications .article-link:hover { background: #fffefa; }
+body.page-publications .article-title { font-family: "Outfit",sans-serif; font-weight: 600; }
+body.page-publications .pub-search,
+body.page-contact .form-input,
+body.page-contact .form-textarea { border: 2px solid #b2d1ca; border-radius: 3px 10px 3px 10px; background: #fffefa; }
+body.page-publications .scholar-link { border-radius: 3px 10px 3px 10px; }
+body.page-opportunities .opportunity-card,
+body.page-contact .contact-card { border: 1px solid #b5d1ca; border-top: 4px solid #ed8761; border-radius: 3px 17px 3px 17px; background: #fffefa; box-shadow: 5px 5px 0 #d6e5df; }
+body.page-contact .form-submit { background: #086d77; border-radius: 2px 10px 2px 10px; font-weight: 600; }
+body[class^="page-"] .footer-rule,
+body[class^="page-"] footer { max-width: 1120px; }
+body[class^="page-"] .footer-rule { padding: 0 64px; }
+body[class^="page-"] footer { padding: 24px 64px 55px; }
+@media (max-width: 760px) {
+  body[class^="page-"] header { padding: 41px 23px 30px; border-radius: 0 0 20px 4px; box-shadow: 5px 7px 0 #d0e2dc; }
+  body[class^="page-"] .site-name { font-size: clamp(3.7rem,14vw,5.7rem); }
+  body[class^="page-"] .site-nav { padding: 0 23px; margin-top: 23px; }
+  body[class^="page-"] .site-nav-link { padding: 10px 11px; font-size: .58rem; }
+  body[class^="page-"] main { padding: 0 20px 80px; }
+  body[class^="page-"] .category { margin-top: 45px; }
+  body.page-index .about-grid { grid-template-columns: 1fr; gap: 31px; }
+  body.page-index .profile-frame { width: min(226px,80%); }
+  body.page-index .about-bio { padding: 23px; }
+  body.page-index .interests-list { grid-template-columns: 1fr; }
+  body[class^="page-"] .footer-rule { padding: 0 22px; }
+  body[class^="page-"] footer { padding: 22px 22px 44px; }
+}
+
+/* One-line English name with a compact, left-aligned Chinese name beneath */
+body[class^="page-"] .header-name-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 5px;
+}
+body[class^="page-"] .header-name-block .site-name {
+  display: block;
+  margin: 0;
+  white-space: nowrap;
+}
+body[class^="page-"] .header-name-block .site-name span {
+  display: inline;
+}
+body[class^="page-"] .header-name-block .site-name-zh {
+  display: block;
+  align-self: flex-start;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+body[class^="page-"] .header-top > a {
+  min-width: 0;
+  flex-shrink: 1;
+}
+@media (max-width: 760px) {
+  body[class^="page-"] .header-name-block .site-name {
+    font-size: clamp(2.5rem, 7.8vw, 4.3rem);
+  }
+}
+@media (max-width: 640px) {
+  body[class^="page-"] .header-top {
+    align-items: flex-start;
+  }
+  body[class^="page-"] .header-name-block .site-name {
+    font-size: clamp(3rem, 10vw, 4.1rem);
+  }
+}
+@media (max-width: 360px) {
+  body[class^="page-"] .header-name-block .site-name {
+    font-size: 2.75rem;
+  }
+  body[class^="page-"] .header-name-block .site-name-zh {
+    font-size: 1.65rem;
+  }
+}
